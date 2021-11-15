@@ -1,0 +1,85 @@
+{% extends "baseEtudiant.html.twig" %}
+{% block titreContenu %}Accueil {% endblock %}
+
+{% block contenu%}
+</br>
+   <div class="col-lg-10">
+      <div class="card">
+
+
+        <div class="card-header d-flex align-items-center">
+            <h3 class="h4"><h3 class="h4"> Mes dernières réalisations professionnelles </h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">   
+                <table class="table table-striped table-sm">
+                    <thead>
+                      <tr>
+                        <th>Source</th>
+                        <th>Libellé</th>
+                        <th>Nombre d'activités</th>
+                        <th>Date</th>
+                        <th>Statut</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- on n'affiche que 7 rp -->
+                      {% for i in 0..7 %}
+                        {% if app.user.etudiant.rps[i] is defined %}
+                          <tr>
+                            <th scope="row">{{app.user.etudiant.rps[i].source.libelle}} </th>
+                            <td><a class="text" href="{{ path('rpShowEditAdd', { 'idRp': app.user.etudiant.rps[i].id }) }}">{{app.user.etudiant.rps[i].libcourt}}</a></td>
+                            <td>{{app.user.etudiant.rps[i].activites.count}}</td>
+                            <td>{{app.user.etudiant.rps[i].dateDebut | date("d/m/Y")}}</td>
+                            <td>{{app.user.etudiant.rps[i].statut.libelle}} {% if app.user.etudiant.rps[i].statut.id == 2%} de {{app.user.etudiant.rps[i].enseignant.prenom}} {{app.user.etudiant.rps[i].enseignant.nom}} {% endif %}</td>
+                            <td>images action</td>
+                          </tr>
+                        {% endif %}
+                      {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+          </div>
+      </div>
+    </div>   
+
+
+      <!!- tableau des stages--> 
+  <div class="col-lg-10">
+    <div class="card">   
+      <div class="card-header d-flex align-items-center">
+            <h3 class="h4"><h3 class="h4"> Mes stages </h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">   
+                <table class="table table-striped table-sm">
+                    <thead>
+                      <tr>
+                        <th>Entreprise</th>
+                        <th>Réferent</th>
+                        <th>Mission</th>
+                        <th>Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+          
+                      {#% for stage in app.user.etudiant.stages %"}
+                          <tr>
+                            <th scope="row"></th>
+                            <td><a class="text" href=""></a></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                      {#% endfor %#}
+                    </tbody>
+                </table>
+            </div>
+          </div>
+    </div>
+  </div>   
+
+
+{% endblock %}

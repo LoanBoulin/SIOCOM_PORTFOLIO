@@ -1,0 +1,26 @@
+{% extends "baseEnseignant.html.twig" %}
+{% block titreContenu %}Liste des stages{% endblock %}
+
+
+{% block contenu%}
+</br>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header d-flex align-items-center">
+                      
+                        <!-- Breadcrumb-->
+                        <div class="breadcrumb-holder container-fluid">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item active"><a href="{#{ path('rpShowEditAdd', {'idRp': idRp }) }#}">Info</a></li>
+                                {% if stage.duree > 0 %}          
+                                    {% set nbSem = stage.duree %}
+                                    {% for i in 1..nbSem %}
+                                        <li class="breadcrumb-item"><a href="{#{ path('rpActiviteList', { 'idRp': idRp }) }#}"> Semaine {{ i }} </a></li>                         
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+        </div>
+    </div>
+</div>      
+{% endblock %}

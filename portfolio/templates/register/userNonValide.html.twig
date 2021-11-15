@@ -1,0 +1,12 @@
+{% extends 'basePublic.html.twig' %}
+
+
+{% block contenuPublic %}
+
+Hey  </br>
+Tu n'as pas activé le lien de confirmation dans ta bal
+</br>
+ou tes professeurs n'ont pas encore validé ton compte !
+
+Tu pourras te connecter après <a href="{{ path('app_login')}}">ici</a>
+{% endblock %}

@@ -1,0 +1,186 @@
+
+{#% extends "etudiant/baseEtudiant.html.twig" %#}
+{% extends templateTwigParent %}
+
+{% block titreContenu %}Mon stage {% endblock %}
+
+{% block contenu%}
+
+</br>
+{% for message in app.flashes('success') %}{# affichera un message de succès si l'action est réussie #}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+{% endfor %}
+
+ <!-- Forms Section-->
+<!--section class="forms"--> 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                      
+                        <!-- Breadcrumb-->
+                        <div class="breadcrumb-holder container-fluid">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item active"><a href="{#{ path('rpShowEditAdd', {'idRp': idRp }) }#}">Info</a></li>
+                                {% if stage.duree > 0 %}          
+                                    {% set nbSem = stage.duree %}
+                                    {% for i in 1..nbSem %}
+                                        <li class="breadcrumb-item"><a href="{#{ path('rpActiviteList', { 'idRp': idRp }) }#}"> Semaine {{ i }} </a></li>                         
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card-body">  
+
+                        {{ form_start(form)}}
+
+                            <!-- 1ère ligne de formulaire -->
+                            <div class="form-group row">    
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form_row(form.nomEntreprise, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div> 
+                                        <div class="col-md-3">
+                                            {{ form_row(form.siret, {'attr' : {'class' : 'form-control'}}) }}
+                                        </div>
+                                        <div class="col-md-3">
+                                            {{ form_row(form.codeNaf, {'attr' : {'class' : 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  ligne de formulaire  adresse -->
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            {{ form_row(form.numRue, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                         <div class="col-md-4">
+                                            {{ form_row(form.rue, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{ form_row(form.copos, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{ form_row(form.ville, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="line"> </div>
+
+                            <!-- 3ème ligne de formulaire adresse -->
+                            <div class="form-group row">  
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            {{ form_row(form.sujet, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+
+                             <!-- ligne de formulaire service et lieu -->
+                            <div class="form-group row">  
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form_row(form.lieu, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                        <div class="col-md-">
+                                            {{ form_row(form.service, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                           <!--  ligne tuteur -->
+                            <div class="form-group row">  
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form_row(form.nomTuteur, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                        <div class="col-md-3">
+                                            {{ form_row(form.mailTuteur, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                        <div class="col-md-3">
+                                            {{ form_row(form.telTuteur, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <!--  ligne de formulaire dates-->
+                            <div class="form-group row">  
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            {{ form_row(form.dateDebut, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{ form_row(form.dateFin, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{ form_row(form.duree, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  ligne horaires -->
+                            <div class="form-group row">  
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            {{ form_row(form.horLun, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{ form_row(form.horMar, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{ form_row(form.horMer, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{ form_row(form.horJeu, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{ form_row(form.horVen, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                        <div class="col-md-2">
+                                            {{ form_row(form.horSam, {'attr' : {'class' : 'form-control'}}) }} 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+						
+                        <!-- ligne de formulaire boutons-->
+                        <div class="form-group row">
+                            <div class="col-sm-4 offset-sm-3">
+                                <button type="submit" class="btn btn-secondary">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </div>
+                    </div>
+
+                    {{ form_end(form) }}
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--/section-->
+
+{% endblock %}

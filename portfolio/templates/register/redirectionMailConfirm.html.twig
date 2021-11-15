@@ -1,0 +1,11 @@
+{% extends 'basePublic.html.twig' %}
+
+
+{% block contenuPublic %}
+
+Hey {{pEtudiant.prenom}} {{pEtudiant.nom}}. </br>
+Check ta messagerie et active le lien de confirmation pour accéder à l'appli.
+</br>
+Et tu pourras y retourner <a href="{{ path('app_login')}}">ici</a>
+dès que que l'administrateur aura validé ton compte.
+{% endblock %}
