@@ -86,6 +86,12 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
         // line 23
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/logoSIO.png"), "html", null, true);
         echo "\">
+
+    <script src=\"";
+        // line 25
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/search.js"), "html", null, true);
+        echo "\"></script>
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src=\"https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js\"></script>
         <script src=\"https://oss.maxcdn.com/respond/1.4.2/respond.min.js\"></script><![endif]-->
@@ -103,14 +109,14 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
               <!-- Navbar Header-->
               <div class=\"navbar-header\">
                 <!-- Navbar Brand --><a href=\"";
-        // line 40
+        // line 43
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("etudiantHome");
         echo "\" class=\"navbar-brand d-none d-sm-inline-block\">
                   <div class=\"brand-text d-none d-lg-inline-block\"><span>";
-        // line 41
-        echo twig_escape_filter($this->env, (isset($context["titreHeader1"]) || array_key_exists("titreHeader1", $context) ? $context["titreHeader1"] : (function () { throw new RuntimeError('Variable "titreHeader1" does not exist.', 41, $this->source); })()), "html", null, true);
+        // line 44
+        echo twig_escape_filter($this->env, (isset($context["titreHeader1"]) || array_key_exists("titreHeader1", $context) ? $context["titreHeader1"] : (function () { throw new RuntimeError('Variable "titreHeader1" does not exist.', 44, $this->source); })()), "html", null, true);
         echo " &nbsp;</span><strong>";
-        echo twig_escape_filter($this->env, (isset($context["titreHeader2"]) || array_key_exists("titreHeader2", $context) ? $context["titreHeader2"] : (function () { throw new RuntimeError('Variable "titreHeader2" does not exist.', 41, $this->source); })()), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["titreHeader2"]) || array_key_exists("titreHeader2", $context) ? $context["titreHeader2"] : (function () { throw new RuntimeError('Variable "titreHeader2" does not exist.', 44, $this->source); })()), "html", null, true);
         echo "</strong></div>
                   <div class=\"brand-text d-none d-sm-inline-block d-lg-none\"><strong>BD</strong></div></a>
                 <!-- Toggle Button--><a id=\"toggle-btn\" href=\"#\" class=\"menu-btn active\"><span></span><span></span><span></span></a>
@@ -120,20 +126,20 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
               <!-- Navbar Menu -->
               <ul class=\"nav-menu list-unstyled d-flex flex-md-row align-items-md-center\">
                ";
-        // line 49
+        // line 52
         $this->displayBlock('notifications', $context, $blocks);
-        // line 51
+        // line 54
         echo "                
                <!-- Profile dropdown    -->
                 ";
-        // line 53
+        // line 56
         $this->displayBlock('profil', $context, $blocks);
-        // line 57
+        // line 60
         echo "
 
                 <!-- Logout    -->
                 <li class=\"nav-item\"><a href=\"";
-        // line 60
+        // line 63
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
         echo "\" class=\"nav-link logout\"> <span class=\"d-none d-sm-inline\">Logout</span><i class=\"fa fa-sign-out\"></i></a></li>
               </ul>
@@ -143,9 +149,9 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
       </header>
 
 ";
-        // line 67
+        // line 70
         $this->displayBlock('navBar', $context, $blocks);
-        // line 69
+        // line 72
         echo " 
 
 
@@ -155,7 +161,7 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
           <header class=\"page-header\">
             <div class=\"container-fluid\">
               <h2 class=\"no-margin-bottom\">";
-        // line 77
+        // line 80
         $this->displayBlock('titreContenu', $context, $blocks);
         echo " </h2> 
             </div>
@@ -163,11 +169,11 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
 
 
 ";
-        // line 82
+        // line 85
         $this->displayBlock('contenu', $context, $blocks);
-        // line 83
+        // line 86
         echo " ";
-        // line 84
+        // line 87
         echo "
           <!-- Page Footer-->
           <footer class=\"main-footer\">
@@ -188,36 +194,36 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
     </div>
     <!-- JavaScript files-->
     <script src=\"";
-        // line 103
+        // line 106
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("vendor/jquery/jquery.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 104
+        // line 107
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("vendor/popper.js/umd/popper.min.js"), "html", null, true);
         echo "\"> </script>
     <script src=\"";
-        // line 105
+        // line 108
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("vendor/bootstrap/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 106
+        // line 109
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("vendor/jquery.cookie/jquery.cookie.js"), "html", null, true);
         echo "\"> </script>
     <script src=\"";
-        // line 107
+        // line 110
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("vendor/chart.js/Chart.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 108
+        // line 111
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("vendor/jquery-validation/jquery.validate.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 109
+        // line 112
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/charts-home.js"), "html", null, true);
         echo "\"></script>
     <!-- Main File-->
     <script src=\"";
-        // line 111
+        // line 114
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/front.js"), "html", null, true);
         echo "\"></script>
  
@@ -231,7 +237,7 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
 
     }
 
-    // line 49
+    // line 52
     public function block_notifications($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -241,7 +247,7 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "notifications"));
 
-        // line 50
+        // line 53
         echo "               ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -251,7 +257,7 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
 
     }
 
-    // line 53
+    // line 56
     public function block_profil($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -261,7 +267,7 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "profil"));
 
-        // line 54
+        // line 57
         echo "                     <!-- Lien contenant la redirection vers les infos de l'utilisateur connecté -->
                      <!-- Le lien dépend du rôle de l'user connecté -->  
                 ";
@@ -273,7 +279,7 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
 
     }
 
-    // line 67
+    // line 70
     public function block_navBar($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -294,7 +300,7 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
 
     }
 
-    // line 77
+    // line 80
     public function block_titreContenu($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -313,7 +319,7 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
 
     }
 
-    // line 82
+    // line 85
     public function block_contenu($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -343,7 +349,7 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
 
     public function getDebugInfo()
     {
-        return array (  317 => 82,  298 => 77,  277 => 67,  265 => 54,  255 => 53,  245 => 50,  235 => 49,  221 => 111,  216 => 109,  212 => 108,  208 => 107,  204 => 106,  200 => 105,  196 => 104,  192 => 103,  171 => 84,  169 => 83,  167 => 82,  159 => 77,  149 => 69,  147 => 67,  137 => 60,  132 => 57,  130 => 53,  126 => 51,  124 => 49,  111 => 41,  107 => 40,  87 => 23,  82 => 21,  77 => 19,  70 => 15,  65 => 13,  60 => 11,  48 => 1,);
+        return array (  323 => 85,  304 => 80,  283 => 70,  271 => 57,  261 => 56,  251 => 53,  241 => 52,  227 => 114,  222 => 112,  218 => 111,  214 => 110,  210 => 109,  206 => 108,  202 => 107,  198 => 106,  177 => 87,  175 => 86,  173 => 85,  165 => 80,  155 => 72,  153 => 70,  143 => 63,  138 => 60,  136 => 56,  132 => 54,  130 => 52,  117 => 44,  113 => 43,  92 => 25,  87 => 23,  82 => 21,  77 => 19,  70 => 15,  65 => 13,  60 => 11,  48 => 1,);
     }
 
     public function getSourceContext()
@@ -371,6 +377,9 @@ class __TwigTemplate_046e62fdcd6f0caf6f1d0e50d86295148d0e5c4ead60ee53c56fba3b975
     <link rel=\"stylesheet\" href=\"{{ asset('css/custom.css')}}\">
     <!-- Favicon-->
     <link rel=\"shortcut icon\" href=\"{{ asset('images/logoSIO.png')}}\">
+
+    <script src=\"{{ asset('js/search.js')}}\"></script>
+
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src=\"https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js\"></script>
         <script src=\"https://oss.maxcdn.com/respond/1.4.2/respond.min.js\"></script><![endif]-->

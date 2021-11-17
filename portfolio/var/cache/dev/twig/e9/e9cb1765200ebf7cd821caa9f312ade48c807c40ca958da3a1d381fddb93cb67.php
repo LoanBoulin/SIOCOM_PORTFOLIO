@@ -12,7 +12,7 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* baseEtudiant.html.twig */
+/* etudiant/baseEtudiant.html.twig */
 class __TwigTemplate_7a06c6515cfdb92c361cca276a51588ea06d294878ae675f1414f6200bb199dc extends Template
 {
     private $source;
@@ -42,12 +42,12 @@ class __TwigTemplate_7a06c6515cfdb92c361cca276a51588ea06d294878ae675f1414f6200bb
     {
         $macros = $this->macros;
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "baseEtudiant.html.twig"));
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "etudiant/baseEtudiant.html.twig"));
 
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "baseEtudiant.html.twig"));
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "etudiant/baseEtudiant.html.twig"));
 
-        $this->parent = $this->loadTemplate("base.html.twig", "baseEtudiant.html.twig", 1);
+        $this->parent = $this->loadTemplate("base.html.twig", "etudiant/baseEtudiant.html.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
@@ -293,7 +293,7 @@ test contenu etudiant
 
     public function getTemplateName()
     {
-        return "baseEtudiant.html.twig";
+        return "etudiant/baseEtudiant.html.twig";
     }
 
     public function isTraitable()
@@ -409,6 +409,6 @@ test contenu etudiant
 
 test contenu etudiant
 {% endblock %}
-", "baseEtudiant.html.twig", "C:\\wamp64\\www\\portfolio\\templates\\etudiant\\baseEtudiant.html.twig");
+", "etudiant/baseEtudiant.html.twig", "D:\\wamp64\\www\\portfolio\\templates\\etudiant\\baseEtudiant.html.twig");
     }
 }

@@ -12,7 +12,7 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* baseAdmin.html.twig */
+/* admin/baseAdmin.html.twig */
 class __TwigTemplate_3365ae3d524770a5d29838039ec4f452ae4866bced1ce2cd589786fe32e62f46 extends Template
 {
     private $source;
@@ -41,12 +41,12 @@ class __TwigTemplate_3365ae3d524770a5d29838039ec4f452ae4866bced1ce2cd589786fe32e
     {
         $macros = $this->macros;
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "baseAdmin.html.twig"));
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "admin/baseAdmin.html.twig"));
 
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "baseAdmin.html.twig"));
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "admin/baseAdmin.html.twig"));
 
-        $this->parent = $this->loadTemplate("base.html.twig", "baseAdmin.html.twig", 1);
+        $this->parent = $this->loadTemplate("base.html.twig", "admin/baseAdmin.html.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
@@ -203,7 +203,7 @@ class __TwigTemplate_3365ae3d524770a5d29838039ec4f452ae4866bced1ce2cd589786fe32e
 
     public function getTemplateName()
     {
-        return "baseAdmin.html.twig";
+        return "admin/baseAdmin.html.twig";
     }
 
     public function isTraitable()
@@ -276,6 +276,6 @@ class __TwigTemplate_3365ae3d524770a5d29838039ec4f452ae4866bced1ce2cd589786fe32e
 {% block contenu %}  
  contenu admin
 {% endblock %}
-", "baseAdmin.html.twig", "D:\\wamp64\\www\\portfolio\\templates\\admin\\baseAdmin.html.twig");
+", "admin/baseAdmin.html.twig", "D:\\wamp64\\www\\portfolio\\templates\\admin\\baseAdmin.html.twig");
     }
 }

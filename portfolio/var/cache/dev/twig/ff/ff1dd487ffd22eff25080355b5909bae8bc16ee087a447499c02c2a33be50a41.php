@@ -189,6 +189,6 @@ class __TwigTemplate_cce37bd6acbfed530e3598006bc5872d84d5366c0f5f0f5a395d146ec2b
 \t\t\t\t        
                 {{ form_end(form) }}\t\t   
           {% endblock %}
-   ", "register/registration.html.twig", "C:\\wamp64\\www\\portfolio\\templates\\register\\registration.html.twig");
+   ", "register/registration.html.twig", "D:\\wamp64\\www\\portfolio\\templates\\register\\registration.html.twig");
     }
 }
