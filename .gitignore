@@ -13,4 +13,4 @@
 portfolio/.phpunit
 portfolio/.phpunit.result.cache
 /portfolio/phpunit.xml
-###< portfolio/symfony/phpunit-bridge ###
+###< symfony/phpunit-bridge ###
