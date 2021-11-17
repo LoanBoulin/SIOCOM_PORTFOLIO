@@ -4549,3 +4549,7 @@ d9629a,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/,1636991
 bc0346,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/login,1636991193,,200
 4855f8,127.0.0.1,POST,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/login,1636991202,,302
 a4660a,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/login,1636991203,,200
+83a2fa,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/,1637134776,,200
+5a31e0,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/login,1637134783,,200
+1d55d1,127.0.0.1,POST,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/login,1637134793,,302
+ee7ad8,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/login_success,1637134794,,200
