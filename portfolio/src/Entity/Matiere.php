@@ -34,9 +34,15 @@ class Matiere
      */
     private $enseignants;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=ProjetDef::class, mappedBy="matiere")
+     */
+    private $projetDefs;
+
     public function __construct()
     {
         $this->enseignants = new ArrayCollection();
+        $this->projetDefs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -93,6 +99,33 @@ class Matiere
             if ($enseignant->getMatiere() === $this) {
                 $enseignant->setMatiere(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ProjetDef[]
+     */
+    public function getProjetDefs(): Collection
+    {
+        return $this->projetDefs;
+    }
+
+    public function addProjetDef(ProjetDef $projetDef): self
+    {
+        if (!$this->projetDefs->contains($projetDef)) {
+            $this->projetDefs[] = $projetDef;
+            $projetDef->addMatiere($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjetDef(ProjetDef $projetDef): self
+    {
+        if ($this->projetDefs->removeElement($projetDef)) {
+            $projetDef->removeMatiere($this);
         }
 
         return $this;

@@ -50,10 +50,16 @@ class Enseignant
      */
     private $stages;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=ProjetDef::class, mappedBy="enseignant")
+     */
+    private $projetDefs;
+
     public function __construct()
     {
         $this->rPs = new ArrayCollection();
         $this->stages = new ArrayCollection();
+        $this->projetDefs = new ArrayCollection();
     }
 
   
@@ -166,6 +172,33 @@ class Enseignant
             if ($stage->getEnseignant() === $this) {
                 $stage->setEnseignant(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ProjetDef[]
+     */
+    public function getProjetDefs(): Collection
+    {
+        return $this->projetDefs;
+    }
+
+    public function addProjetDef(ProjetDef $projetDef): self
+    {
+        if (!$this->projetDefs->contains($projetDef)) {
+            $this->projetDefs[] = $projetDef;
+            $projetDef->addEnseignant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjetDef(ProjetDef $projetDef): self
+    {
+        if ($this->projetDefs->removeElement($projetDef)) {
+            $projetDef->removeEnseignant($this);
         }
 
         return $this;
