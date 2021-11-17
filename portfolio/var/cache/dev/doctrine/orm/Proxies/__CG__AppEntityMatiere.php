@@ -66,10 +66,10 @@ class Matiere extends \App\Entity\Matiere implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'code', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'libelle', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'enseignants'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'code', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'libelle', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'enseignants', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'projetDefs'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'code', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'libelle', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'enseignants'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'code', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'libelle', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'enseignants', '' . "\0" . 'App\\Entity\\Matiere' . "\0" . 'projetDefs'];
     }
 
     /**
@@ -266,6 +266,39 @@ class Matiere extends \App\Entity\Matiere implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeEnseignant', [$enseignant]);
 
         return parent::removeEnseignant($enseignant);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getProjetDefs(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProjetDefs', []);
+
+        return parent::getProjetDefs();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addProjetDef(\App\Entity\ProjetDef $projetDef): \App\Entity\Matiere
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addProjetDef', [$projetDef]);
+
+        return parent::addProjetDef($projetDef);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeProjetDef(\App\Entity\ProjetDef $projetDef): \App\Entity\Matiere
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeProjetDef', [$projetDef]);
+
+        return parent::removeProjetDef($projetDef);
     }
 
 }

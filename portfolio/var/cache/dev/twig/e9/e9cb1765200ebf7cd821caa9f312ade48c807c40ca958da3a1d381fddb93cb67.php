@@ -209,8 +209,8 @@ class __TwigTemplate_7a06c6515cfdb92c361cca276a51588ea06d294878ae675f1414f6200bb
           <span class=\"heading\">Mon activité</span>
           
           <ul class=\"list-unstyled\">
-            <li><a href=\"#exampledropdownDropdown\" aria-expanded=\"false\" data-toggle=\"collapse\"> <i class=\"fa fa-bar-chart\"></i>Réalisations Pro. </a>
-              <ul   id=\"exampledropdownDropdown\" class=\"collapse list-unstyled \">
+            <li><a href=\"#realisation\" aria-expanded=\"false\" data-toggle=\"collapse\"> <i class=\"fa fa-bar-chart\"></i>Réalisations Pro. </a>
+              <ul id=\"realisation\" class=\"collapse list-unstyled \">
                 <li><a href=\"";
         // line 62
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("etudiantRps");
@@ -226,8 +226,8 @@ class __TwigTemplate_7a06c6515cfdb92c361cca276a51588ea06d294878ae675f1414f6200bb
               </ul>
             </li>
             
-            <li><a href=\"#exampledropdownDropdown\" aria-expanded=\"false\" data-toggle=\"collapse\"> <i class=\"icon-grid\"></i>Stages </a>
-              <ul id=\"exampledropdownDropdown\" class=\"collapse list-unstyled \">
+            <li><a href=\"#stages\" aria-expanded=\"false\" data-toggle=\"collapse\"> <i class=\"icon-grid\"></i>Stages </a>
+              <ul id=\"stages\" class=\"collapse list-unstyled \">
                 <li><a href=\"";
         // line 70
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("etudiantStages");
@@ -239,6 +239,25 @@ class __TwigTemplate_7a06c6515cfdb92c361cca276a51588ea06d294878ae675f1414f6200bb
                 <li><a href=\"#\">Carnet de bord</a></li>
               </ul>
             </li>    
+
+            <li><a href=\"#groupes\" aria-expanded=\"false\" data-toggle=\"collapse\"> <i class=\"fa fa-users\"></i>Groupes </a>
+              <ul id=\"groupes\" class=\"collapse list-unstyled \">
+                <li><a href=\"";
+        // line 78
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("etudiantStages");
+        echo "\">Mes groupes</a></li>
+              </ul>
+            </li>   
+
+            <li><a href=\"#projets\" aria-expanded=\"false\" data-toggle=\"collapse\"><i class=\"fa fa-tasks\"></i>Projets </a>
+              <ul id=\"projets\" class=\"collapse list-unstyled \">
+                <li><a href=\"";
+        // line 84
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("etudiantStages");
+        echo "\">Mes projets</a></li>
+              </ul>
+            </li>   
+
           </ul>
 
 
@@ -268,7 +287,7 @@ class __TwigTemplate_7a06c6515cfdb92c361cca276a51588ea06d294878ae675f1414f6200bb
 
     }
 
-    // line 97
+    // line 110
     public function block_contenu($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -303,7 +322,7 @@ test contenu etudiant
 
     public function getDebugInfo()
     {
-        return array (  272 => 97,  237 => 71,  233 => 70,  224 => 64,  220 => 63,  216 => 62,  199 => 50,  195 => 49,  186 => 46,  184 => 45,  180 => 44,  169 => 35,  158 => 34,  144 => 29,  138 => 28,  132 => 27,  128 => 25,  118 => 24,  104 => 19,  97 => 15,  85 => 10,  81 => 9,  74 => 5,  71 => 4,  61 => 3,  38 => 1,);
+        return array (  291 => 110,  256 => 84,  247 => 78,  237 => 71,  233 => 70,  224 => 64,  220 => 63,  216 => 62,  199 => 50,  195 => 49,  186 => 46,  184 => 45,  180 => 44,  169 => 35,  158 => 34,  144 => 29,  138 => 28,  132 => 27,  128 => 25,  118 => 24,  104 => 19,  97 => 15,  85 => 10,  81 => 9,  74 => 5,  71 => 4,  61 => 3,  38 => 1,);
     }
 
     public function getSourceContext()
@@ -367,21 +386,34 @@ test contenu etudiant
           <span class=\"heading\">Mon activité</span>
           
           <ul class=\"list-unstyled\">
-            <li><a href=\"#exampledropdownDropdown\" aria-expanded=\"false\" data-toggle=\"collapse\"> <i class=\"fa fa-bar-chart\"></i>Réalisations Pro. </a>
-              <ul   id=\"exampledropdownDropdown\" class=\"collapse list-unstyled \">
+            <li><a href=\"#realisation\" aria-expanded=\"false\" data-toggle=\"collapse\"> <i class=\"fa fa-bar-chart\"></i>Réalisations Pro. </a>
+              <ul id=\"realisation\" class=\"collapse list-unstyled \">
                 <li><a href=\"{{ path('etudiantRps')}}\">Réalisations en cours</a></li>
                 <li><a href=\"{{ path('etudiantRpsArchivees')}}\">Réalisations archivées</a></li>
                 <li><a href=\"{{ path('rpShowEditAdd')}}\">Nouvelle réalisation</a></li>
               </ul>
             </li>
             
-            <li><a href=\"#exampledropdownDropdown\" aria-expanded=\"false\" data-toggle=\"collapse\"> <i class=\"icon-grid\"></i>Stages </a>
-              <ul id=\"exampledropdownDropdown\" class=\"collapse list-unstyled \">
+            <li><a href=\"#stages\" aria-expanded=\"false\" data-toggle=\"collapse\"> <i class=\"icon-grid\"></i>Stages </a>
+              <ul id=\"stages\" class=\"collapse list-unstyled \">
                 <li><a href=\"{{ path('etudiantStages')}}\">Mes stages</a></li>
                 <li><a href=\"{{ path('stageAddEdit')}}\">Nouveau stage</a></li>
                 <li><a href=\"#\">Carnet de bord</a></li>
               </ul>
             </li>    
+
+            <li><a href=\"#groupes\" aria-expanded=\"false\" data-toggle=\"collapse\"> <i class=\"fa fa-users\"></i>Groupes </a>
+              <ul id=\"groupes\" class=\"collapse list-unstyled \">
+                <li><a href=\"{{ path('etudiantStages')}}\">Mes groupes</a></li>
+              </ul>
+            </li>   
+
+            <li><a href=\"#projets\" aria-expanded=\"false\" data-toggle=\"collapse\"><i class=\"fa fa-tasks\"></i>Projets </a>
+              <ul id=\"projets\" class=\"collapse list-unstyled \">
+                <li><a href=\"{{ path('etudiantStages')}}\">Mes projets</a></li>
+              </ul>
+            </li>   
+
           </ul>
 
 
@@ -409,6 +441,6 @@ test contenu etudiant
 
 test contenu etudiant
 {% endblock %}
-", "baseEtudiant.html.twig", "C:\\wamp64\\www\\portfolio\\templates\\etudiant\\baseEtudiant.html.twig");
+", "baseEtudiant.html.twig", "D:\\wamp64\\www\\SIOCOM_PORTFOLIO\\portfolio\\templates\\etudiant\\baseEtudiant.html.twig");
     }
 }

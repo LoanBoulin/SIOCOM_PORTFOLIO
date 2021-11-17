@@ -159,7 +159,19 @@ class __TwigTemplate_3365ae3d524770a5d29838039ec4f452ae4866bced1ce2cd589786fe32e
         // line 41
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("listerComptesNonActifs");
         echo "\"> <i class=\"icon-grid\"></i>Comptes inactifs </a></li>
-        </ul> 
+          </ul> 
+
+          <span class=\"heading\">Gestion des Groupes et Projets</span>
+          <ul class=\"list-unstyled\">
+            <li><a href=\"";
+        // line 46
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("listGroupes");
+        echo "\"> <i class=\"fa fa-users\"></i> Liste des groupes</a></li>
+            <li><a href=\"";
+        // line 47
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("listProjets");
+        echo "\"> <i class=\"fa fa-tasks\"></i>Liste des projets </a></li>
+          </ul> 
 
         <!-- Sidebar Navidation Menus--><span class=\"heading\">Paramètres</span>
           <ul class=\"list-unstyled\">
@@ -180,7 +192,7 @@ class __TwigTemplate_3365ae3d524770a5d29838039ec4f452ae4866bced1ce2cd589786fe32e
 
     }
 
-    // line 56
+    // line 62
     public function block_contenu($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -213,7 +225,7 @@ class __TwigTemplate_3365ae3d524770a5d29838039ec4f452ae4866bced1ce2cd589786fe32e
 
     public function getDebugInfo()
     {
-        return array (  184 => 56,  160 => 41,  156 => 40,  152 => 39,  138 => 28,  135 => 27,  126 => 24,  124 => 23,  121 => 22,  110 => 13,  99 => 12,  85 => 7,  79 => 6,  74 => 5,  70 => 3,  60 => 2,  37 => 1,);
+        return array (  196 => 62,  172 => 47,  168 => 46,  160 => 41,  156 => 40,  152 => 39,  138 => 28,  135 => 27,  126 => 24,  124 => 23,  121 => 22,  110 => 13,  99 => 12,  85 => 7,  79 => 6,  74 => 5,  70 => 3,  60 => 2,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -259,7 +271,13 @@ class __TwigTemplate_3365ae3d524770a5d29838039ec4f452ae4866bced1ce2cd589786fe32e
             <li><a href=\"{{ path('listPromoEtudiants')}}\"> <i class=\"icon-home\"></i> Liste des étudiants</a></li>
             <li><a href=\"{{ path('listEnseignants')}}\"> <i class=\"icon-grid\"></i>Liste des enseignants </a></li>
              <li><a href=\"{{ path('listerComptesNonActifs')}}\"> <i class=\"icon-grid\"></i>Comptes inactifs </a></li>
-        </ul> 
+          </ul> 
+
+          <span class=\"heading\">Gestion des Groupes et Projets</span>
+          <ul class=\"list-unstyled\">
+            <li><a href=\"{{ path('listGroupes')}}\"> <i class=\"fa fa-users\"></i> Liste des groupes</a></li>
+            <li><a href=\"{{ path('listProjets')}}\"> <i class=\"fa fa-tasks\"></i>Liste des projets </a></li>
+          </ul> 
 
         <!-- Sidebar Navidation Menus--><span class=\"heading\">Paramètres</span>
           <ul class=\"list-unstyled\">
@@ -276,6 +294,6 @@ class __TwigTemplate_3365ae3d524770a5d29838039ec4f452ae4866bced1ce2cd589786fe32e
 {% block contenu %}  
  contenu admin
 {% endblock %}
-", "baseAdmin.html.twig", "D:\\wamp64\\www\\portfolio\\templates\\admin\\baseAdmin.html.twig");
+", "baseAdmin.html.twig", "D:\\wamp64\\www\\SIOCOM_PORTFOLIO\\portfolio\\templates\\admin\\baseAdmin.html.twig");
     }
 }

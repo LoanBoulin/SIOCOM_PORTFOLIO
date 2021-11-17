@@ -57,21 +57,34 @@
           <span class="heading">Mon activité</span>
           
           <ul class="list-unstyled">
-            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Réalisations Pro. </a>
-              <ul   id="exampledropdownDropdown" class="collapse list-unstyled ">
+            <li><a href="#realisation" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Réalisations Pro. </a>
+              <ul id="realisation" class="collapse list-unstyled ">
                 <li><a href="{{ path('etudiantRps')}}">Réalisations en cours</a></li>
                 <li><a href="{{ path('etudiantRpsArchivees')}}">Réalisations archivées</a></li>
                 <li><a href="{{ path('rpShowEditAdd')}}">Nouvelle réalisation</a></li>
               </ul>
             </li>
             
-            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-grid"></i>Stages </a>
-              <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+            <li><a href="#stages" aria-expanded="false" data-toggle="collapse"> <i class="icon-grid"></i>Stages </a>
+              <ul id="stages" class="collapse list-unstyled ">
                 <li><a href="{{ path('etudiantStages')}}">Mes stages</a></li>
                 <li><a href="{{ path('stageAddEdit')}}">Nouveau stage</a></li>
                 <li><a href="#">Carnet de bord</a></li>
               </ul>
             </li>    
+
+            <li><a href="#groupes" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-users"></i>Groupes </a>
+              <ul id="groupes" class="collapse list-unstyled ">
+                <li><a href="{{ path('etudiantStages')}}">Mes groupes</a></li>
+              </ul>
+            </li>   
+
+            <li><a href="#projets" aria-expanded="false" data-toggle="collapse"><i class="fa fa-tasks"></i>Projets </a>
+              <ul id="projets" class="collapse list-unstyled ">
+                <li><a href="{{ path('etudiantStages')}}">Mes projets</a></li>
+              </ul>
+            </li>   
+
           </ul>
 
 
