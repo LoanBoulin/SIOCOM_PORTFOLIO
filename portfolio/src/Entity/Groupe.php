@@ -27,7 +27,7 @@ class Groupe
     /**
      * @ORM\ManyToMany(targetEntity=User::class, inversedBy="groupes")
      */
-    private $user;
+    private $user_id;
 
     /**
      * @ORM\ManyToMany(targetEntity=Post::class, mappedBy="id_groupe")
@@ -51,7 +51,7 @@ class Groupe
 
     public function __construct()
     {
-        $this->user = new ArrayCollection();
+        $this->user_id = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->projetEquipes = new ArrayCollection();
         $this->projetDefs = new ArrayCollection();
@@ -79,13 +79,13 @@ class Groupe
      */
     public function getUserId(): Collection
     {
-        return $this->user;
+        return $this->user_id;
     }
 
     public function addUserId(User $userId): self
     {
-        if (!$this->user->contains($userId)) {
-            $this->user[] = $userId;
+        if (!$this->user_id->contains($userId)) {
+            $this->user_id[] = $userId;
         }
 
         return $this;
@@ -93,7 +93,7 @@ class Groupe
 
     public function removeUserId(User $userId): self
     {
-        $this->user->removeElement($userId);
+        $this->user_id->removeElement($userId);
 
         return $this;
     }

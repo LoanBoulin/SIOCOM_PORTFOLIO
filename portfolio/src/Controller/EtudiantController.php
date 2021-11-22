@@ -24,10 +24,12 @@ class EtudiantController extends AbstractController
 
         $user = $this->getUser();
 
+        //$groupes = $user->getGroupes();
+
         return $this->render('etudiant/home.html.twig', [
             'etudiant' => $this->getUser()->getEtudiant(),
+            'user' =>  $user,
         ]);
-        
     }
 
 

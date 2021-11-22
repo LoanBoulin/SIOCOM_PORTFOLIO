@@ -167,7 +167,7 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
     </div>   
 
 
-      <!-- tableau des stages --> 
+  <!-- tableau des stages --> 
   <div class=\"col-lg-10\">
     <div class=\"card\">   
       <div class=\"card-header d-flex align-items-center\">
@@ -196,6 +196,62 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
   </div>   
 
 
+
+
+  <!-- Fil d'actualité --> 
+  <div class=\"col-lg 10\">
+                  <div class=\"card mb-0\">
+                    <div class=\"card-header position-relative\">
+                      <div class=\"card-close\">
+                        <div class=\"dropdown\">
+                          <button class=\"dropdown-toggle text-sm\" type=\"button\" id=\"closeCard1\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"><i class=\"fas fa-ellipsis-v\"></i></button>
+                          <div class=\"dropdown-menu dropdown-menu-end shadow-sm\" aria-labelledby=\"closeCard1\"><a class=\"dropdown-item py-1 px-3 remove\" href=\"#\"> <i class=\"fas fa-times\"></i>Close</a><a class=\"dropdown-item py-1 px-3 edit\" href=\"#\"> <i class=\"fas fa-cog\"></i>Edit</a></div>
+                        </div>
+                      </div>
+                      <h3 class=\"h4 mb-0\">Fil d'actualité général</h3>
+                    </div>
+                    <div class=\"card-body p-0\">
+
+                      ";
+        // line 101
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, (isset($context["user"]) || array_key_exists("user", $context) ? $context["user"] : (function () { throw new RuntimeError('Variable "user" does not exist.', 101, $this->source); })()), "groupes", [], "any", false, false, false, 101));
+        foreach ($context['_seq'] as $context["_key"] => $context["g"]) {
+            // line 102
+            echo "                          <tr>
+                            <td>g.libelle</td>
+                          </tr>
+                      ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['g'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 106
+        echo "
+                      <!-- Item-->
+                      <div class=\"p-3\">
+                        <div class=\"d-flex justify-content-between\">
+                          <div class=\"d-flex\"><a class=\"flex-shrink-0\" href=\"#\"><img class=\"img-fluid rounded-circle\" src=\"GROUPE_fichiers/avatar-3.jpg\" alt=\"person\" width=\"50\"></a>
+                            <div class=\"ms-3\">
+                              <h5>Ashley Wood</h5>
+                              <p class=\"mb-0 text-xs text-gray-600 lh-1\">Posted a new blog</p><small class=\"text-gray-600 fw-light\">Today 5:60 pm - 12.06.2014</small>
+                            </div>
+                          </div>
+                          <div class=\"text-right\"><small class=\"text-gray-500\">5min ago</small></div>
+                        </div>
+                        <div class=\"mt-3 ms-5 ps-3\">
+                          <div class=\"bg-light p-3 shadow-sm\"><small class=\"text-gray-600\">Lorem
+                            Ipsum is simply dummy text of the printing and typesetting industry. 
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 
+                            1500s. Over the years.</small></div>
+                          <div class=\"text-end mt-1\"><a class=\"btn btn-sm btn-secondary py-1\" href=\"#\"><i class=\"fas fa-thumbs-up me-1\"></i>Like</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -217,7 +273,7 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
 
     public function getDebugInfo()
     {
-        return array (  191 => 77,  162 => 40,  156 => 39,  141 => 35,  137 => 34,  133 => 33,  127 => 32,  123 => 31,  120 => 30,  117 => 29,  113 => 28,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
+        return array (  230 => 106,  221 => 102,  217 => 101,  191 => 77,  162 => 40,  156 => 39,  141 => 35,  137 => 34,  133 => 33,  127 => 32,  123 => 31,  120 => 30,  117 => 29,  113 => 28,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -269,7 +325,7 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
     </div>   
 
 
-      <!-- tableau des stages --> 
+  <!-- tableau des stages --> 
   <div class=\"col-lg-10\">
     <div class=\"card\">   
       <div class=\"card-header d-flex align-items-center\">
@@ -304,6 +360,52 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
           </div>
     </div>
   </div>   
+
+
+
+
+  <!-- Fil d'actualité --> 
+  <div class=\"col-lg 10\">
+                  <div class=\"card mb-0\">
+                    <div class=\"card-header position-relative\">
+                      <div class=\"card-close\">
+                        <div class=\"dropdown\">
+                          <button class=\"dropdown-toggle text-sm\" type=\"button\" id=\"closeCard1\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"><i class=\"fas fa-ellipsis-v\"></i></button>
+                          <div class=\"dropdown-menu dropdown-menu-end shadow-sm\" aria-labelledby=\"closeCard1\"><a class=\"dropdown-item py-1 px-3 remove\" href=\"#\"> <i class=\"fas fa-times\"></i>Close</a><a class=\"dropdown-item py-1 px-3 edit\" href=\"#\"> <i class=\"fas fa-cog\"></i>Edit</a></div>
+                        </div>
+                      </div>
+                      <h3 class=\"h4 mb-0\">Fil d'actualité général</h3>
+                    </div>
+                    <div class=\"card-body p-0\">
+
+                      {% for g in user.groupes %}
+                          <tr>
+                            <td>g.libelle</td>
+                          </tr>
+                      {% endfor %}
+
+                      <!-- Item-->
+                      <div class=\"p-3\">
+                        <div class=\"d-flex justify-content-between\">
+                          <div class=\"d-flex\"><a class=\"flex-shrink-0\" href=\"#\"><img class=\"img-fluid rounded-circle\" src=\"GROUPE_fichiers/avatar-3.jpg\" alt=\"person\" width=\"50\"></a>
+                            <div class=\"ms-3\">
+                              <h5>Ashley Wood</h5>
+                              <p class=\"mb-0 text-xs text-gray-600 lh-1\">Posted a new blog</p><small class=\"text-gray-600 fw-light\">Today 5:60 pm - 12.06.2014</small>
+                            </div>
+                          </div>
+                          <div class=\"text-right\"><small class=\"text-gray-500\">5min ago</small></div>
+                        </div>
+                        <div class=\"mt-3 ms-5 ps-3\">
+                          <div class=\"bg-light p-3 shadow-sm\"><small class=\"text-gray-600\">Lorem
+                            Ipsum is simply dummy text of the printing and typesetting industry. 
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 
+                            1500s. Over the years.</small></div>
+                          <div class=\"text-end mt-1\"><a class=\"btn btn-sm btn-secondary py-1\" href=\"#\"><i class=\"fas fa-thumbs-up me-1\"></i>Like</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
 
 {% endblock %}", "etudiant/home.html.twig", "D:\\wamp64\\www\\SIOCOM_PORTFOLIO\\portfolio\\templates\\etudiant\\home.html.twig");

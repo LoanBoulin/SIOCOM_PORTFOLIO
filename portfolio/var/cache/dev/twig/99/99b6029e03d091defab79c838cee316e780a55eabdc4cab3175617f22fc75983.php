@@ -223,6 +223,6 @@ class __TwigTemplate_e2bcd3c2aa8956259287a4cb5f6cb37b18807051c1a3a5981b97c87e06c
 \t\t</table>
 </div>
 {% endblock %}
-", "etudiant/etudiant.html.twig", "C:\\wamp64\\www\\portfolio\\templates\\etudiant\\etudiant.html.twig");
+", "etudiant/etudiant.html.twig", "D:\\wamp64\\www\\SIOCOM_PORTFOLIO\\portfolio\\templates\\etudiant\\etudiant.html.twig");
     }
 }

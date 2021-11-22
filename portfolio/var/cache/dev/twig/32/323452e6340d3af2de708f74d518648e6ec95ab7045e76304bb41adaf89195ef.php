@@ -154,6 +154,6 @@ class __TwigTemplate_4ff030326184abee4ae9cf7fb0609a44462e2aa2469bf9dd088d4335433
     </ul>
 </div>
 {% endblock %}
-", "register/index.html.twig", "C:\\wamp64\\www\\portfolio\\templates\\register\\index.html.twig");
+", "register/index.html.twig", "D:\\wamp64\\www\\SIOCOM_PORTFOLIO\\portfolio\\templates\\register\\index.html.twig");
     }
 }
