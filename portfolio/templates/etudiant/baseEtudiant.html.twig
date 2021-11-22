@@ -43,7 +43,7 @@
             <div class="avatar">
             <a href="{{ path('etudiantHome')}}">
               {% set photo = 'avatar/etudiant/'~ app.user.etudiant.id ~'.png' %}
-              <img src="{{ asset(photo | trans )}}" alt="..." class="img-fluid rounded-circle" onError="this.src="{{ asset('avatar/lambda.png' | trans )}}";">
+              <img src="{{ asset(photo | trans )}}" alt="..." class="img-fluid rounded-circle" onError="this.src='{{ asset('avatar/lambda.png' | trans )}}';">
             </a>
             </div>
            <div class="title"><a href="{{ path('etudiantHome')}}">

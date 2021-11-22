@@ -313,3 +313,13 @@ b41770,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/avatar/e
 d64c7f,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/avatar/etudiant/64.png,1637595211,,404
 c65898,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/vendor/bootstrap/css/bootstrap.min.css.map,1637595211,1b1201,404
 1b1201,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/vendor/bootstrap/css/bootstrap.min.css.map,1637595211,,404
+5f5686,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/etudiant/home,1637595433,,200
+d85248,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/avatar/etudiant/64.png,1637595433,ec4650,404
+ec4650,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/avatar/etudiant/64.png,1637595433,,404
+024b62,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/vendor/bootstrap/css/bootstrap.min.css.map,1637595435,f46114,404
+f46114,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/vendor/bootstrap/css/bootstrap.min.css.map,1637595435,,404
+6d7b95,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/etudiant/home,1637595526,,200
+6ecc5b,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/avatar/etudiant/64.png,1637595526,3f006d,404
+3f006d,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/avatar/etudiant/64.png,1637595526,,404
+8bbb63,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/vendor/bootstrap/css/bootstrap.min.css.map,1637595527,20a018,404
+20a018,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/vendor/bootstrap/css/bootstrap.min.css.map,1637595527,,404
