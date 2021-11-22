@@ -22,13 +22,18 @@ class EtudiantController extends AbstractController
     public function home()
     {
 
-        $user = $this->getUser();
 
-        //$groupes = $user->getGroupes();
+        $lesGroupes = $this->getUser()->getGroupes();
+        $posts = [];
+        foreach ($lesGroupes as $g) {
+            foreach($g->getPosts() as $p){
+                array_push($posts, $p);
+            }
+        }
 
         return $this->render('etudiant/home.html.twig', [
             'etudiant' => $this->getUser()->getEtudiant(),
-            'user' =>  $user,
+            'posts' => $posts,
         ]);
     }
 
