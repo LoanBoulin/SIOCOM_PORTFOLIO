@@ -115,6 +115,6 @@ Check ta messagerie et active le lien de confirmation pour accéder à l'appli.
 </br>
 Et tu pourras y retourner <a href=\"{{ path('app_login')}}\">ici</a>
 dès que que l'administrateur aura validé ton compte.
-{% endblock %}", "register/redirectionMailConfirm.html.twig", "C:\\wamp64\\www\\portfolio\\templates\\register\\redirectionMailConfirm.html.twig");
+{% endblock %}", "register/redirectionMailConfirm.html.twig", "D:\\wamp64\\www\\SIOCOM_PORTFOLIO\\portfolio\\templates\\register\\redirectionMailConfirm.html.twig");
     }
 }

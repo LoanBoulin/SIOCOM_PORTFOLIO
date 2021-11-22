@@ -167,7 +167,7 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
     </div>   
 
 
-      <!-- tableau des stages --> 
+  <!-- tableau des stages --> 
   <div class=\"col-lg-10\">
     <div class=\"card\">   
       <div class=\"card-header d-flex align-items-center\">
@@ -196,6 +196,104 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
   </div>   
 
 
+
+
+  <!-- Fil d'actualité --> 
+        <div class=\"col-lg 10\">
+                  <div class=\"card mb-0\">
+                    <div class=\"card-header position-relative\">
+                      <div class=\"card-close\">
+                        <div class=\"dropdown\">
+                          <button class=\"dropdown-toggle text-sm\" type=\"button\" id=\"closeCard1\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"><i class=\"fas fa-ellipsis-v\"></i></button>
+                          <div class=\"dropdown-menu dropdown-menu-end shadow-sm\" aria-labelledby=\"closeCard1\"><a class=\"dropdown-item py-1 px-3 remove\" href=\"#\"> <i class=\"fas fa-times\"></i>Close</a><a class=\"dropdown-item py-1 px-3 edit\" href=\"#\"> <i class=\"fas fa-cog\"></i>Edit</a></div>
+                        </div>
+                      </div>
+                      <h3 class=\"h4 mb-0\">Fil d'actualité général</h3>
+                    </div>
+                    <div class=\"card-body p-0\">
+
+                      ";
+        // line 101
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(twig_sort_filter((isset($context["posts"]) || array_key_exists("posts", $context) ? $context["posts"] : (function () { throw new RuntimeError('Variable "posts" does not exist.', 101, $this->source); })()), function ($__a__, $__b__) use ($context, $macros) { $context["a"] = $__a__; $context["b"] = $__b__; return (twig_get_attribute($this->env, $this->source, (isset($context["a"]) || array_key_exists("a", $context) ? $context["a"] : (function () { throw new RuntimeError('Variable "a" does not exist.', 101, $this->source); })()), "dateTimePost", [], "any", false, false, false, 101) <=> twig_get_attribute($this->env, $this->source, (isset($context["b"]) || array_key_exists("b", $context) ? $context["b"] : (function () { throw new RuntimeError('Variable "b" does not exist.', 101, $this->source); })()), "dateTimePost", [], "any", false, false, false, 101)); }));
+        foreach ($context['_seq'] as $context["_key"] => $context["g"]) {
+            // line 102
+            echo "
+                        <div class=\"p-3\">
+                          <div class=\"d-flex justify-content-between\">
+                           ";
+            // line 105
+            $context["photo"] = (("avatar/etudiant/" . twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["g"], "user", [], "any", false, false, false, 105), "etudiant", [], "any", false, false, false, 105), "id", [], "any", false, false, false, 105)) . ".png");
+            // line 106
+            echo "                            <div class=\"d-flex\">
+                              <a class=\"flex-shrink-0 mr-2\" href=\"#\">
+                                <img src=\"";
+            // line 108
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans((isset($context["photo"]) || array_key_exists("photo", $context) ? $context["photo"] : (function () { throw new RuntimeError('Variable "photo" does not exist.', 108, $this->source); })()))), "html", null, true);
+            echo "\" alt=\"person\" width=\"50\" class=\"img-fluid rounded-circle\" onError=\"this.src='";
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("avatar/lambda.png")), "html", null, true);
+            echo "';\">
+                              </a>
+                              <div class=\"ms-3\">
+                                ";
+            // line 111
+            if ((0 === twig_compare(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["g"], "user", [], "any", false, false, false, 111), "roles", [], "any", false, false, false, 111), [0 => "ROLE_ETUDIANT"]))) {
+                // line 112
+                echo "                                  <h5>";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["g"], "user", [], "any", false, false, false, 112), "etudiant", [], "any", false, false, false, 112), "prenom", [], "any", false, false, false, 112), "html", null, true);
+                echo " ";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["g"], "user", [], "any", false, false, false, 112), "etudiant", [], "any", false, false, false, 112), "nom", [], "any", false, false, false, 112), "html", null, true);
+                echo " </h5>
+                                ";
+            } elseif ((0 === twig_compare(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,             // line 113
+$context["g"], "user", [], "any", false, false, false, 113), "roles", [], "any", false, false, false, 113), [0 => "ROLE_ENSEIGNANT"]))) {
+                // line 114
+                echo "                                  <h5>";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["g"], "user", [], "any", false, false, false, 114), "enseignant", [], "any", false, false, false, 114), "prenom", [], "any", false, false, false, 114), "html", null, true);
+                echo " ";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["g"], "user", [], "any", false, false, false, 114), "enseignant", [], "any", false, false, false, 114), "nom", [], "any", false, false, false, 114), "html", null, true);
+                echo " </h5>
+                                ";
+            } elseif ((0 === twig_compare(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,             // line 115
+$context["g"], "user", [], "any", false, false, false, 115), "roles", [], "any", false, false, false, 115), [0 => "ROLE_ADMIN"]))) {
+                // line 116
+                echo "                                  <h5>";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["g"], "user", [], "any", false, false, false, 116), "email", [], "any", false, false, false, 116), "html", null, true);
+                echo " (Administrateur) </h5>
+                                ";
+            }
+            // line 118
+            echo "                                <p class=\"mb-0 text-xs text-gray-600 lh-1\">a posté :</p>
+                              </div>
+                            </div>
+                            <div class=\"text-right\"><small class=\"text-gray-500\">";
+            // line 121
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["g"], "dateTimePost", [], "any", false, false, false, 121), "format", [0 => "Y-m-d H:i:s"], "method", false, false, false, 121), "html", null, true);
+            echo "</small></div>
+                          </div>
+                          <div class=\"mt-3 ms-5 ps-3\">
+                            <div class=\"bg-light p-3 shadow-sm\"><p class=\"text-gray-600\">";
+            // line 124
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["g"], "description", [], "any", false, false, false, 124), "html", null, true);
+            echo "</p></div>
+                          </div>
+                        </div>
+                      ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['g'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 128
+        echo "
+
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -217,7 +315,7 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
 
     public function getDebugInfo()
     {
-        return array (  191 => 77,  162 => 40,  156 => 39,  141 => 35,  137 => 34,  133 => 33,  127 => 32,  123 => 31,  120 => 30,  117 => 29,  113 => 28,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
+        return array (  287 => 128,  277 => 124,  271 => 121,  266 => 118,  260 => 116,  258 => 115,  251 => 114,  249 => 113,  242 => 112,  240 => 111,  232 => 108,  228 => 106,  226 => 105,  221 => 102,  217 => 101,  191 => 77,  162 => 40,  156 => 39,  141 => 35,  137 => 34,  133 => 33,  127 => 32,  123 => 31,  120 => 30,  117 => 29,  113 => 28,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -269,7 +367,7 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
     </div>   
 
 
-      <!-- tableau des stages --> 
+  <!-- tableau des stages --> 
   <div class=\"col-lg-10\">
     <div class=\"card\">   
       <div class=\"card-header d-flex align-items-center\">
@@ -304,6 +402,59 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
           </div>
     </div>
   </div>   
+
+
+
+
+  <!-- Fil d'actualité --> 
+        <div class=\"col-lg 10\">
+                  <div class=\"card mb-0\">
+                    <div class=\"card-header position-relative\">
+                      <div class=\"card-close\">
+                        <div class=\"dropdown\">
+                          <button class=\"dropdown-toggle text-sm\" type=\"button\" id=\"closeCard1\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\"><i class=\"fas fa-ellipsis-v\"></i></button>
+                          <div class=\"dropdown-menu dropdown-menu-end shadow-sm\" aria-labelledby=\"closeCard1\"><a class=\"dropdown-item py-1 px-3 remove\" href=\"#\"> <i class=\"fas fa-times\"></i>Close</a><a class=\"dropdown-item py-1 px-3 edit\" href=\"#\"> <i class=\"fas fa-cog\"></i>Edit</a></div>
+                        </div>
+                      </div>
+                      <h3 class=\"h4 mb-0\">Fil d'actualité général</h3>
+                    </div>
+                    <div class=\"card-body p-0\">
+
+                      {% for g in posts|sort((a, b) => a.dateTimePost <=> b.dateTimePost) %}
+
+                        <div class=\"p-3\">
+                          <div class=\"d-flex justify-content-between\">
+                           {% set photo = 'avatar/etudiant/'~ g.user.etudiant.id ~'.png' %}
+                            <div class=\"d-flex\">
+                              <a class=\"flex-shrink-0 mr-2\" href=\"#\">
+                                <img src=\"{{ asset(photo | trans )}}\" alt=\"person\" width=\"50\" class=\"img-fluid rounded-circle\" onError=\"this.src='{{ asset('avatar/lambda.png' | trans )}}';\">
+                              </a>
+                              <div class=\"ms-3\">
+                                {% if g.user.roles == [\"ROLE_ETUDIANT\"] %}
+                                  <h5>{{g.user.etudiant.prenom}} {{g.user.etudiant.nom}} </h5>
+                                {% elseif g.user.roles == [\"ROLE_ENSEIGNANT\"] %}
+                                  <h5>{{g.user.enseignant.prenom}} {{g.user.enseignant.nom}} </h5>
+                                {% elseif g.user.roles == [\"ROLE_ADMIN\"] %}
+                                  <h5>{{g.user.email}} (Administrateur) </h5>
+                                {% endif %}
+                                <p class=\"mb-0 text-xs text-gray-600 lh-1\">a posté :</p>
+                              </div>
+                            </div>
+                            <div class=\"text-right\"><small class=\"text-gray-500\">{{g.dateTimePost.format('Y-m-d H:i:s')}}</small></div>
+                          </div>
+                          <div class=\"mt-3 ms-5 ps-3\">
+                            <div class=\"bg-light p-3 shadow-sm\"><p class=\"text-gray-600\">{{g.description}}</p></div>
+                          </div>
+                        </div>
+                      {% endfor %}
+
+
+
+
+
+                    </div>
+                  </div>
+                </div>
 
 
 {% endblock %}", "etudiant/home.html.twig", "D:\\wamp64\\www\\SIOCOM_PORTFOLIO\\portfolio\\templates\\etudiant\\home.html.twig");

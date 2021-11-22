@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Entity;
@@ -194,3 +195,4 @@ class Groupe
         return $this;
     }
 }
+

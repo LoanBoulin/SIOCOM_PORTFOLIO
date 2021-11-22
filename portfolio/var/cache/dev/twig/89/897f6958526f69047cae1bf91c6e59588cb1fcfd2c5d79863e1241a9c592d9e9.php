@@ -237,6 +237,6 @@ class __TwigTemplate_2a8012411b96eab3c26790d128f4a076d21a471d246b764b75998b0e385
         </div>
     </div>      
 {% endblock %}
-   ", "admin/listComptesNonActifs.html.twig", "D:\\wamp64\\www\\portfolio\\templates\\admin\\listComptesNonActifs.html.twig");
+   ", "admin/listComptesNonActifs.html.twig", "D:\\wamp64\\www\\SIOCOM_PORTFOLIO\\portfolio\\templates\\admin\\listComptesNonActifs.html.twig");
     }
 }

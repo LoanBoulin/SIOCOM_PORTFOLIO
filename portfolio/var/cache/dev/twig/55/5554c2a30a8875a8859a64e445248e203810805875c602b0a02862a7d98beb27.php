@@ -109,6 +109,6 @@ Pour confirmer ton inscription, il faut cliquer ici :
 <p>
     Ce mail est automatique, veuillez ne pas répondre .
 </p>
-", "register/emailConfirmation.html.twig", "C:\\wamp64\\www\\portfolio\\templates\\register\\emailConfirmation.html.twig");
+", "register/emailConfirmation.html.twig", "D:\\wamp64\\www\\SIOCOM_PORTFOLIO\\portfolio\\templates\\register\\emailConfirmation.html.twig");
     }
 }

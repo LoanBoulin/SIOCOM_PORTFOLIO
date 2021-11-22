@@ -106,6 +106,6 @@ Si tu t'es déjà enregistré, tu n'as plus qu'à te connecter <a href=\"";
 Acces pas autorisé
 
 Si tu t'es déjà enregistré, tu n'as plus qu'à te connecter <a href=\"{{ path('app_login') }}\">ici</a>
-{% endblock %}", "error/accessDenied.html.twig", "C:\\wamp64\\www\\portfolio\\templates\\error\\accessDenied.html.twig");
+{% endblock %}", "error/accessDenied.html.twig", "D:\\wamp64\\www\\SIOCOM_PORTFOLIO\\portfolio\\templates\\error\\accessDenied.html.twig");
     }
 }

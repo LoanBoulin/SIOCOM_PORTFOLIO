@@ -112,6 +112,6 @@ Tu n'as pas activé le lien de confirmation dans ta bal
 ou tes professeurs n'ont pas encore validé ton compte !
 
 Tu pourras te connecter après <a href=\"{{ path('app_login')}}\">ici</a>
-{% endblock %}", "register/userNonValide.html.twig", "C:\\wamp64\\www\\portfolio\\templates\\register\\userNonValide.html.twig");
+{% endblock %}", "register/userNonValide.html.twig", "D:\\wamp64\\www\\SIOCOM_PORTFOLIO\\portfolio\\templates\\register\\userNonValide.html.twig");
     }
 }
