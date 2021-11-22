@@ -9,25 +9,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Etudiant;
 use App\Entity\RP;
-use App\Entity\Groupe;
 use App\Form\UserEtudiantType;
 
 
 class EtudiantController extends AbstractController
 {
-    
     /*
      * Page accueil étudiant : renvoie la liste des 7 dernières rp et des stages
      */
     public function home()
     {
-
-        $user = $this->getUser();
-
-        return $this->render('etudiant/home.html.twig', [
-            'etudiant' => $this->getUser()->getEtudiant(),
-        ]);
-        
+         return $this->render('etudiant/home.html.twig', [
+                'etudiant' => $this->getUser()->getEtudiant(),
+                 ]);
     }
 
 
@@ -131,21 +125,6 @@ class EtudiantController extends AbstractController
 
         }
     }*/
-
-    /* 
-     * Liste les groupes d'un utilisateur connecté
-     */
-    public function getLesGroupes(): Response
-    { 
-    
-        $user = $this->getUser();
-
-        $repository = $this->getDoctrine()->getRepository(Groupe::class);
-        $lesGroupes = $repository->findBy(
-            ['user_id' => $etudiant->getid() ]);
-        
-        //return $this->render('etudiant/listRPs.html.twig', ['lesRps' => $lesRps]);
-    }
 
     /* 
      * Liste les rps d'un étudiant connecté
