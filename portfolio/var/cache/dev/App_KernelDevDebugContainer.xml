@@ -364,6 +364,13 @@
         <argument type="service" id=".service_locator.5nX7ca3.App\Controller\EtudiantController"/>
       </call>
     </service>
+    <service id="App\Controller\GroupeController" class="App\Controller\GroupeController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.5nX7ca3.App\Controller\GroupeController"/>
+      </call>
+    </service>
     <service id="App\Controller\PromotionController" class="App\Controller\PromotionController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -5762,6 +5769,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\EtudiantController" class="App\Controller\EtudiantController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\EtudiantController" class="App\Controller\EtudiantController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\EtudiantController" class="App\Controller\EtudiantController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\GroupeController" class="App\Controller\GroupeController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\GroupeController" class="App\Controller\GroupeController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\GroupeController" class="App\Controller\GroupeController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PromotionController" class="App\Controller\PromotionController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PromotionController" class="App\Controller\PromotionController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PromotionController" class="App\Controller\PromotionController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6632,6 +6642,12 @@
     <service id=".service_locator.5nX7ca3.App\Controller\EtudiantController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\EtudiantController"/>
       <argument>App\Controller\EtudiantController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.5nX7ca3" method="withContext"/>
+    </service>
+    <service id=".service_locator.5nX7ca3.App\Controller\GroupeController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\GroupeController"/>
+      <argument>App\Controller\GroupeController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.5nX7ca3" method="withContext"/>
     </service>

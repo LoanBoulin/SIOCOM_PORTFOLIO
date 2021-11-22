@@ -167,7 +167,7 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
     </div>   
 
 
-      <!!- tableau des stages--> 
+      <!-- tableau des stages --> 
   <div class=\"col-lg-10\">
     <div class=\"card\">   
       <div class=\"card-header d-flex align-items-center\">
@@ -269,7 +269,7 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
     </div>   
 
 
-      <!!- tableau des stages--> 
+      <!-- tableau des stages --> 
   <div class=\"col-lg-10\">
     <div class=\"card\">   
       <div class=\"card-header d-flex align-items-center\">
@@ -306,6 +306,6 @@ class __TwigTemplate_3b9903f919981210e2a4ae2367e931053b945581dfe974963d806fbca53
   </div>   
 
 
-{% endblock %}", "etudiant/home.html.twig", "C:\\wamp64\\www\\portfolio\\templates\\etudiant\\home.html.twig");
+{% endblock %}", "etudiant/home.html.twig", "D:\\wamp64\\www\\SIOCOM_PORTFOLIO\\portfolio\\templates\\etudiant\\home.html.twig");
     }
 }
