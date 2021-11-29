@@ -202,6 +202,19 @@ showSemaineStage:
   path: /enseignant/stage/semaine/show/{idStage}/{numSemaine}
   controller: App\Controller\SemaineStageController::showSemaine
 
+
+###### Routes Groupes ##########
+listGroups:
+  path: /admin/listGroups
+  controller: App\Controller\GroupeController::list
+
+listProjets:
+  path: /admin/listProjets
+  controller: App\Controller\ProjetController::list
+
+
+
+
 ###### Routes admin ############
 
 adduserEnseignant:

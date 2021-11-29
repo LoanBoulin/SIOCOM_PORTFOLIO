@@ -11,10 +11,14 @@ class GroupeController extends AbstractController
     /**
      * @Route("/groupe", name="groupe")
      */
-    public function index(): Response
+    public function list(): Response
     {
-        return $this->render('groupe/index.html.twig', [
-            'controller_name' => 'GroupeController',
-        ]);
+        $repository = $this->getDoctrine()->getRepository(Groupe::class);
+        $groupes =  $repository->findAll();
+
+
+
+        
+        return $this->render('groupe/listGroups.html.twig', [ 'groupes' => $groupes]);
     }
 }

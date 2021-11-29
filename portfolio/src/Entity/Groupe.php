@@ -1,7 +1,7 @@
-
 <?php
 
 namespace App\Entity;
+
 
 use App\Repository\GroupeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
