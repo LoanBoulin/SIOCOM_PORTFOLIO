@@ -432,3 +432,11 @@ fec9d3,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/etudiant
 71a942,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/groupe/listGroupe,1638177102,,404
 f01d1d,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/groupe/listGroups,1638177105,adcdc4,404
 adcdc4,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/groupe/listGroups,1638177105,,404
+e03f5b,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/login_success,1638177959,4bff19,500
+4bff19,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/login_success,1638177959,,500
+489239,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/login_success,1638178044,,200
+8945fe,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/avatar/etudiant/64.png,1638178045,4e22c8,404
+4e22c8,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/avatar/etudiant/64.png,1638178045,,404
+5ff9e6,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/login_success,1638178322,,200
+cd7654,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/avatar/etudiant/64.png,1638178322,d7ce2e,404
+d7ce2e,127.0.0.1,GET,http://localhost/SIOCOM_PORTFOLIO/portfolio/public/avatar/etudiant/64.png,1638178322,,404

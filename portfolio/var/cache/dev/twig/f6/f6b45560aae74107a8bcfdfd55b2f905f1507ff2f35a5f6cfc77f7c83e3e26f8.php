@@ -286,10 +286,6 @@ $context["g"], "user", [], "any", false, false, false, 116), "roles", [], "any",
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 129
         echo "
-
-
-
-
                     </div>
                   </div>
                 </div>
@@ -451,10 +447,6 @@ $context["g"], "user", [], "any", false, false, false, 116), "roles", [], "any",
                           </div>
                         </div>
                       {% endfor %}
-
-
-
-
 
                     </div>
                   </div>

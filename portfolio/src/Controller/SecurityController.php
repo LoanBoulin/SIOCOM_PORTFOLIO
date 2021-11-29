@@ -51,15 +51,33 @@ class SecurityController extends AbstractController
             $role = $this->getUser()->getRoles()[0];
             if ($role == 'ROLE_ENSEIGNANT'){   
 
+                $lesGroupes = $this->getUser()->getGroupes();
+                $posts = [];
+                foreach ($lesGroupes as $g) {
+                    foreach($g->getPosts() as $p){
+                        array_push($posts, $p);
+                    }
+                }
+
                 return $this->render('enseignant/home.html.twig', [
                 'enseignant' => $this->getUser()->getEnseignant(),
+                'posts' => $posts
                  ]);
             }
             if ($role == 'ROLE_ETUDIANT'){
            
+                $lesGroupes = $this->getUser()->getGroupes();
+                $posts = [];
+                foreach ($lesGroupes as $g) {
+                    foreach($g->getPosts() as $p){
+                        array_push($posts, $p);
+                    }
+                }
+        
                 return $this->render('etudiant/home.html.twig', [
-                'etudiant' => $this->getUser()->getEtudiant(),
-                 ]);
+                    'etudiant' => $this->getUser()->getEtudiant(),
+                    'posts' => $posts,
+                ]);
             }
             if ($role == 'ROLE_ADMIN'){
                 return $this->render('admin/home.html.twig');  
