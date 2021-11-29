@@ -50,16 +50,20 @@ class ProjetDef
     private $groupe;
 
     /**
-     * @ORM\ManyToMany(targetEntity=ProjetType::class, mappedBy="projet")
+     * @ORM\ManyToMany(targetEntity=TypeProjet::class, mappedBy="ProjetDef")
      */
-    private $projetTypes;
+    private $typeProjets;
+
+
+
+
 
     public function __construct()
     {
         $this->matiere = new ArrayCollection();
         $this->enseignant = new ArrayCollection();
         $this->groupe = new ArrayCollection();
-        $this->projetTypes = new ArrayCollection();
+        $this->typeProjets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -176,29 +180,31 @@ class ProjetDef
     }
 
     /**
-     * @return Collection|ProjetType[]
+     * @return Collection|TypeProjet[]
      */
-    public function getProjetTypes(): Collection
+    public function getTypeProjets(): Collection
     {
-        return $this->projetTypes;
+        return $this->typeProjets;
     }
 
-    public function addProjetType(ProjetType $projetType): self
+    public function addTypeProjet(TypeProjet $typeProjet): self
     {
-        if (!$this->projetTypes->contains($projetType)) {
-            $this->projetTypes[] = $projetType;
-            $projetType->addProjet($this);
+        if (!$this->typeProjets->contains($typeProjet)) {
+            $this->typeProjets[] = $typeProjet;
+            $typeProjet->addProjetDef($this);
         }
 
         return $this;
     }
 
-    public function removeProjetType(ProjetType $projetType): self
+    public function removeTypeProjet(TypeProjet $typeProjet): self
     {
-        if ($this->projetTypes->removeElement($projetType)) {
-            $projetType->removeProjet($this);
+        if ($this->typeProjets->removeElement($typeProjet)) {
+            $typeProjet->removeProjetDef($this);
         }
 
         return $this;
     }
+
+   
 }
