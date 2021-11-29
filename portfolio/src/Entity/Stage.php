@@ -6,6 +6,7 @@ use App\Repository\StageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StageRepository::class)
@@ -26,11 +27,30 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=14)
+     *
+     * @Assert\NotBlank()
+     * 
+     * @Assert\Length(
+     * min = 14,
+     * max = 14,
+     * minMessage = "Le Siret doit comporter au minimum 14 caractères",
+     * maxMessage = "Le Siret doit comporter au maximum 14 caractères"
+     * )
      */
+     
     private $siret;
 
     /**
      * @ORM\Column(type="string", length=5)
+     *   
+     * @Assert\NotBlank()
+     * 
+     * @Assert\Length(
+     * min = 5,
+     * max = 5,
+     * minMessage = "Le code NAF doit comporter au minimum 5 caractères",
+     * maxMessage = "Le code NAF doit comporter au maximum 5 caractères"
+     * )
      */
     private $codeNaf;
 
@@ -41,6 +61,16 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=5)
+     *    
+     * @Assert\NotBlank()
+     * 
+     * @Assert\Length(
+     * min = 5,
+     * max = 5,
+     * minMessage = "Le code postal doit comporter au minimum 5 caractères",
+     * maxMessage = "Le code postal doit comporter au maximum 5 caractères"
+     * )
+     * 
      */
     private $copos;
 
@@ -63,11 +93,24 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=15)
+     *    
+     * @Assert\NotBlank()
+     * 
+     * @Assert\Length(
+     * min = 10,
+     * max = 10,
+     * minMessage = "Le téléphone doit comporter au minimum 10 caractères",
+     * maxMessage = "Le téléphone doit comporter au maximum 10 caractères"
+     * )
      */
     private $telTuteur;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * 
+     * @Assert\Email(
+     *  message = "L'adresse mail renseignée n'est pas une adresse mail valide"
+     * )
      */
     private $mailTuteur;
 
@@ -88,16 +131,37 @@ class Stage
 
     /**
      * @ORM\Column(type="date")
+     * 
+     * @Assert\LessThan("today")
+     * @Assert\Expression(
+     *  "this.getDateDebut() < this.getDateFin()",
+     * message = "La date de début ne peut pas être supérieure à la date de fin"
+     * ) 
      */
     private $dateDebut;
 
     /**
      * @ORM\Column(type="date")
+     *     
+     * @Assert\LessThan("today")
+     * @Assert\Expression(
+     *      "this.getDateDebut() < this.getDateFin()",
+     *      message = "La date de fin ne peut pas être antérieure à la date de début"
+     * )
      */
     private $dateFin;
 
-    /**
-     * @ORM\Column(type="integer")
+     /**
+     * @ORM\Column(type="string", length=15)
+     *    
+     * @Assert\NotBlank()
+     * 
+     * @Assert\Range(
+     * min = 3,
+     * max = 8,
+     * minMessage = "La durée du stage doit être d'au moins de 3 semaines",
+     * maxMessage = "La durée du stage ne peut pas dépasser 8 semaines"
+     * )
      */
     private $duree;
 
