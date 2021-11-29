@@ -241,7 +241,7 @@ supprimerCompte:
 
 #Permet de créer un groupe
 addGroupe:
-  path: /admin/addGroupe
+  path: /groupe/addGroupe
   controller: App\Controller\AdminController::addGroupe
 
 #Permet de lister les noms des étudiants et enseignants en passant par la table user
@@ -251,11 +251,11 @@ consulterNomById:
 
 #Permet de consulter un groupe via son id
 consulterGroupe:
-  path: /admin/consulterGroupe/{id}
+  path: /groupe/consulterGroupe/{id}
   controller: App\Controller\AdminController::consulterGroupe
 
 #Permet de supprimer un groupe via son id
 supprimerGroupe:
-  path: /admin/supprimerGroupe/{id}
+  path: /groupe/supprimerGroupe/{id}
   controller: App\Controller\AdminController::supprimerGroupe
 
