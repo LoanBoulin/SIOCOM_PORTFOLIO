@@ -6,6 +6,8 @@
 /portfolio/config/secrets/prod/prod.decrypt.private.php
 /portfolio/public/bundles/
 /portfolio/var/
+/portfolio/var/logs/*
+/portfolio/var/cache/*
 /portfolio/vendor/
 ###< symfony/framework-bundle ###
 
