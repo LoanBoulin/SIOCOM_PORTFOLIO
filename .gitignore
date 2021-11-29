@@ -1,0 +1,16 @@
+
+###> symfony/framework-bundle ###
+/portfolio/.env.local
+/portfolio/.env.local.php
+/portfolio/.env.*.local
+/portfolio/config/secrets/prod/prod.decrypt.private.php
+/portfolio/public/bundles/
+/portfolio/var/
+/portfolio/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+portfolio/.phpunit
+portfolio/.phpunit.result.cache
+/portfolio/phpunit.xml
+###< symfony/phpunit-bridge ###
