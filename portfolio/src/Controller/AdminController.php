@@ -7,8 +7,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use App\Entity\Groupe;
 use App\Entity\Promotion;
 use App\Entity\Etudiant;
+use App\Form\GroupeTypeForm;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Form\UserEnseignantType;
 use App\Form\UserEtudiantType;
@@ -212,5 +214,57 @@ class AdminController extends AbstractController
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
         ]);
+    }
+
+    function addGroupe(Request $request){
+    $groupe = new groupe();
+    $form = $this->createForm(GroupeTypeForm::class, $groupe);
+    $form->handleRequest($request);
+    
+    if ($form->isSubmitted() && $form->isValid()) {
+    
+            $groupe = $form->getData();
+    
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($groupe);
+            $entityManager->flush();
+            //return $this->render('groupe/listerGroupe.html.twig', ['groupe' => $groupe,]);
+    }
+        else
+            {
+            return $this->render('groupe/addGroupe.html.twig', array('form' => $form->createView(),));
+        }
+    }
+
+
+    public function consulterGroupe($id){
+		
+        $groupe = $this->getDoctrine()
+        ->getRepository(Groupe::class)
+        ->find($id);
+
+        if (!$groupe) {
+            throw $this->createNotFoundException(
+            'Aucun groupe trouvé avec le numéro '.$id
+            );
+        }
+
+        //return new Response('Groupe : '.$groupe->getId());
+        return $this->render('groupe/consulterGroupe.html.twig', [
+            'groupe' => $groupe,]);
+    }
+
+
+    public function supprimerGroupe($id): Response
+    {
+        $repository = $this->getDoctrine()->getRepository(Groupe::class);
+        $groupe = $repository->findOneBy(['id' => $id]);
+       
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($groupe);
+        //$entityManager->persist($groupe);
+        $entityManager->flush();
+        $this->addFlash('success', 'Le groupe de '. $groupe->getGroupe()->getLibelle() .' a été supprimé '. $groupe->getId());
+        return $this->redirectToRoute('listerGroupe');
     }
 }
