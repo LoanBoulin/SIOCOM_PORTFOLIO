@@ -15,7 +15,6 @@ use App\Form\UserEtudiantType;
 
 class EtudiantController extends AbstractController
 {
-    
     /*
      * Page accueil étudiant : renvoie la liste des 7 dernières rp et des stages
      */
