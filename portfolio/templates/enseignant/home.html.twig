@@ -125,7 +125,12 @@
                                 {% elseif g.user.roles == ["ROLE_ADMIN"] %}
                                   <h5>{{g.user.email}} (Administrateur) </h5>
                                 {% endif %}
-                                <p class="mb-0 text-xs text-gray-600 lh-1">a posté :</p>
+                                <div class="row">
+                                    <p class="col">a posté dans :</p>
+                                    {% for i in g.idgroupe %}
+                                      <a href="{{ path('consulterGroupe', { 'id': i.id }) }}">{{i.libelle}}</a>
+                                    {% endfor %}
+                                </div>
                               </div>
                             </div>
                             <div class="text-right"><small class="text-gray-500">{{g.dateTimePost.format('Y-m-d H:i:s')}}</small></div>
