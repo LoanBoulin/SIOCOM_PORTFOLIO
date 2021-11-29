@@ -109,7 +109,7 @@ class Stage
      * @ORM\Column(type="string", length=50)
      * 
      * @Assert\Email(
-     *  message = "The Email is not a valid email."
+     *  message = "L'adresse mail renseignée n'est pas une adresse mail valide"
      * )
      */
     private $mailTuteur;
@@ -131,11 +131,23 @@ class Stage
 
     /**
      * @ORM\Column(type="date")
+     * 
+     * @Assert\LessThan("today")
+     * @Assert\Expression(
+     *  "this.getDateDebut() > this.getDateFin()",
+     * message = "La date de début ne peut pas être supérieur à la date de aujourd'hui"
+     * ) 
      */
     private $dateDebut;
 
     /**
      * @ORM\Column(type="date")
+     *     
+     * @Assert\LessThan("today")
+     * @Assert\Expression(
+     *      "this.getDateDebut() < this.getDateFin()",
+     *      message = "La date de fin ne peut pas être antérieure à la date de début"
+     * )
      */
     private $dateFin;
 
