@@ -134,7 +134,7 @@ class Stage
      * 
      * @Assert\LessThan("today")
      * @Assert\Expression(
-     *  "this.getDateDebut() > this.getDateFin()",
+     *  "this.getDateDebut() < this.getDateFin()",
      * message = "La date de début ne peut pas être supérieur à la date de aujourd'hui"
      * ) 
      */
