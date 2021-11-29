@@ -255,7 +255,7 @@ consulterGroupe:
   controller: App\Controller\AdminController::consulterGroupe
 
 #Permet de supprimer un groupe via son id
-consulterGroupe:
+supprimerGroupe:
   path: /admin/supprimerGroupe/{id}
   controller: App\Controller\AdminController::supprimerGroupe
 

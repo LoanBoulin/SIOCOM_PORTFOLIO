@@ -228,7 +228,7 @@ class AdminController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($groupe);
             $entityManager->flush();
-            //return $this->render('groupe/listerGroupe.html.twig', ['groupe' => $groupe,]);
+            return $this->render('groupe/consulterGroupe.html.twig', ['groupe' => $groupe,]);
     }
         else
             {
@@ -264,7 +264,7 @@ class AdminController extends AbstractController
         $entityManager->remove($groupe);
         //$entityManager->persist($groupe);
         $entityManager->flush();
-        $this->addFlash('success', 'Le groupe de '. $groupe->getGroupe()->getLibelle() .' a été supprimé '. $groupe->getId());
-        return $this->redirectToRoute('listerGroupe');
+        $this->addFlash('success', 'Le groupe de '. $groupe->getLibelle() .' a été supprimé '. $groupe->getId());
+        return $this->redirectToRoute('listGroups');
     }
 }
