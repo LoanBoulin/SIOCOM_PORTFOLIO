@@ -212,7 +212,20 @@ listProjets:
   path: /admin/listProjets
   controller: App\Controller\ProjetController::list
 
+#Permet de créer un groupe
+addGroupe:
+  path: /groupe/addGroupe
+  controller: App\Controller\AdminController::addGroupe
 
+#Permet de consulter un groupe via son id
+consulterGroupe:
+  path: /groupe/consulterGroupe/{id}
+  controller: App\Controller\AdminController::consulterGroupe
+
+#Permet de supprimer un groupe via son id
+supprimerGroupe:
+  path: /groupe/supprimerGroupe/{id}
+  controller: App\Controller\AdminController::supprimerGroupe
 
 
 ###### Routes admin ############

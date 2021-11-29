@@ -1,4 +1,3 @@
-
 ###> symfony/framework-bundle ###
 /portfolio/.env.local
 /portfolio/.env.local.php
