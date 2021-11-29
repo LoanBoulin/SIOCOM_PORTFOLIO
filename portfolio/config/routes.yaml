@@ -205,27 +205,27 @@ showSemaineStage:
 
 ###### Routes Groupes ##########
 listGroups:
-  path: /admin/listGroups
+  path: /groupe/listGroups
   controller: App\Controller\GroupeController::list
 
 listProjets:
-  path: /admin/listProjets
+  path: /projet/listProjets
   controller: App\Controller\ProjetController::list
 
 #Permet de créer un groupe
 addGroupe:
   path: /groupe/addGroupe
-  controller: App\Controller\AdminController::addGroupe
+  controller: App\Controller\GroupeController::addGroupe
 
 #Permet de consulter un groupe via son id
 consulterGroupe:
   path: /groupe/consulterGroupe/{id}
-  controller: App\Controller\AdminController::consulterGroupe
+  controller: App\Controller\GroupeController::consulterGroupe
 
 #Permet de supprimer un groupe via son id
 supprimerGroupe:
   path: /groupe/supprimerGroupe/{id}
-  controller: App\Controller\AdminController::supprimerGroupe
+  controller: App\Controller\GroupeController::supprimerGroupe
 
 
 ###### Routes admin ############

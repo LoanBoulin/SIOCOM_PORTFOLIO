@@ -7,7 +7,6 @@
 /portfolio/var/
 /portfolio/var/logs/*
 /portfolio/var/cache/*
-/portfolio/vendor/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
