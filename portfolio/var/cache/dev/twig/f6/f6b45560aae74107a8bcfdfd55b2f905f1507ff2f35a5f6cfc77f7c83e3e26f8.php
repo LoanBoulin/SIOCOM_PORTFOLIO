@@ -264,18 +264,37 @@ $context["g"], "user", [], "any", false, false, false, 116), "roles", [], "any",
                                 ";
             }
             // line 119
-            echo "                                <p class=\"mb-0 text-xs text-gray-600 lh-1\">a posté :</p>
+            echo "                                <div class=\"row\">
+                                    <p class=\"col\">a posté dans :</p>
+                                    ";
+            // line 121
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["g"], "idgroupe", [], "any", false, false, false, 121));
+            foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+                // line 122
+                echo "                                      <a href=\"";
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("consulterGroupe", ["id" => twig_get_attribute($this->env, $this->source, $context["i"], "id", [], "any", false, false, false, 122)]), "html", null, true);
+                echo "\">";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["i"], "libelle", [], "any", false, false, false, 122), "html", null, true);
+                echo "</a>
+                                    ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 124
+            echo "                                </div>
                               </div>
                             </div>
                             <div class=\"text-right\"><small class=\"text-gray-500\">";
-            // line 122
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["g"], "dateTimePost", [], "any", false, false, false, 122), "format", [0 => "Y-m-d H:i:s"], "method", false, false, false, 122), "html", null, true);
+            // line 127
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["g"], "dateTimePost", [], "any", false, false, false, 127), "format", [0 => "Y-m-d H:i:s"], "method", false, false, false, 127), "html", null, true);
             echo "</small></div>
                           </div>
                           <div class=\"mt-3 ms-5 ps-3\">
                             <div class=\"bg-light postBulle p-3 shadow-sm\"><p class=\"text-gray-600\">";
-            // line 125
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["g"], "description", [], "any", false, false, false, 125), "html", null, true);
+            // line 130
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["g"], "description", [], "any", false, false, false, 130), "html", null, true);
             echo "</p></div>
                           </div>
                         </div>
@@ -284,7 +303,7 @@ $context["g"], "user", [], "any", false, false, false, 116), "roles", [], "any",
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['g'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 129
+        // line 134
         echo "
                     </div>
                   </div>
@@ -314,7 +333,7 @@ $context["g"], "user", [], "any", false, false, false, 116), "roles", [], "any",
 
     public function getDebugInfo()
     {
-        return array (  288 => 129,  278 => 125,  272 => 122,  267 => 119,  261 => 117,  259 => 116,  252 => 115,  250 => 114,  243 => 113,  241 => 112,  233 => 109,  229 => 107,  227 => 106,  222 => 103,  218 => 102,  192 => 78,  163 => 41,  157 => 40,  142 => 36,  138 => 35,  134 => 34,  128 => 33,  124 => 32,  121 => 31,  118 => 30,  114 => 29,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
+        return array (  307 => 134,  297 => 130,  291 => 127,  286 => 124,  275 => 122,  271 => 121,  267 => 119,  261 => 117,  259 => 116,  252 => 115,  250 => 114,  243 => 113,  241 => 112,  233 => 109,  229 => 107,  227 => 106,  222 => 103,  218 => 102,  192 => 78,  163 => 41,  157 => 40,  142 => 36,  138 => 35,  134 => 34,  128 => 33,  124 => 32,  121 => 31,  118 => 30,  114 => 29,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -437,7 +456,12 @@ $context["g"], "user", [], "any", false, false, false, 116), "roles", [], "any",
                                 {% elseif g.user.roles == [\"ROLE_ADMIN\"] %}
                                   <h5>{{g.user.email}} (Administrateur) </h5>
                                 {% endif %}
-                                <p class=\"mb-0 text-xs text-gray-600 lh-1\">a posté :</p>
+                                <div class=\"row\">
+                                    <p class=\"col\">a posté dans :</p>
+                                    {% for i in g.idgroupe %}
+                                      <a href=\"{{ path('consulterGroupe', { 'id': i.id }) }}\">{{i.libelle}}</a>
+                                    {% endfor %}
+                                </div>
                               </div>
                             </div>
                             <div class=\"text-right\"><small class=\"text-gray-500\">{{g.dateTimePost.format('Y-m-d H:i:s')}}</small></div>
