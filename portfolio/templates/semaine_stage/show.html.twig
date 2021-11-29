@@ -12,11 +12,11 @@
                         <!-- Breadcrumb-->
                         <div class="breadcrumb-holder container-fluid">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item active"><a href="{#{ path('rpShowEditAdd', {'idRp': idRp }) }#}">Info</a></li>
+                                <li class="breadcrumb-item active"><a href="{{ path('rpShowEditAdd', {'idRp': idRp }) }}">Info</a></li>
                                 {% if stage.duree > 0 %}          
                                     {% set nbSem = stage.duree %}
                                     {% for i in 1..nbSem %}
-                                        <li class="breadcrumb-item"><a href="{#{ path('rpActiviteList', { 'idRp': idRp }) }#}"> Semaine {{ i }} </a></li>                         
+                                        <li class="breadcrumb-item"><a href="{{ path('rpActiviteList', { 'idRp': idRp }) }}"> Semaine {{ i }} </a></li>                         
                                     {% endfor %}
                                 {% endif %}
                             </ul>

@@ -18,17 +18,20 @@
                           <thead>
                             <tr>
                               <th>Etudiant</th>
+                              <th>Voir le stage</th>
                               <th>Année</th>
                               <th>Entreprise</th>
                               <th>Nom tuteur</th>
                               <th>Tel Tuteur</th>
                               <th>Mail Tuteur</th>
+                              
                             </tr>
                           </thead>
                           <tbody>
                           {% for stage in enseignant.stages  %}
                             <tr>
                               <th scope="row">{{stage.etudiant.nom}} </th>
+                              <td><a href="{{path('showStage', { 'idStage': stage.id })}}">Voir le stage</a></td>
                               <td><a class="text" href="{#{ path('showRp', { 'idRp': rp.id }) }#}">{{stage.etudiant.promotion.annee}}</a></td>
                               <td>{{stage.nomEntreprise}}</td>
                               <td>{{stage.dateDebut | date("d/m/Y")}}</td>
