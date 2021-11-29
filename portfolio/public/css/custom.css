@@ -6,3 +6,8 @@ nav.side-navbar span.heading {
   color: #696969;
   font-size: 0.8em;
 }
+
+.postBulle{
+  background-color : #dbdbdb !important;
+  border-radius: 30px;
+}
