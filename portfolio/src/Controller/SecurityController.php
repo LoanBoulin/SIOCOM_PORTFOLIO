@@ -9,6 +9,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Etudiant;
 use App\Entity\Enseignant;
 use App\Entity\User;
+use App\Entity\Post;
 
 class SecurityController extends AbstractController
 {
@@ -80,7 +81,11 @@ class SecurityController extends AbstractController
                 ]);
             }
             if ($role == 'ROLE_ADMIN'){
-                return $this->render('admin/home.html.twig');  
+                $repository = $this->getDoctrine()->getRepository(Post::class);
+                $posts =  $repository->findAll();
+                return $this->render('admin/home.html.twig', [
+                    'posts' => $posts,
+                ]);  
             }
         }
     else
