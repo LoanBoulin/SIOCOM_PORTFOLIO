@@ -1,8 +1,106 @@
 {% extends "baseAdmin.html.twig" %}
 
-{% block titreContenu %}	<h5>PAGE DE CONSULTATION D'UN GROUPE</h5> {% endblock %}
+{% block titreContenu %}	
+
+  <div class="container-fluid px-0">
+      <h2 class="mb-0">{{groupe.libelle}}</h2>
+      <span class="text-sm text-gray-600 d-none d-sm-block">Groupe de {{groupe.groupeType.libelle}}</span>
+  </div>
+
+{% endblock %}
 
 {% block contenu %} 
+
+  
+          <section class="dashboard-counts no-padding-bottom">
+          
+            <div class="container-fluid">
+              <div class="row bg-white has-shadow">
+                <!-- Item -->
+                <div class="col-xl-4 col-sm-6">
+               
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-violet"><i class="icon-user"></i></div>
+                    <div class="title"> <a href="/SIOCOM_PORTFOLIO/portfolio/public/enseignant/promo/etudiants/list/1/2"><span>Membres<br>du groupe</span></a>
+                      <div class="progress">
+                        <div role="progressbar" style="width: 50%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
+                      </div>
+                    </div>
+                    <div class="number"><strong>{{groupe.userId|length}}</strong></div>
+                  </div>
+                
+                </div>
+                <!-- Item -->
+                <div class="col-xl-4 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-red"><i class="icon-user"></i></div>
+                    <div class="title"><span> <a href="/SIOCOM_PORTFOLIO/portfolio/public/enseignant/promo/etudiants/list/2/2">Nombre de posts <br> du groupe</a></span>
+                      <div class="progress">
+                        <div role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+                      </div>
+                    </div>
+                    <div class="number"><strong>{{groupe.posts|length}}</strong></div>
+                  </div>
+                </div>
+                <!-- Item -->
+                <div class="col-xl-4 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-green"><i class="icon-bill"></i></div>
+                    <div class="title"><span> <a href="/SIOCOM_PORTFOLIO/portfolio/public/enseignant/promo/etudiants/list/1/1">Nombre<br>de projets</a></span>
+                      <div class="progress">
+                        <div role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
+                      </div>
+                    </div>
+                    <div class="number"><strong>{{groupe.projetEquipes|length}}</strong></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Projects & Input Section-->
+          <section class="pb-0">
+            <div class="container-fluid">
+              <div class="card-header position-relative">
+                <div class="card-close">
+                  <div class="dropdown">
+                    <button class="dropdown-toggle text-sm" type="button" id="closeCard1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></button>
+                    <div class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="closeCard1"><a class="dropdown-item py-1 px-3 remove" href="#"> <i class="fas fa-times"></i>Close</a><a class="dropdown-item py-1 px-3 edit" href="#"> <i class="fas fa-cog"></i>Edit</a></div>
+                  </div>
+                </div>
+                <h2 class="h2 mb-0">Les projets</h2>
+              </div>
+              <br>
+              {% for projet in groupe.projetEquipes  %}
+              <!-- Project-->
+              <div class="card mb-3">
+                <div class="card-body p-3">
+                  <div class="row align-items-center gx-lg-5 gy-3">
+                    <div class="col-lg-6 border-lg-end">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center"><img class="img-fluid shadow-sm" src="GROUPE_fichiers/project-1.jpg" alt="..." width="50">
+                          <div class="ms-3">
+                            <h3 class="h4 text-gray-700 mb-0">{{projet.libelle}}</h3><small class="text-gray-500">{{projet.libelle}}</small>
+                          </div>
+                        </div><span class="text-sm text-gray-600 d-none d-sm-block">Today at 4:24 AM</span>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="d-flex align-items-center">
+                        <p class="d-flex mb-0 text-gray-600 text-sm d-flex align-items-center flex-shrink-0"><i class="far fa-clock me-1"></i>12:00 PM</p>
+                        <p class="d-flex mb-0 mx-3 text-gray-600 text-sm d-flex align-items-center flex-shrink-0"><i class="far fa-comment me-1"></i>20</p>
+                        <div class="progress w-100" style="height: 5px; max-width: 15rem">
+                          <div class="progress-bar bg-red" role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             {% endfor %}
+
+            </div>
+          </section>
 	
   <div class="m-4">
  <p>
