@@ -54,6 +54,11 @@ class ProjetDef
      */
     private $typeProjets;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ProjetEquipe::class, mappedBy="projetDef")
+     */
+    private $projetEquipes;
+
 
 
 
@@ -64,6 +69,7 @@ class ProjetDef
         $this->enseignant = new ArrayCollection();
         $this->groupe = new ArrayCollection();
         $this->typeProjets = new ArrayCollection();
+        $this->projetEquipes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -201,6 +207,36 @@ class ProjetDef
     {
         if ($this->typeProjets->removeElement($typeProjet)) {
             $typeProjet->removeProjetDef($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ProjetEquipe[]
+     */
+    public function getProjetEquipes(): Collection
+    {
+        return $this->projetEquipes;
+    }
+
+    public function addProjetEquipe(ProjetEquipe $projetEquipe): self
+    {
+        if (!$this->projetEquipes->contains($projetEquipe)) {
+            $this->projetEquipes[] = $projetEquipe;
+            $projetEquipe->setProjetDef($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjetEquipe(ProjetEquipe $projetEquipe): self
+    {
+        if ($this->projetEquipes->removeElement($projetEquipe)) {
+            // set the owning side to null (unless already changed)
+            if ($projetEquipe->getProjetDef() === $this) {
+                $projetEquipe->setProjetDef(null);
+            }
         }
 
         return $this;

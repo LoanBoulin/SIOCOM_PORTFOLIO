@@ -30,7 +30,7 @@
                           <tbody>
                           {% for stage in enseignant.stages  %}
                             <tr>
-                              <th scope="row">{{stage.etudiant.nom}} </th>
+                              <th scope="row">{{stage.etudiant.prenom}} {{stage.etudiant.nom}} </th>
                               <td><a href="{{path('showStage', { 'idStage': stage.id })}}">Voir le stage</a></td>
                               <td><a class="text" href="{#{ path('showRp', { 'idRp': rp.id }) }#}">{{stage.etudiant.promotion.annee}}</a></td>
                               <td>{{stage.nomEntreprise}}</td>
