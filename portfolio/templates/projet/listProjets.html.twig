@@ -34,22 +34,26 @@
                               <td>{{p.dateDebut.format('d-m-Y')}}</a></td>
                               <td>{{p.dateFin.format('d-m-Y')}}</a></td>
                               <td><a class="text" href="test">{{p.libelle}}</a></td>
-
+                              <td>
                               {% for matiere in p.matiere  %}
-                                <td><a class="text" href="test">{{matiere.libelle}}</a></td>
+                                <a class="text" href="test">{{matiere.libelle}}</a>
                               {% endfor %}
-
+                              </td>
+                              <td>
                               {% for enseignant in p.enseignant  %}
-                                <td><a class="text" href="test">{{enseignant.nom}}</a></td>
+                                <a class="text" href="test">{{enseignant.nom}}</a>
                               {% endfor %}
-
+                              </td>
+                              <td>
                               {% for groupe in p.groupe  %}
-                                <td><a class="text" href="test">{{groupe.libelle}}</a></td>
+                                <a class="text" href="test">{{groupe.libelle}}</a>
                               {% endfor %}
-
-                              {% for projetTypes in p.projetTypes  %}
-                                <td><a class="text" href="test">{{projetTypes.id}}</a></td>
+                              </td>
+                              <td>
+                              {% for typeProjets in p.typeProjets  %}
+                                <a class="text" href="test">{{typeProjets.libelle}}, </a>
                               {% endfor %}
+                              </td>
 
                             </tr>
                             {% endfor %}
