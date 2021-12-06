@@ -17,7 +17,7 @@
             <div class="container-fluid">
               <div class="row bg-white has-shadow">
                 <!-- Item -->
-                <div class="col-xl-4 col-sm-6">
+                <div class="col-xl-5 col-sm-6">
                
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-violet"><i class="icon-user"></i></div>
@@ -31,7 +31,7 @@
                 
                 </div>
                 <!-- Item -->
-                <div class="col-xl-4 col-sm-6">
+                <div class="col-xl-5 col-sm-6">
                   <div class="item d-flex align-items-center">
                     <div class="icon bg-red"><i class="icon-user"></i></div>
                     <div class="title"><span> <a href="/SIOCOM_PORTFOLIO/portfolio/public/enseignant/promo/etudiants/list/2/2">Nombre de posts <br> du groupe</a></span>
@@ -42,23 +42,11 @@
                     <div class="number"><strong>{{groupe.posts|length}}</strong></div>
                   </div>
                 </div>
-                <!-- Item -->
-                <div class="col-xl-4 col-sm-6">
-                  <div class="item d-flex align-items-center">
-                    <div class="icon bg-green"><i class="icon-bill"></i></div>
-                    <div class="title"><span> <a href="/SIOCOM_PORTFOLIO/portfolio/public/enseignant/promo/etudiants/list/1/1">Nombre<br>de projets</a></span>
-                      <div class="progress">
-                        <div role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
-                      </div>
-                    </div>
-                    <div class="number"><strong>{{groupe.projetEquipes|length}}</strong></div>
-                  </div>
-                </div>
               </div>
             </div>
           </section>
 
-          <!-- Projects & Input Section-->
+          <!-- Travaux & Projet Def-->
           <section class="pb-0">
             <div class="container-fluid">
               <div class="card-header position-relative">
@@ -68,10 +56,10 @@
                     <div class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="closeCard1"><a class="dropdown-item py-1 px-3 remove" href="#"> <i class="fas fa-times"></i>Close</a><a class="dropdown-item py-1 px-3 edit" href="#"> <i class="fas fa-cog"></i>Edit</a></div>
                   </div>
                 </div>
-                <h2 class="h2 mb-0">Les projets</h2>
+                <h2 class="h2 mb-0">Travaux</h2>
               </div>
               <br>
-              {% for projet in groupe.projetEquipes  %}
+              {% for projet in groupe.projetDefs  %}
               <!-- Project-->
               <div class="card mb-3">
                 <div class="card-body p-3">
@@ -80,17 +68,22 @@
                       <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                           <div class="ms-3">
-                            <h3 class="h4 text-gray-700 mb-0">{{projet.libelle}}</h3><a href=""><small class="text-gray-500">{{projet.projetDef.libelle}}</small> Voir</a>
+                            <h3 class="h4 text-gray-700 mb-0"><a href=''>{{projet.libelle}}</a></h3>
+                              {% for matiere in projet.matiere  %}
+                              <a href=""><small class="text-gray-500">{{matiere.libelle}},</small> </a>
+                              {% endfor %}
                           </div>
-                        </div><span class="text-sm text-gray-600 d-none d-sm-block">{{projet.projetDef.dateDebut.format('d-m-Y')}}</span>
+                        </div><span class="text-sm text-gray-600 d-none d-sm-block">{{projet.dateDebut.format('d-m-Y')}}</span>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="d-flex align-items-center justify-content-between">
-                        <div class="progress w-100" style="height: 5px; max-width: 15rem">
-                          <div class="progress-bar bg-red" role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <a href=''>Voir le projet</a>
+                      <div class="d-flex">
+                          {% for e in projet.enseignant  %}
+                            <h5><small class="text-gray-700">{{e.nom}},</small></h5>
+                          {% endfor %}
+                      </div>
+                        <a href=''>Voir plus</a>
                       </div>
                     </div>
                   </div>
@@ -124,7 +117,7 @@
                     </div>
                     <div class="card-body p-0">
 
-                      {% for g in groupe.posts|sort((a, b) => a.dateTimePost <=> b.dateTimePost) %}
+                      {% for g in groupe.posts|sort((b, a) => a.dateTimePost <=> b.dateTimePost) %}
 
                         <div class="p-3">
                           <div class="d-flex justify-content-between">
@@ -146,7 +139,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="text-right"><small class="text-gray-500">{{g.dateTimePost.format('Y-m-d H:i:s')}}</small></div>
+                            <div class="text-right"><small class="text-gray-500">{{g.dateTimePost.format('d-m-Y H:i')}}</small></div>
                           </div>
                           <div class=" ms-5 ps-3">
                             <div class="bg-light postBulle p-3 shadow-sm"><p>{{g.description}}</p></div>

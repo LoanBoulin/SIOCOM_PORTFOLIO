@@ -85,12 +85,20 @@ class GroupeController extends AbstractController
             }else if($this->getUser()->getRoles() == ["ROLE_ETUDIANT"] ){
                 $tempTwig = 'baseEtudiant.html.twig';
             }
+
+            if($groupe->getGroupeType()->getLibelle() == "Travail"){
+                return $this->render('groupe/consulterGroupeTravail.html.twig', [
+                    'groupe' => $groupe,
+                    'templateTwigParent' => $tempTwig,
+                ]);
+            }else{
+                return $this->render('groupe/consulterGroupeSection.html.twig', [
+                    'groupe' => $groupe,
+                    'templateTwigParent' => $tempTwig,
+                ]);
+            }
     
-            //return new Response('Groupe : '.$groupe->getId());
-            return $this->render('groupe/consulterGroupe.html.twig', [
-                'groupe' => $groupe,
-                'templateTwigParent' => $tempTwig,
-            ]);
+            
         }
     
         public function supprimerGroupe($id): Response
