@@ -53,6 +53,7 @@ class ProjetController extends AbstractController
     }
 
 
+        $tempTwig = 'base.html.twig';
 
     function addProjet(Request $request){
 
@@ -81,7 +82,9 @@ class ProjetController extends AbstractController
         }else{
                 return $this->render('projet/addProjet.html.twig', array('form' => $form->createView(), 'templateTwigParent' => $tempTwig, ));
             }
-        }
+
+        return $this->render('projet/listProjets.html.twig', [ 'projets' => $projets, 'templateTwigParent' => $tempTwig,]);
+    }
     
     
         public function consulterProjet($id){
@@ -95,10 +98,20 @@ class ProjetController extends AbstractController
                 'Aucun projet trouvé avec le numéro '.$id
                 );
             }
-    
+            $tempTwig = 'base.html.twig';
+
+            if($this->getUser()->getRoles() == ["ROLE_ADMIN"] ){
+                $tempTwig = 'baseAdmin.html.twig';
+            }else if($this->getUser()->getRoles() == ["ROLE_ENSEIGNANT"] ){
+                $tempTwig = 'baseEnseignant.html.twig';
+            }else if($this->getUser()->getRoles() == ["ROLE_ETUDIANT"] ){
+                $tempTwig = 'baseEtudiant.html.twig';
+            }
+            
             //return new Response('Projet : '.$projet->getId());
             return $this->render('projet/consulterProjet.html.twig', [
-                'projet' => $projet,]);
+                'projet' => $projet,
+            'templateTwigParent' => $tempTwig,]);
         }
     
     

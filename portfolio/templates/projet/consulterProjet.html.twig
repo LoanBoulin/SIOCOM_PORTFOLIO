@@ -1,21 +1,115 @@
 {% extends templateTwigParent %}
 
-{% block titreContenu %}	<h5>PAGE DE CONSULTATION D'UN PROJET</h5> {% endblock %}
+{% block titreContenu %}	
+  <div class="container-fluid px-0">
+      <h3 class="mb-0">{{projet.libelle}}</h3>
+      <span class="text-sm text-gray-600 d-none d-sm-block"
+      </span>
 
-{% block contenu %} 
+  </div>
+<div class="item d-flex align-items-center">
+
 	
+  {% endblock %}
+
+  {% block contenu %} 
+
+  
+          <section class="pb-0">
+            <div class="container-fluid">
+              <div class="card mb-0">
+                <div class="card-body">
+                  <div class="row gx-5 bg-white">
+                    <!-- Item -->
+                    <div class="col-xl-4 col-sm-6 py-4 border-lg-end border-gray-200">
+                      <div class="d-flex align-items-center">
+                        <div class="icon bg-violet"><i class="icon-user"></i></div>
+                        <div class="mx-3">
+                          <h6 class="h4 fw-light text-gray-600 mb-3">Enseignant<br>Encadrant</h6>
+                        </div>
+                        <div class="number">
+                        {% for enseignant in projet.enseignant  %}
+                          <h6><a href=""class="text-lg">{{enseignant.nom}}. {{enseignant.prenom}}</a></h6>
+                        {% endfor %}
+                        </div> 
+                      </div>
+                    </div>
+                    <!-- Item -->
+                    <div class="col-xl-4 col-sm-6 py-4 border-lg-end border-gray-200">
+                      <div class="d-flex align-items-center">
+                      <div class="icon bg-red"><i class="icon-user"></i></div>
+                        <div class="mx-3">
+                          <h6 class="h4 fw-light text-gray-600 mb-3">Matiere</h6>
+                        </div>
+                        <div class="number">
+                        {% for matiere in projet.matiere  %}
+                          <a href=""class="text-lg">{{matiere.code}},</a>
+                        {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Item -->
+                    <div class="col-xl-4 col-sm-6 py-4 border-lg-end border-gray-200">
+                      <div class="d-flex align-items-center">
+                        <div class="icon bg-green"><i class="icon-user"></i></div>
+                        <div class="mx-3">
+                          <h6 class="h4 fw-light text-gray-600 mb-3">Date de debut : <div class="number"><a class="text-lg">{{projet.dateDebut.format('d-m-Y')}}</a></div></h6>
+                          <h6 class="h4 fw-light text-gray-600 mb-3">Dat de fin : <div class="number"><a class="text-lg">{{projet.dateFin.format('d-m-Y')}}</a></div></h6>
+                        </div>
+                      </div>
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Feeds Section-->
+          <section class="pb-0">
+            <div class="container-fluid">
+              <div class="row gy-4">
+
+                <!-- Check List -->
+                <div class="col-lg-6">
+                  <div class="card rounded-0 mb-0">
+                    <div class="card-header position-relative px-4">
+                      <div class="card-close">
+                        <div class="dropdown">
+                          <button class="dropdown-toggle text-sm" type="button" id="closeCard1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></button>
+                          <div class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="closeCard1"><a class="dropdown-item py-1 px-3 remove" href="#"> <i class="fas fa-times"></i>Close</a><a class="dropdown-item py-1 px-3 edit" href="#"> <i class="fas fa-cog"></i>Edit</a></div>
+                        </div>
+                      </div>
+                      <h2 class="h3 mb-0">Liste des groupes du projet </h2>
+                    </div>
+
+                    <div class="card-body p-0">
+                      <div class="number">
+                      
+                            
+                            {% for groupe in projet.groupe  %}
+                            <div class="p-3 d-flex align-items-center">
+                              <img class="img-fluid rounded-circle p-1 border border-faintGreen flex-shrink-0" src="ProjetEquipe_fichiers/avatar-1.jpg" alt="..." width="50">
+                              <div class="ms-3">
+                                <a class="d-block" href="#">{{groupe.libelle}}</a>
+                                {% for user in groupe.userId  %}
+                                  <small class="text-gray-500">{{user.etudiant.prenom}} {{user.etudiant.nom}}, </small> 
+                                {% endfor %}
+                                </div>         
+                             </div>
+                            {% endfor %}
+                          
+ 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                
+                
+              </div>
+            </div>
+          </section>
+          <!-- Updates Section -->
+
   <div class="m-4">
- <p>
-  <table >
-    <tr><td>Id : </td><td>{{projet.id}} </td></tr>
-	  <tr><td>dateDebut : </td><td>{{projet.dateDebut.format('d-m-Y')}}</td>
-    <tr><td>dateFin : </td><td>{{projet.dateFin.format('d-m-Y')}}</td>   
-    <tr><td>Libelle : </td><td>{{projet.libelle}}</td>
-    
-    <tr><td>matiere : </td><td>{{projet.getMatiere.matiere_id}}</td>
-
-	
- </table>
- <div>
-	
-	 {% endblock %}
+  {% endblock %}  

@@ -239,8 +239,8 @@ addProjet:
   controller: App\Controller\ProjetController::addProjet
 
 #Permet de consulter un projet via son id
-consulterProjet:
-  path: /projet/consulterProjet/{id}
+consulterProjetDef:
+  path: /projet/consulterProjetDef/{id}
   controller: App\Controller\ProjetController::consulterProjet
 
 #Permet de supprimer un projet via son id
