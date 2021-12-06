@@ -204,13 +204,11 @@ showSemaineStage:
 
 
 ###### Routes Groupes ##########
+
+#Permet de lister un groupe
 listGroups:
   path: /groupe/listGroups
   controller: App\Controller\GroupeController::list
-
-listProjets:
-  path: /projet/listProjets
-  controller: App\Controller\ProjetController::list
 
 #Permet de créer un groupe
 addGroupe:
@@ -226,6 +224,29 @@ consulterGroupe:
 supprimerGroupe:
   path: /groupe/supprimerGroupe/{id}
   controller: App\Controller\GroupeController::supprimerGroupe
+
+
+###### Routes Projet ##########
+
+#Permet de lister un projet
+listProjets:
+  path: /projet/listProjets
+  controller: App\Controller\ProjetController::listProjet
+
+#Permet de créer un projet
+addProjet:
+  path: /projet/addProjet
+  controller: App\Controller\ProjetController::addProjet
+
+#Permet de consulter un projet via son id
+consulterProjet:
+  path: /projet/consulterProjet/{id}
+  controller: App\Controller\ProjetController::consulterProjet
+
+#Permet de supprimer un projet via son id
+supprimerProjet:
+  path: /projet/supprimerProjet/{id}
+  controller: App\Controller\ProjetController::supprimerProjet
 
 
 ###### Routes admin ############
@@ -264,5 +285,11 @@ validerCompte:
 supprimerCompte:
   path: /admin/supprimerCompte/{email}
   controller: App\Controller\AdminController::supprimerCompte
+
+
+
+
+
+
 
 

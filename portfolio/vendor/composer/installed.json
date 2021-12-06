@@ -4287,17 +4287,17 @@
         },
         {
             "name": "symfony/form",
-            "version": "v5.2.9",
-            "version_normalized": "5.2.9.0",
+            "version": "v5.2.12",
+            "version_normalized": "5.2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "a45ebbe5ef987a42dc4f9eab432b359bc13f0f4d"
+                "reference": "929811a7667aa5814f93a70974423870b14c05aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/a45ebbe5ef987a42dc4f9eab432b359bc13f0f4d",
-                "reference": "a45ebbe5ef987a42dc4f9eab432b359bc13f0f4d",
+                "url": "https://api.github.com/repos/symfony/form/zipball/929811a7667aa5814f93a70974423870b14c05aa",
+                "reference": "929811a7667aa5814f93a70974423870b14c05aa",
                 "shasum": ""
             },
             "require": {
@@ -4308,7 +4308,7 @@
                 "symfony/options-resolver": "^5.1",
                 "symfony/polyfill-ctype": "~1.8",
                 "symfony/polyfill-mbstring": "~1.0",
-                "symfony/polyfill-php80": "^1.15",
+                "symfony/polyfill-php80": "^1.16",
                 "symfony/property-access": "^5.0.8",
                 "symfony/service-contracts": "^1.1|^2"
             },
@@ -4343,7 +4343,7 @@
                 "symfony/twig-bridge": "For templating with Twig.",
                 "symfony/validator": "For form validation."
             },
-            "time": "2021-05-16T13:07:46+00:00",
+            "time": "2021-07-23T15:54:19+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -4371,7 +4371,7 @@
             "description": "Allows to easily create, process and reuse HTML forms",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/form/tree/v5.2.9"
+                "source": "https://github.com/symfony/form/tree/v5.2.12"
             },
             "funding": [
                 {
