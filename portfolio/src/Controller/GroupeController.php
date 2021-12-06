@@ -25,8 +25,20 @@ class GroupeController extends AbstractController
     public function list(): Response
     {
         $repository = $this->getDoctrine()->getRepository(Groupe::class);
-        $groupes =  $repository->findAll();
-        return $this->render('groupe/listGroups.html.twig', [ 'groupes' => $groupes]);
+
+        if($this->getUser()->getRoles() == ["ROLE_ADMIN"] ){
+            $tempTwig = 'baseAdmin.html.twig';
+            $groupes =  $repository->findAll();
+        }else if($this->getUser()->getRoles() == ["ROLE_ENSEIGNANT"] ){
+            $tempTwig = 'baseEnseignant.html.twig';  
+            $groupes = $this->getUser()->getGroupes();
+        }else if($this->getUser()->getRoles() == ["ROLE_ETUDIANT"] ){
+            $tempTwig = 'baseEtudiant.html.twig';
+            $groupes = $this->getUser()->getGroupes();
+            
+        }
+
+        return $this->render('groupe/listGroups.html.twig', [ 'groupes' => $groupes, 'templateTwigParent' => $tempTwig,]);
     }
 
 
@@ -63,12 +75,31 @@ class GroupeController extends AbstractController
                 'Aucun groupe trouvé avec le numéro '.$id
                 );
             }
+
+            $tempTwig = 'base.html.twig';
+
+            if($this->getUser()->getRoles() == ["ROLE_ADMIN"] ){
+                $tempTwig = 'baseAdmin.html.twig';
+            }else if($this->getUser()->getRoles() == ["ROLE_ENSEIGNANT"] ){
+                $tempTwig = 'baseEnseignant.html.twig';
+            }else if($this->getUser()->getRoles() == ["ROLE_ETUDIANT"] ){
+                $tempTwig = 'baseEtudiant.html.twig';
+            }
+
+            if($groupe->getGroupeType()->getLibelle() == "Travail"){
+                return $this->render('groupe/consulterGroupeTravail.html.twig', [
+                    'groupe' => $groupe,
+                    'templateTwigParent' => $tempTwig,
+                ]);
+            }else{
+                return $this->render('groupe/consulterGroupeSection.html.twig', [
+                    'groupe' => $groupe,
+                    'templateTwigParent' => $tempTwig,
+                ]);
+            }
     
-            //return new Response('Groupe : '.$groupe->getId());
-            return $this->render('groupe/consulterGroupe.html.twig', [
-                'groupe' => $groupe,]);
+            
         }
-    
     
         public function supprimerGroupe($id): Response
         {
