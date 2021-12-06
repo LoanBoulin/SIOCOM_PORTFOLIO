@@ -5,7 +5,7 @@
 ############ routes accès public ############
 accueil_global:
     path: /
-    controller: App\Controller\SecurityController::login
+    controller: App\Controller\SecurityController::index
 
 inscription:
     path: /inscription
