@@ -52,9 +52,6 @@ class ProjetController extends AbstractController
         return $this->render('projet/listProjets.html.twig', [ 'projets' => $projets, 'templateTwigParent' => $tempTwig,]);
     }
 
-
-        $tempTwig = 'base.html.twig';
-
     function addProjet(Request $request){
 
         $tempTwig = 'base.html.twig';
