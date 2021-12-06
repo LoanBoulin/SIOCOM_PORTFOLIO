@@ -121,19 +121,25 @@
 
                         <div class="p-3">
                           <div class="d-flex justify-content-between">
-                           {% set photo = 'avatar/etudiant/'~ g.user.etudiant.id ~'.png' %}
+                           {% if "ROLE_ADMIN" in  app.user.roles %}
+                            {% set photo = 'avatar/admin.png' %}
+                          {% elseif "ROLE_ENSEIGNANT" in  app.user.roles %}
+                            {% set photo = 'avatar/enseignant/'~ app.user.enseignant.id ~'.png' %}
+                          {% elseif "ROLE_ETUDIANT" in  app.user.roles %}
+                            {% set photo = 'avatar/etudiant/'~ app.user.etudiant.id ~'.png' %}
+                          {% endif %}
                             <div class="d-flex">
                               <a class="flex-shrink-0 mr-2" href="#">
                                 <img src="{{ asset(photo | trans )}}" alt="person" width="50" class="img-fluid rounded-circle" onError="this.src='{{ asset('avatar/lambda.png' | trans )}}';">
                               </a>
                               <div class="ms-3">
-                                {% if g.user.roles == ["ROLE_ETUDIANT"] %}
-                                  <h5>{{g.user.etudiant.prenom}} {{g.user.etudiant.nom}} </h5>
-                                {% elseif g.user.roles == ["ROLE_ENSEIGNANT"] %}
-                                  <h5>{{g.user.enseignant.prenom}} {{g.user.enseignant.nom}} </h5>
-                                {% elseif g.user.roles == ["ROLE_ADMIN"] %}
-                                  <h5>{{g.user.email}} (Administrateur) </h5>
-                                {% endif %}
+                                {% if "ROLE_ADMIN" in  app.user.roles %}                   
+                                  <h5>{{app.user.email}} (Administrateur) </h5>
+                                {% elseif "ROLE_ENSEIGNANT" in  app.user.roles %}
+                                  <h5>{{app.user.enseignant.prenom}} {{app.user.enseignant.nom}} </h5>
+                                {% elseif "ROLE_ETUDIANT" in  app.user.roles %}
+                                  <h5>{{app.user.etudiant.prenom}} {{app.user.etudiant.nom}} </h5>
+                                {% endif %}      
                                 <div class="row">
                                     <p class="text-gray-500" >a posté :</p>
                                 </div>
@@ -170,12 +176,12 @@
                     <div class="card-body p-0">
                       <div class="p-3">
                         <div class="d-flex justify-content-between">
-                          {% if app.user.roles == ["ROLE_ETUDIANT"] %}
-                            {% set photo = 'avatar/etudiant/'~ app.user.etudiant.id ~'.png' %}
-                          {% elseif app.user.roles == ["ROLE_ENSEIGNANT"] %}
-                            {% set photo = 'avatar/enseignant/'~ app.user.enseignant.id ~'.png' %}
-                          {% elseif app.user.roles == ["ROLE_ADMIN"] %}
+                          {% if "ROLE_ADMIN" in  app.user.roles %}
                             {% set photo = 'avatar/admin.png' %}
+                          {% elseif "ROLE_ENSEIGNANT" in  app.user.roles %}
+                            {% set photo = 'avatar/enseignant/'~ app.user.enseignant.id ~'.png' %}
+                          {% elseif "ROLE_ETUDIANT" in  app.user.roles %}
+                            {% set photo = 'avatar/etudiant/'~ app.user.etudiant.id ~'.png' %}
                           {% endif %}
                           <div class="d-flex">
                               <a class="flex-shrink-0 mr-2" href="#">
@@ -183,13 +189,13 @@
                               </a>
                             <div class="ms-3">
                                   <p class="mb-1 text-xs text-gray-600 lh-2">Poster en tant que</p>
-                                  {% if app.user.roles == ["ROLE_ETUDIANT"] %}
-                                  <h5>{{app.user.etudiant.prenom}} {{app.user.etudiant.nom}} </h5>
-                                  {% elseif app.user.roles == ["ROLE_ENSEIGNANT"] %}
-                                    <h5>{{app.user.enseignant.prenom}} {{app.user.enseignant.nom}} </h5>
-                                  {% elseif app.user.roles == ["ROLE_ADMIN"] %}
+                                  {% if "ROLE_ADMIN" in  app.user.roles %}                   
                                     <h5>{{app.user.email}} (Administrateur) </h5>
-                                  {% endif %}                
+                                  {% elseif "ROLE_ENSEIGNANT" in  app.user.roles %}
+                                    <h5>{{app.user.enseignant.prenom}} {{app.user.enseignant.nom}} </h5>
+                                  {% elseif "ROLE_ETUDIANT" in  app.user.roles %}
+                                    <h5>{{app.user.etudiant.prenom}} {{app.user.etudiant.nom}} </h5>
+                                  {% endif %}                  
                             </div>
                           </div>
                         </div>

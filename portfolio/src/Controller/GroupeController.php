@@ -26,16 +26,16 @@ class GroupeController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Groupe::class);
 
-        if($this->getUser()->getRoles() == ["ROLE_ADMIN"] ){
+        $tempTwig = 'base.html.twig';
+        if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
             $tempTwig = 'baseAdmin.html.twig';
             $groupes =  $repository->findAll();
-        }else if($this->getUser()->getRoles() == ["ROLE_ENSEIGNANT"] ){
+        }else if (in_array("ROLE_ENSEIGNANT", $this->getUser()->getRoles())){
             $tempTwig = 'baseEnseignant.html.twig';  
             $groupes = $this->getUser()->getGroupes();
-        }else if($this->getUser()->getRoles() == ["ROLE_ETUDIANT"] ){
+        }else if (in_array("ROLE_ETUDIANT", $this->getUser()->getRoles())){
             $tempTwig = 'baseEtudiant.html.twig';
             $groupes = $this->getUser()->getGroupes();
-            
         }
 
         return $this->render('groupe/listGroups.html.twig', [ 'groupes' => $groupes, 'templateTwigParent' => $tempTwig,]);
@@ -55,7 +55,19 @@ class GroupeController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($groupe);
                 $entityManager->flush();
-                return $this->render('groupe/consulterGroupe.html.twig', ['groupe' => $groupe,]);
+
+
+                if($groupe->getGroupeType()->getLibelle() == "Travail"){
+                    return $this->render('groupe/consulterGroupeTravail.html.twig', [
+                        'groupe' => $groupe,
+                        'templateTwigParent' => $tempTwig,
+                    ]);
+                }else{
+                    return $this->render('groupe/consulterGroupeSection.html.twig', [
+                        'groupe' => $groupe,
+                        'templateTwigParent' => $tempTwig,
+                    ]);
+                }
         }
             else
                 {
@@ -77,12 +89,11 @@ class GroupeController extends AbstractController
             }
 
             $tempTwig = 'base.html.twig';
-
-            if($this->getUser()->getRoles() == ["ROLE_ADMIN"] ){
+            if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
                 $tempTwig = 'baseAdmin.html.twig';
-            }else if($this->getUser()->getRoles() == ["ROLE_ENSEIGNANT"] ){
+            }else if (in_array("ROLE_ENSEIGNANT", $this->getUser()->getRoles())){
                 $tempTwig = 'baseEnseignant.html.twig';
-            }else if($this->getUser()->getRoles() == ["ROLE_ETUDIANT"] ){
+            }else if (in_array("ROLE_ETUDIANT", $this->getUser()->getRoles())){
                 $tempTwig = 'baseEtudiant.html.twig';
             }
 

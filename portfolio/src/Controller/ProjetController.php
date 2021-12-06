@@ -27,29 +27,58 @@ class ProjetController extends AbstractController
     public function listProjet(): Response
     {
         $repository = $this->getDoctrine()->getRepository(ProjetDef::class);
-        $projets =  $repository->findAll();
-        return $this->render('projet/listProjets.html.twig', [ 'projets' => $projets]);
+
+        //Initialisation des variables
+        $projets = [];
+        $tempTwig = 'base.html.twig';
+
+        //Conditions de rôle
+        if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
+            $projets =  $repository->findAll();
+            $tempTwig = 'baseAdmin.html.twig';
+        }else if (in_array("ROLE_ENSEIGNANT", $this->getUser()->getRoles())){
+            $projets =  $this->getUser()->getEnseignant()->getProjetDefs();
+            $tempTwig = 'baseEnseignant.html.twig';
+        }else if (in_array("ROLE_ETUDIANT", $this->getUser()->getRoles())){
+            $groupes =  $this->getUser()->getGroupes();
+            foreach ($groupes as $g) {
+                foreach($g->getProjetDefs() as $p){
+                    array_push($projets, $p);
+                }
+            }
+            $tempTwig = 'baseEtudiant.html.twig';
+        }
+
+        return $this->render('projet/listProjets.html.twig', [ 'projets' => $projets, 'templateTwigParent' => $tempTwig,]);
     }
 
 
 
     function addProjet(Request $request){
-        $projet = new projet();
+
+        $tempTwig = 'base.html.twig';
+        if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
+            $tempTwig = 'baseAdmin.html.twig';
+        }else if (in_array("ROLE_ENSEIGNANT", $this->getUser()->getRoles())){
+            $tempTwig = 'baseEnseignant.html.twig';
+        }else if (in_array("ROLE_ETUDIANT", $this->getUser()->getRoles())){
+            throw $this->createAccessDeniedException();
+        }
+
+        $projet = new ProjetDef();
         $form = $this->createForm(ProjetDefType::class, $projet);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
         
                 $projet = $form->getData();
-        
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($projet);
-                $entityManager->flush();
-                return $this->render('projet/consulterProjet.html.twig', ['projet' => $projet,]);
-        }
-            else
-                {
-                return $this->render('projet/addProjet.html.twig', array('form' => $form->createView(),));
+
+                //$entityManager = $this->getDoctrine()->getManager();
+                //$entityManager->persist($projet);
+                //$entityManager->flush();
+                return $this->render('projet/consulterProjet.html.twig', ['projet' => $projet, 'templateTwigParent' => $tempTwig,]);
+        }else{
+                return $this->render('projet/addProjet.html.twig', array('form' => $form->createView(), 'templateTwigParent' => $tempTwig, ));
             }
         }
     
