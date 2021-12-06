@@ -73,9 +73,10 @@ class ProjetController extends AbstractController
         
                 $projet = $form->getData();
 
-                //$entityManager = $this->getDoctrine()->getManager();
-                //$entityManager->persist($projet);
-                //$entityManager->flush();
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($projet);
+                $entityManager->flush();
+                
                 return $this->render('projet/consulterProjet.html.twig', ['projet' => $projet, 'templateTwigParent' => $tempTwig,]);
         }else{
                 return $this->render('projet/addProjet.html.twig', array('form' => $form->createView(), 'templateTwigParent' => $tempTwig, ));
