@@ -28,30 +28,19 @@ class ProjetController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(ProjetDef::class);
         $projets =  $repository->findAll();
-        return $this->render('projet/listProjets.html.twig', [ 'projets' => $projets]);
-    }
 
+        $tempTwig = 'base.html.twig';
 
-
-    function addProjet(Request $request){
-        $projet = new projet();
-        $form = $this->createForm(ProjetDefType::class, $projet);
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-        
-                $projet = $form->getData();
-        
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($projet);
-                $entityManager->flush();
-                return $this->render('projet/consulterProjet.html.twig', ['projet' => $projet,]);
-        }
-            else
-                {
-                return $this->render('projet/addProjet.html.twig', array('form' => $form->createView(),));
+            if($this->getUser()->getRoles() == ["ROLE_ADMIN"] ){
+                $tempTwig = 'baseAdmin.html.twig';
+            }else if($this->getUser()->getRoles() == ["ROLE_ENSEIGNANT"] ){
+                $tempTwig = 'baseEnseignant.html.twig';
+            }else if($this->getUser()->getRoles() == ["ROLE_ETUDIANT"] ){
+                $tempTwig = 'baseEtudiant.html.twig';
             }
-        }
+
+        return $this->render('projet/listProjets.html.twig', [ 'projets' => $projets, 'templateTwigParent' => $tempTwig,]);
+    }
     
     
         public function consulterProjet($id){
@@ -65,10 +54,20 @@ class ProjetController extends AbstractController
                 'Aucun projet trouvé avec le numéro '.$id
                 );
             }
-    
+            $tempTwig = 'base.html.twig';
+
+            if($this->getUser()->getRoles() == ["ROLE_ADMIN"] ){
+                $tempTwig = 'baseAdmin.html.twig';
+            }else if($this->getUser()->getRoles() == ["ROLE_ENSEIGNANT"] ){
+                $tempTwig = 'baseEnseignant.html.twig';
+            }else if($this->getUser()->getRoles() == ["ROLE_ETUDIANT"] ){
+                $tempTwig = 'baseEtudiant.html.twig';
+            }
+            
             //return new Response('Projet : '.$projet->getId());
             return $this->render('projet/consulterProjet.html.twig', [
-                'projet' => $projet,]);
+                'projet' => $projet,
+            'templateTwigParent' => $tempTwig,]);
         }
     
     
