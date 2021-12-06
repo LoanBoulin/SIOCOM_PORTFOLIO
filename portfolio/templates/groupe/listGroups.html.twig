@@ -1,4 +1,4 @@
-{% extends templateTwigParent %}
+{% extends "baseAdmin.html.twig" %}
 {% block titreContenu %}Liste des groupes{% endblock %}
 
 
@@ -27,7 +27,7 @@
                             <tr>
                               <th scope="row">{{g.id}} </th>
                               <td>{{g.getGroupeType.libelle}}</td>
-                              <td><a class="text" href="{{ path('consulterGroupe', { 'id': g.id }) }}">{{g.libelle}}</a></td>
+                              <td><a class="text" href="{#{path('showSemaineStage', {'idStage': stage.id, 'numSemaine': i})}#}">{{g.libelle}}</a></td>
                             </tr>
                             {% endfor %}
                          </tbody>
