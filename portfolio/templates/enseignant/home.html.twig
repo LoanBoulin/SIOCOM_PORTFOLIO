@@ -79,6 +79,8 @@
                       {% if enseignant.stages.count > 0 %}
                         {% for stage in enseignant.stages  %}
                             <tr>
+                              <th scope="row"><a href="{{ path('showStage', { 'idStage': stage.id }) }}">{{stage.etudiant.prenom}} {{stage.etudiant.nom}} </a></th>
+                              <td>{{stage.etudiant.niveau.nom}}</td>
                               <td>{{stage.nomEntreprise}}</td>
                               <td>{{stage.nomTuteur }}</td>
                               <td>{{stage.telTuteur}}</td>
