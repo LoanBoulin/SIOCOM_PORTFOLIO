@@ -56,7 +56,7 @@ class GroupeController extends AbstractController
 
         
         $groupe = new groupe();
-        $form = $this->createForm(GroupeTypeForm::class, $groupe);
+        $form = $this->createForm(GroupeTypeForm::class, $groupe, ['champDesactive' => false,]);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {

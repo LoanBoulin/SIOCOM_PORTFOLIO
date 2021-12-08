@@ -19,18 +19,29 @@ class GroupeTypeForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('libelle', TextType::class)
-            ->add('groupe_type', EntityType::class, array('class' => 'App\Entity\GroupeType','choice_label' => 'libelle' ))      
-    
-            ->add('enregistrer', SubmitType::class, array('label' => 'Nouveau groupe'))
-    ;
+
+        if($options['champDesactive'] == true){
+   
+            $builder
+                ->add('libelle', TextType::class)           
+                ->add('enregistrer', SubmitType::class, array('label' => 'Nouveau groupe'))
+                ;
+        }else{
+
+            $builder
+                ->add('libelle', TextType::class)
+                ->add('groupe_type', EntityType::class, array('class' => 'App\Entity\GroupeType','choice_label' => 'libelle'))    
+                ->add('enregistrer', SubmitType::class, array('label' => 'Nouveau groupe'))
+                ;         
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Groupe::class,
+            'champDesactive'=> true,
+            
         ]);
     }
 }
