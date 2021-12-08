@@ -32,6 +32,17 @@ class GroupeController extends AbstractController
 
 
     function addGroupe(Request $request){
+
+        $tempTwig = 'base.html.twig';
+        if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
+            $tempTwig = 'baseAdmin.html.twig';
+        }else if (in_array("ROLE_ENSEIGNANT", $this->getUser()->getRoles())){
+            $tempTwig = 'baseEnseignant.html.twig';
+        }else if (in_array("ROLE_ETUDIANT", $this->getUser()->getRoles())){
+            $tempTwig = 'baseEtudiant.html.twig';
+        }
+
+        
         $groupe = new groupe();
         $form = $this->createForm(GroupeTypeForm::class, $groupe);
         $form->handleRequest($request);
@@ -47,7 +58,7 @@ class GroupeController extends AbstractController
         }
             else
                 {
-                return $this->render('groupe/addGroupe.html.twig', array('form' => $form->createView(),));
+                return $this->render('groupe/addGroupe.html.twig', array('form' => $form->createView(), 'templateTwigParent' => $tempTwig));
             }
         }
     
