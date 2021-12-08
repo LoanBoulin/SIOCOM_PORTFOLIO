@@ -50,11 +50,6 @@ class ProjetDef
     private $groupe;
 
     /**
-     * @ORM\ManyToMany(targetEntity=TypeProjet::class, mappedBy="ProjetDef")
-     */
-    private $typeProjets;
-
-    /**
      * @ORM\OneToMany(targetEntity=ProjetEquipe::class, mappedBy="projetDef")
      */
     private $projetEquipes;
@@ -68,7 +63,6 @@ class ProjetDef
         $this->matiere = new ArrayCollection();
         $this->enseignant = new ArrayCollection();
         $this->groupe = new ArrayCollection();
-        $this->typeProjets = new ArrayCollection();
         $this->projetEquipes = new ArrayCollection();
     }
 
@@ -181,33 +175,6 @@ class ProjetDef
     public function removeGroupe(Groupe $groupe): self
     {
         $this->groupe->removeElement($groupe);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|TypeProjet[]
-     */
-    public function getTypeProjets(): Collection
-    {
-        return $this->typeProjets;
-    }
-
-    public function addTypeProjet(TypeProjet $typeProjet): self
-    {
-        if (!$this->typeProjets->contains($typeProjet)) {
-            $this->typeProjets[] = $typeProjet;
-            $typeProjet->addProjetDef($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTypeProjet(TypeProjet $typeProjet): self
-    {
-        if ($this->typeProjets->removeElement($typeProjet)) {
-            $typeProjet->removeProjetDef($this);
-        }
 
         return $this;
     }

@@ -42,7 +42,7 @@ class SemaineStage
 
     /**
      * @ORM\OneToMany(targetEntity=TacheSemaine::class, mappedBy="semaineStage")
-     * @ORM\OrderBy({"jour" = "ASC"})
+     * @ORM\OrderBy({"jour" = "DESC"})
      */
     private $tacheSemaines;
 

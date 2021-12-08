@@ -20,23 +20,27 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header d-flex align-items-center">
-                        
+                      
                         <!-- Breadcrumb-->
                         <div class="breadcrumb-holder container-fluid">
                             <ul class="breadcrumb">
+<<<<<<< HEAD
                                 <li class="breadcrumb-item active"><a href="{{ path('stageAddEdit', {'idStage': stage.id }) }}">Info</a></li>
                                 {% if stage.duree > 0 %}          
                                     {% set nbSem = stage.duree %}
                                     {% for i in 1..nbSem %}
                                         <li class="breadcrumb-item"><a href="{{path('tacheSemaineAddEdit', {'idStage': stage.id, 'numSemaine': i})}}"> Semaine {{ i }} </a></li>                         
+=======
+                                <li class="breadcrumb-item active"><a href="{#{ path('rpShowEditAdd', {'idRp': idRp }) }#}">Info</a></li>
+                                {% if stage.duree > 0 %}          
+                                    {% set nbSem = stage.duree %}
+                                    {% for i in 1..nbSem %}
+                                        <li class="breadcrumb-item"><a href="{#{ path('rpActiviteList', { 'idRp': idRp }) }#}"> Semaine {{ i }} </a></li>                         
+>>>>>>> parent of 82f15555 (Merge branch 'florian_voirStageEnseignant')
                                     {% endfor %}
                                 {% endif %}
                             </ul>
                         </div>
-
-
-
-
                     </div>
 
                     <div class="card-body">  
