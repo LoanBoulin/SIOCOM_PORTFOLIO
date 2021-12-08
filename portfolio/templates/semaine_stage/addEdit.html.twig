@@ -2,7 +2,7 @@
 {#% extends "etudiant/baseEtudiant.html.twig" %#}
 {% extends templateTwigParent %}
 
-{% block titreContenu %}Mon stage {% endblock %}
+{% block titreContenu %}Mon stage {{stage.nomEntreprise}}{% endblock %}
 
 {% block contenu%}
 
@@ -24,11 +24,11 @@
                         <!-- Breadcrumb-->
                         <div class="breadcrumb-holder container-fluid">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item active"><a href="{#{ path('rpShowEditAdd', {'idRp': idRp }) }#}">Info</a></li>
+                                <li class="breadcrumb-item active"><a href="{{ path('stageAddEdit', {'idStage': stage.id }) }}">Info</a></li>
                                 {% if stage.duree > 0 %}          
                                     {% set nbSem = stage.duree %}
                                     {% for i in 1..nbSem %}
-                                        <li class="breadcrumb-item"><a href="{#{ path('rpActiviteList', { 'idRp': idRp }) }#}"> Semaine {{ i }} </a></li>                         
+                                        <li class="breadcrumb-item"><a href="{{ path('tacheSemaineAddEdit', {'idStage': stage.id, 'numSemaine': i}) }}"> Semaine {{ i }} </a></li>                         
                                     {% endfor %}
                                 {% endif %}
                             </ul>
@@ -56,24 +56,43 @@
                                 </div>
                             </div>
 
+                        <a class="btn btn-primary mb-5" onclick="addActivity()">Ajouter une activité</a><br>
 
-  {% for tacheSemaine in form.tacheSemaines %}
-                    <!--  ligne de formulaire tache -->
-                            <div class="form-group row">    
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            {{ form_row(tacheSemaine.description, {'attr' : {'class' : 'form-control'}}) }} 
-                                        </div> 
-                                        <div class="col-md-6">
-                                            {{ form_row(tacheSemaine.duree, {'attr' : {'class' : 'form-control'}}) }}
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                           
-        {% endfor %}
+
+                        <div id="activities_field_list" class="mb-5">
+                        
+                        </div>
+
+                        <table class="table ">
+                        <thead>
+                            <tr>
+                            <th scope="col-md-2">Jour</th>
+                            <th scope="col-md-2">Domaine</th>
+                            <th scope="col-md-7">Description</th>
+                            <th scope="col-md-7">Modification</th>
+                            <th scope="col-md-7">Supression</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                        {% for tache in semaineStage.tachesemaines|sort((a, b) => a.jour.nom <=> b.jour.nom) %}
+
+                            <tr>
+                            <th scope="row">{{tache.jour.nom}}</th>
+                            <td>{{tache.domaineTache.libelle}}</td>
+                            <td>{{tache.description}}</td>
+                            <td>Modifier</td>
+                            <td>Supprimer</td>
+                            </tr>
+
+
+
+                        {% endfor %}
+
+
+                        </tbody>
+                        </table>
   
 						
                         <!-- ligne de formulaire boutons-->
@@ -81,10 +100,13 @@
                             <div class="col-sm-4 offset-sm-3">
                                 <button type="submit" class="btn btn-secondary">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            </div>
                         </div>
+
+                        {{ form_end(form) }}
                     </div>
 
-                    {{ form_end(form) }}
+                    
                      
                     </div>
                 </div>

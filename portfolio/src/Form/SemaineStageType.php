@@ -21,11 +21,15 @@ class SemaineStageType extends AbstractType
             //->add('stage')
         ;
 
+
+        /* Supression car fait avec table + modal
+        
         $builder->add('tacheSemaines', CollectionType::class, [
             'entry_type' => TacheSemaineType::class,
             'entry_options' => ['label' => false],
             'allow_add' => true,
         ]);
+        */
 
 
     }

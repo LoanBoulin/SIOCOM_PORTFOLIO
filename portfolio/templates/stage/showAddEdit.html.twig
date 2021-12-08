@@ -24,11 +24,11 @@
                         <!-- Breadcrumb-->
                         <div class="breadcrumb-holder container-fluid">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item active"><a href="{{ path('showStage', {'idStage': stage.id }) }}">Info</a></li>
+                                <li class="breadcrumb-item active"><a href="{{ path('stageAddEdit', {'idStage': stage.id }) }}">Info</a></li>
                                 {% if stage.duree > 0 %}          
                                     {% set nbSem = stage.duree %}
                                     {% for i in 1..nbSem %}
-                                        <li class="breadcrumb-item"><a href="{{path('showSemaineStage', {'idStage': stage.id, 'numSemaine': i})}}"> Semaine {{ i }} </a></li>                         
+                                        <li class="breadcrumb-item"><a href="{{path('tacheSemaineAddEdit', {'idStage': stage.id, 'numSemaine': i})}}"> Semaine {{ i }} </a></li>                         
                                     {% endfor %}
                                 {% endif %}
                             </ul>
@@ -101,7 +101,7 @@
                                         <div class="col-md-6">
                                             {{ form_row(form.lieu, {'attr' : {'class' : 'form-control'}}) }} 
                                         </div>
-                                        <div class="col-md-">
+                                        <div class="col-md-6">
                                             {{ form_row(form.service, {'attr' : {'class' : 'form-control'}}) }} 
                                         </div>
                                     </div>

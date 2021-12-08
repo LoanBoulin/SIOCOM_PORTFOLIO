@@ -13,7 +13,6 @@ class TacheSemaineType extends AbstractType
     {
         $builder
             ->add('description')
-            ->add('duree')
             //->add('domaineTache')
             //->add('jour')
             //->add('semaineStage')
