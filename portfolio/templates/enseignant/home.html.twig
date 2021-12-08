@@ -62,8 +62,6 @@
         </div>
         <div class="card-body">
 
-          <input style="width: 20%; margin-bottom: 3vh;" class="form-control" onkeyup="searchStageByEnseignant()" id="searchStageByEnseignant" type="text" placeholder="Rechercher par nom d'étudiant">
-
             <div class="table-responsive">   
                 <table class="table table-striped table-sm">
                     <thead>
@@ -81,8 +79,6 @@
                       {% if enseignant.stages.count > 0 %}
                         {% for stage in enseignant.stages  %}
                             <tr>
-                              <th scope="row">{{stage.etudiant.prenom}} {{stage.etudiant.nom}} </th>
-                              <td><a class="text" href="{#{ path('showRp', { 'idRp': rp.id }) }#}">{{stage.etudiant.niveau.nom}}</a></td>
                               <td>{{stage.nomEntreprise}}</td>
                               <td>{{stage.nomTuteur }}</td>
                               <td>{{stage.telTuteur}}</td>
