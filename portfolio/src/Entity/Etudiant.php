@@ -95,11 +95,17 @@ class Etudiant
      */
     private $stages;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Demande::class, mappedBy="etudiants")
+     */
+    private $demandes;
+
 
     public function __construct()
     {
         $this->rPs = new ArrayCollection();
         $this->stages = new ArrayCollection();
+        $this->demandes = new ArrayCollection();
     }
 
 
@@ -338,6 +344,33 @@ class Etudiant
             if ($stage->getEtudiant() === $this) {
                 $stage->setEtudiant(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Demande[]
+     */
+    public function getDemandes(): Collection
+    {
+        return $this->demandes;
+    }
+
+    public function addDemande(Demande $demande): self
+    {
+        if (!$this->demandes->contains($demande)) {
+            $this->demandes[] = $demande;
+            $demande->addEtudiant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDemande(Demande $demande): self
+    {
+        if ($this->demandes->removeElement($demande)) {
+            $demande->removeEtudiant($this);
         }
 
         return $this;

@@ -29,9 +29,15 @@ class Statut
      */
     private $RPs;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Demande::class, mappedBy="statut")
+     */
+    private $demandes;
+
     public function __construct()
     {
         $this->RPs = new ArrayCollection();
+        $this->demandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,36 @@ class Statut
             // set the owning side to null (unless already changed)
             if ($rP->getStatut() === $this) {
                 $rP->setStatut(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Demande[]
+     */
+    public function getDemandes(): Collection
+    {
+        return $this->demandes;
+    }
+
+    public function addDemande(Demande $demande): self
+    {
+        if (!$this->demandes->contains($demande)) {
+            $this->demandes[] = $demande;
+            $demande->setStatut($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDemande(Demande $demande): self
+    {
+        if ($this->demandes->removeElement($demande)) {
+            // set the owning side to null (unless already changed)
+            if ($demande->getStatut() === $this) {
+                $demande->setStatut(null);
             }
         }
 

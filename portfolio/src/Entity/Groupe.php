@@ -50,12 +50,18 @@ class Groupe
      */
     private $projetDefs;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Demande::class, mappedBy="groupes")
+     */
+    private $demandes;
+
     public function __construct()
     {
         $this->user_id = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->projetEquipes = new ArrayCollection();
         $this->projetDefs = new ArrayCollection();
+        $this->demandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -190,6 +196,33 @@ class Groupe
     {
         if ($this->projetDefs->removeElement($projetDef)) {
             $projetDef->removeGroupe($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Demande[]
+     */
+    public function getDemandes(): Collection
+    {
+        return $this->demandes;
+    }
+
+    public function addDemande(Demande $demande): self
+    {
+        if (!$this->demandes->contains($demande)) {
+            $this->demandes[] = $demande;
+            $demande->addGroupe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDemande(Demande $demande): self
+    {
+        if ($this->demandes->removeElement($demande)) {
+            $demande->removeGroupe($this);
         }
 
         return $this;
