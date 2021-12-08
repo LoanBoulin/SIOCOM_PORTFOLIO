@@ -11,6 +11,8 @@ use App\Entity\Etudiant;
 use App\Entity\RP;
 use App\Entity\Groupe;
 use App\Form\UserEtudiantType;
+use App\Form\PostType;
+use App\Entity\Post;
 
 
 class EtudiantController extends AbstractController
@@ -18,7 +20,7 @@ class EtudiantController extends AbstractController
     /*
      * Page accueil étudiant : renvoie la liste des 7 dernières rp et des stages
      */
-    public function home()
+    public function home(Request $request)
     {
 
 
@@ -30,9 +32,31 @@ class EtudiantController extends AbstractController
             }
         }
 
+        //Gestion de l'insertion du post
+        $post = new Post();
+        $form = $this->createForm(PostType::class, $post, ['insertHome' => true, 'groups' => $lesGroupes]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+    
+            $post = $form->getData();
+            $post->setDateTimePost(new \DateTime());
+            $post->setUser($this->getUser());
+
+            if($post->getLesGroupes() != [] ){
+                var_dump('yo');
+            }
+    
+            //$entityManager = $this->getDoctrine()->getManager();
+            //$entityManager->persist($post);
+            //$entityManager->flush();
+        }
+
+        //Affichage de sortie
         return $this->render('etudiant/home.html.twig', [
             'etudiant' => $this->getUser()->getEtudiant(),
             'posts' => $posts,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -54,8 +78,8 @@ class EtudiantController extends AbstractController
         }
         else
         {
-            if ($form->isSubmitted() && $form->isValid()) 
-            {
+            if ($form->isSubmitted() && $form->isValid()){
+                
                 $user = $form->getData();
                 $entityManager = $this->getDoctrine()->getManager();
               
@@ -75,12 +99,10 @@ class EtudiantController extends AbstractController
 
                 $this->addFlash('success', 'Informations modifiées avec succès !');
                 return $this->render('etudiant/showEdit.html.twig', array('form' => $form->createView(),  'templateTwigParent' => 'baseEtudiant.html.twig'));       
-          }
-            else
-            {
-               
+          
+            }else{  
+
                 return $this->render('etudiant/showEdit.html.twig', array('form' => $form->createView(),  'templateTwigParent' => 'baseEtudiant.html.twig'));
-   
             }
 
         }

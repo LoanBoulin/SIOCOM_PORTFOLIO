@@ -6,10 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Etudiant;
 use App\Entity\Enseignant;
 use App\Entity\User;
 use App\Entity\Post;
+use App\Form\PostType;
 
 class SecurityController extends AbstractController
 {
@@ -48,7 +50,7 @@ class SecurityController extends AbstractController
     /**
      * Méthode redirigeant vers la page d'accueil selon rôle user après authentification
      */
-    public function home()
+    public function home(Request $request)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
@@ -80,10 +82,29 @@ class SecurityController extends AbstractController
                         array_push($posts, $p);
                     }
                 }
-        
+
+                //Gestion de l'insertion du post
+                $post = new Post();
+                $form = $this->createForm(PostType::class, $post, ['insertHome' => true, 'userType' => 'etudiant'] );
+                $form->handleRequest($request);
+
+                if ($form->isSubmitted() && $form->isValid()) {
+            
+                    $post = $form->getData();
+                    $post->setDateTimePost(new \DateTime());
+                    $post->addIdGroupe($groupe);
+                    $post->setUser($this->getUser());
+            
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($post);
+                    $entityManager->flush();
+                }
+
+                //Affichage de sortie
                 return $this->render('etudiant/home.html.twig', [
                     'etudiant' => $this->getUser()->getEtudiant(),
                     'posts' => $posts,
+                    'form' => $form->createView(),
                 ]);
             }
             if ($role == 'ROLE_ADMIN'){
