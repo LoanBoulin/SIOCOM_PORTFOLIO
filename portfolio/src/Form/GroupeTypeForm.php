@@ -22,8 +22,7 @@ class GroupeTypeForm extends AbstractType
         $builder
             ->add('libelle', TextType::class)
             ->add('groupe_type', EntityType::class, array('class' => 'App\Entity\GroupeType','choice_label' => 'libelle' ))      
-    
-            ->add('enregistrer', SubmitType::class, array('label' => 'Nouveau groupe'))
+    ->add('enregistrer', SubmitType::class, array('label' => 'Nouveau groupe'))
     ;
     }
 

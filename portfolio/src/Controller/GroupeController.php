@@ -25,20 +25,8 @@ class GroupeController extends AbstractController
     public function list(): Response
     {
         $repository = $this->getDoctrine()->getRepository(Groupe::class);
-
-        $tempTwig = 'base.html.twig';
-        if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
-            $tempTwig = 'baseAdmin.html.twig';
-            $groupes =  $repository->findAll();
-        }else if (in_array("ROLE_ENSEIGNANT", $this->getUser()->getRoles())){
-            $tempTwig = 'baseEnseignant.html.twig';  
-            $groupes = $this->getUser()->getGroupes();
-        }else if (in_array("ROLE_ETUDIANT", $this->getUser()->getRoles())){
-            $tempTwig = 'baseEtudiant.html.twig';
-            $groupes = $this->getUser()->getGroupes();
-        }
-
-        return $this->render('groupe/listGroups.html.twig', [ 'groupes' => $groupes, 'templateTwigParent' => $tempTwig,]);
+        $groupes =  $repository->findAll();
+        return $this->render('groupe/listGroups.html.twig', [ 'groupes' => $groupes]);
     }
 
 
@@ -55,19 +43,7 @@ class GroupeController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($groupe);
                 $entityManager->flush();
-
-
-                if($groupe->getGroupeType()->getLibelle() == "Travail"){
-                    return $this->render('groupe/consulterGroupeTravail.html.twig', [
-                        'groupe' => $groupe,
-                        'templateTwigParent' => $tempTwig,
-                    ]);
-                }else{
-                    return $this->render('groupe/consulterGroupeSection.html.twig', [
-                        'groupe' => $groupe,
-                        'templateTwigParent' => $tempTwig,
-                    ]);
-                }
+                return $this->render('groupe/consulterGroupe.html.twig', ['groupe' => $groupe,]);
         }
             else
                 {
@@ -87,30 +63,12 @@ class GroupeController extends AbstractController
                 'Aucun groupe trouvé avec le numéro '.$id
                 );
             }
-
-            $tempTwig = 'base.html.twig';
-            if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
-                $tempTwig = 'baseAdmin.html.twig';
-            }else if (in_array("ROLE_ENSEIGNANT", $this->getUser()->getRoles())){
-                $tempTwig = 'baseEnseignant.html.twig';
-            }else if (in_array("ROLE_ETUDIANT", $this->getUser()->getRoles())){
-                $tempTwig = 'baseEtudiant.html.twig';
-            }
-
-            if($groupe->getGroupeType()->getLibelle() == "Travail"){
-                return $this->render('groupe/consulterGroupeTravail.html.twig', [
-                    'groupe' => $groupe,
-                    'templateTwigParent' => $tempTwig,
-                ]);
-            }else{
-                return $this->render('groupe/consulterGroupeSection.html.twig', [
-                    'groupe' => $groupe,
-                    'templateTwigParent' => $tempTwig,
-                ]);
-            }
     
-            
+            //return new Response('Groupe : '.$groupe->getId());
+            return $this->render('groupe/consulterGroupe.html.twig', [
+                'groupe' => $groupe,]);
         }
+    
     
         public function supprimerGroupe($id): Response
         {
