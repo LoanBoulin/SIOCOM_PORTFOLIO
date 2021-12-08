@@ -66,15 +66,24 @@
           <!-- Projects & Input Section-->
           <section class="pb-0">
             <div class="container-fluid">
-              <div class="card-header position-relative">
+              <div class="card-header position-relative row justify-content-between">
                 <div class="card-close">
                   <div class="dropdown">
                     <button class="dropdown-toggle text-sm" type="button" id="closeCard1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></button>
                     <div class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="closeCard1"><a class="dropdown-item py-1 px-3 remove" href="#"> <i class="fas fa-times"></i>Close</a><a class="dropdown-item py-1 px-3 edit" href="#"> <i class="fas fa-cog"></i>Edit</a></div>
                   </div>
                 </div>
-                <h2 class="h2 mb-0">Liste des groupes du projet</h2>
+                <div class="col">
+                  <h2 class="h2 mb-0 col">Liste des groupes du projet</h2>
+                </div>
+                <div class="col row">
+                  <button class="btn btn-primary col mr-2" type="submit">Ajouter un groupe</button>
+                  <button class="btn btn-primary col" type="submit">Rejoindre un groupe</button>
+                </div>
+
+                </div>
               </div>
+              
               <br>
               <!-- Project-->
               {% for groupe in projet.groupe  %}
