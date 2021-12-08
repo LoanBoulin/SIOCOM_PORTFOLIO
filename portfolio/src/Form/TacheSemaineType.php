@@ -13,6 +13,7 @@ class TacheSemaineType extends AbstractType
     {
         $builder
             ->add('description')
+            ->add('domaineTache', EntityType::class, array('class' => 'App\Entity\DomaineTache','choice_label' => 'jour', 'disabled' => $options['champDesactive'],))
             //->add('domaineTache')
             //->add('jour')
             //->add('semaineStage')
