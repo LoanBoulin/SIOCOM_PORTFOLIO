@@ -1,8 +1,8 @@
 {% extends "baseEtudiant.html.twig" %}
+
 {% block titreContenu %}Accueil {% endblock %}
 
 {% block contenu%}
-
 </br>
    <div class="col-lg-10">
       <div class="card">
@@ -82,11 +82,14 @@
     </div>
   </div>   
 
-
-
-
-  <!-- Fil d'actualité --> 
-        <div class="col-lg 10">
+ <!-- Updates Section-->
+          <section>
+            <div class="container-fluid">
+              <div class="row gy-4">
+                <!-- Recent Updates-->
+                
+                <!-- Daily Feeds -->
+                <div class="col-lg 4">
                   <div class="card mb-0">
                     <div class="card-header position-relative">
                       <div class="card-close">
@@ -99,27 +102,26 @@
                     </div>
                     <div class="card-body p-0">
 
-                      {% for g in posts|sort((b, a) => a.dateTimePost <=> b.dateTimePost) %}
-
+                    {% for g in posts|sort((b, a) => a.dateTimePost <=> b.dateTimePost) %}
                         <div class="p-3">
                           <div class="d-flex justify-content-between">
                            {% set photo = 'avatar/etudiant/'~ g.user.etudiant.id ~'.png' %}
-                            <div class="d-flex">
+                            <div class="d-flex w-100">
                               <a class="flex-shrink-0 mr-2" href="#">
                                 <img src="{{ asset(photo | trans )}}" alt="person" width="50" class="img-fluid rounded-circle" onError="this.src='{{ asset('avatar/lambda.png' | trans )}}';">
                               </a>
-                              <div class="ms-3">
-                                {% if g.user.roles == ["ROLE_ETUDIANT"] %}
-                                  <h5>{{g.user.etudiant.prenom}} {{g.user.etudiant.nom}} </h5>
-                                {% elseif g.user.roles == ["ROLE_ENSEIGNANT"] %}
-                                  <h5>{{g.user.enseignant.prenom}} {{g.user.enseignant.nom}} </h5>
-                                {% elseif g.user.roles == ["ROLE_ADMIN"] %}
-                                  <h5>{{g.user.email}} (Administrateur) </h5>
-                                {% endif %}
-                                <div class="row">
-                                    <p class="col">a posté dans :</p>
+                              <div class="ms-3 w-100">
+                                {% if "ROLE_ADMIN" in  app.user.roles %}                   
+                                  <h5>{{app.user.email}} (Administrateur) </h5>
+                                {% elseif "ROLE_ENSEIGNANT" in  app.user.roles %}
+                                  <h5>{{app.user.enseignant.prenom}} {{app.user.enseignant.nom}} </h5>
+                                {% elseif "ROLE_ETUDIANT" in  app.user.roles %}
+                                  <h5>{{app.user.etudiant.prenom}} {{app.user.etudiant.nom}} </h5>
+                                {% endif %}    
+                                <div class="row w-100 justify-content-start">
+                                    <p class="col-3" >a posté dans :</p>
                                     {% for i in g.idgroupe %}
-                                      <a href="{{ path('consulterGroupe', { 'id': i.id }) }}">{{i.libelle}}</a>
+                                      <a class="col" href="{{ path('consulterGroupe', { 'id': i.id }) }}">{{i.libelle}}</a>
                                     {% endfor %}
                                 </div>
                               </div>
@@ -131,12 +133,113 @@
                           </div>
                         </div>
                       {% endfor %}
+                      
+
 
                     </div>
                   </div>
                 </div>
 
+
+
+
+                <!-- Daily Feeds -->
+                <div class="col-lg 4 overflow-auto">
+                  <div class="card mb-0">
+                    <div class="card-header position-relative">
+                      <div class="card-close">
+                        <div class="dropdown">
+                          <button class="dropdown-toggle text-sm" type="button" id="closeCard1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></button>
+                          <div class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="closeCard1"><a class="dropdown-item py-1 px-3 remove" href="#"> <i class="fas fa-times"></i>Close</a><a class="dropdown-item py-1 px-3 edit" href="#"> <i class="fas fa-cog"></i>Edit</a></div>
+                        </div>
+                      </div>
+                      {{ form_start(form) }}
+                      <h3 class="h4 mb-0">Nouveau Post</h3>
+                    </div>
+                    <div class="card-body p-0">
+                      <div class="p-3">
+                        <div class="d-flex justify-content-between">
+                          {% if "ROLE_ADMIN" in  app.user.roles %}
+                            {% set photo = 'avatar/admin.png' %}
+                          {% elseif "ROLE_ENSEIGNANT" in  app.user.roles %}
+                            {% set photo = 'avatar/enseignant/'~ app.user.enseignant.id ~'.png' %}
+                          {% elseif "ROLE_ETUDIANT" in  app.user.roles %}
+                            {% set photo = 'avatar/etudiant/'~ app.user.etudiant.id ~'.png' %}
+                          {% endif %}
+                          <div class="d-flex">
+                              <a class="flex-shrink-0 mr-2" href="#">
+                                <img src="{{ asset(photo | trans )}}" alt="person" width="50" class="img-fluid rounded-circle" onError="this.src='{{ asset('avatar/lambda.png' | trans )}}';">
+                              </a>
+                            <div class="ms-3">
+                                  <p class="mb-1 text-xs text-gray-600 lh-2">Poster en tant que</p>
+                                  {% if "ROLE_ADMIN" in  app.user.roles %}                   
+                                    <h5>{{app.user.email}} (Administrateur) </h5>
+                                  {% elseif "ROLE_ENSEIGNANT" in  app.user.roles %}
+                                    <h5>{{app.user.enseignant.prenom}} {{app.user.enseignant.nom}} </h5>
+                                  {% elseif "ROLE_ETUDIANT" in  app.user.roles %}
+                                    <h5>{{app.user.etudiant.prenom}} {{app.user.etudiant.nom}} </h5>
+                                  {% endif %}                  
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div>                     
+                            {{ form_widget(form.description) }}
+                        </div>
+                        <div class="row mt-3">
+                          <div class="col">
+                            <div class="input-group">    
+                              <div class="input-group mb-3">
+                                <button type="button" class="btn btn-primary">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                                    <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"></path>
+                                    <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"></path>
+                                  </svg>
+                                </button>
+                                <input class="form-control" type="text" placeholder="Ajouter un contenu" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="text-end col">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                              Choisir les groupes
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- Recent Activities -->
+                
+              </div>
+            </div>
+          </section>
+
+
                 <br/>
 
+                <!-- Modal Post Groups-->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Poster dans un ou plusieurs groupes</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        {{ form_widget(form.id_groupe) }}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                        {{ form_widget(form.enregistrer) }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {{ form_end(form) }}
 
 {% endblock %}

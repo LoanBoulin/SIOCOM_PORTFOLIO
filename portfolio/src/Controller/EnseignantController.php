@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\UserEnseignantType;
+use App\Entity\Groupe;
+use App\Form\PostType;
+use App\Entity\Post;
 
 
 class EnseignantController extends AbstractController
@@ -24,9 +27,47 @@ class EnseignantController extends AbstractController
     /**
      * page d'accueil enseignant
      */
-    public function home(): Response
+    public function home(Request $request)
     {
-        return $this->render('enseignant/home.html.twig');
+
+
+        $lesGroupes = $this->getUser()->getGroupes();
+        $posts = [];
+        foreach ($lesGroupes as $g) {
+            foreach($g->getPosts() as $p){
+                if (!in_array($p, $posts)){
+                    array_push($posts, $p);
+                }
+            }
+        }
+
+        //Gestion de l'insertion du post
+        $post = new Post();
+        $form = $this->createForm(PostType::class, $post, ['insertHome' => true, 'groups' => $lesGroupes]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+    
+            $post = $form->getData();
+            $post->setDateTimePost(new \DateTime());
+            $post->setUser($this->getUser());
+            //$post->setType($this->getUser());
+
+            if( sizeof($post->getIdGroupe()) != 0){              
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($post);
+                $entityManager->flush();
+            }
+            array_push($posts, $post);
+ 
+        }
+
+        //Affichage de sortie
+        return $this->render('enseignant/home.html.twig', [
+            'enseignant' => $this->getUser()->getEnseignant(),
+            'posts' => $posts,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**

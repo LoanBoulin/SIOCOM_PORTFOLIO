@@ -8,7 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 use App\Entity\Groupe;
+use App\Entity\Post;
 use App\Form\GroupeTypeForm;
+use App\Form\PostType;
 
 class GroupeController extends AbstractController
 {
@@ -87,8 +89,9 @@ class GroupeController extends AbstractController
         }
     
     
-        public function consulterGroupe($id){
-            
+        public function consulterGroupe($id, Request $request){
+
+            //Récupération du groupe
             $groupe = $this->getDoctrine()
             ->getRepository(Groupe::class)
             ->find($id);
@@ -99,6 +102,24 @@ class GroupeController extends AbstractController
                 );
             }
 
+            //Gestion de l'insertion du post
+            $post = new Post();
+            $form = $this->createForm(PostType::class, $post);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+        
+                $post = $form->getData();
+                $post->setDateTimePost(new \DateTime());
+                $post->addIdGroupe($groupe);
+                $post->setUser($this->getUser());
+        
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($post);
+                $entityManager->flush();
+            }
+        
+            //Gestion du head template
             $tempTwig = 'base.html.twig';
             if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
                 $tempTwig = 'baseAdmin.html.twig';
@@ -108,18 +129,20 @@ class GroupeController extends AbstractController
                 $tempTwig = 'baseEtudiant.html.twig';
             }
 
+            //Gestion de la page de groupe renvoyée
             if($groupe->getGroupeType()->getLibelle() == "Travail"){
                 return $this->render('groupe/consulterGroupeTravail.html.twig', [
                     'groupe' => $groupe,
                     'templateTwigParent' => $tempTwig,
+                    'form' => $form->createView(),
                 ]);
             }else{
                 return $this->render('groupe/consulterGroupeSection.html.twig', [
                     'groupe' => $groupe,
                     'templateTwigParent' => $tempTwig,
+                    'form' => $form->createView(),
                 ]);
             }
-    
             
         }
     
