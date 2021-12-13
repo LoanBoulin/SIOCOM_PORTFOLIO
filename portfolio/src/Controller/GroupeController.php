@@ -85,6 +85,49 @@ class GroupeController extends AbstractController
                 return $this->render('groupe/addGroupe.html.twig', array('form' => $form->createView(), 'templateTwigParent' => $tempTwig));
             }
         }
+
+        function addGroupeByProjet(Request $request){
+
+            $tempTwig = 'base.html.twig';
+            if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
+                $tempTwig = 'baseAdmin.html.twig';
+            }else if (in_array("ROLE_ENSEIGNANT", $this->getUser()->getRoles())){
+                $tempTwig = 'baseEnseignant.html.twig';
+            }else if (in_array("ROLE_ETUDIANT", $this->getUser()->getRoles())){
+                $tempTwig = 'baseEtudiant.html.twig';
+            }
+    
+            
+            $groupe = new groupe();
+            $form = $this->createForm(GroupeTypeForm::class, $groupe, ['champDesactive' => true,]);
+            $form->handleRequest($request);
+            
+            if ($form->isSubmitted() && $form->isValid()) {
+            
+                    $groupe = $form->getData();
+                    $groupe->setGroupeType('setion');
+            
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($groupe);
+                    $entityManager->flush();
+
+                    if($groupe->getGroupeType()->getLibelle() == "Travail"){
+                        return $this->render('groupe/consulterGroupeTravail.html.twig', [
+                            'groupe' => $groupe,
+                            'templateTwigParent' => $tempTwig,
+                        ]);
+                    }else{
+                        return $this->render('groupe/consulterProjetDef.html.twig', [
+                            'groupe' => $groupe,
+                            'templateTwigParent' => $tempTwig,
+                        ]);
+                    }
+            }
+                else
+                    {
+                    return $this->render('groupe/addGroupe.html.twig', array('form' => $form->createView(), 'templateTwigParent' => $tempTwig));
+                }
+            }
     
     
         public function consulterGroupe($id){
