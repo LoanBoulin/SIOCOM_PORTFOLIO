@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+
+use App\Entity\ProjetEquipe;
 use App\Entity\ProjetDef;
 use App\Entity\Matiere;
 use App\Form\ProjetDefType;
@@ -52,7 +54,7 @@ class ProjetController extends AbstractController
         return $this->render('projet/listProjets.html.twig', [ 'projets' => $projets, 'templateTwigParent' => $tempTwig,]);
     }
 
-    function addProjet(Request $request){
+    public function addProjet(Request $request){
 
         $tempTwig = 'base.html.twig';
         if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
@@ -124,4 +126,96 @@ class ProjetController extends AbstractController
             $this->addFlash('success', 'Le projet de '. $projet->getLibelle() .' a été supprimé '. $projet->getId());
             return $this->redirectToRoute('listProjets');
         }
+
+        public function supprimerProjetEquipe($id): Response
+        {
+            $repository = $this->getDoctrine()->getRepository(ProjetEquipe::class);
+            $projetEquipe = $repository->findOneBy(['id' => $id]);
+           
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($projetEquipe);
+            //$entityManager->persist($projet);
+            $entityManager->flush();
+            $this->addFlash('success', 'Le projet de '. $projetEquipe->getLibelle() .' a été supprimé '. $projetEquipe->getId());
+            return $this->redirectToRoute('listProjetsEquipe');
+        }
+
+        public function addProjetEquipe(Request $request){
+
+            $tempTwig = 'base.html.twig';
+            if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
+                $tempTwig = 'baseAdmin.html.twig';
+            }else if (in_array("ROLE_ENSEIGNANT", $this->getUser()->getRoles())){
+                $tempTwig = 'baseEnseignant.html.twig';
+            }else if (in_array("ROLE_ETUDIANT", $this->getUser()->getRoles())){
+                throw $this->createAccessDeniedException();
+            }
+    
+            $projetEquipe = new ProjetEquipe();
+            $form = $this->createForm(ProjetEquipeType::class, $projetEquipe);
+            $form->handleRequest($request);
+            
+            if ($form->isSubmitted() && $form->isValid()) {
+            
+                    $projetEquipe = $form->getData();
+    
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($projetEquipe);
+                    $entityManager->flush();
+                    
+                    return $this->render('projetEquipe/consulterProjetEquipe.html.twig', ['projet' => $projetEquipe, 'templateTwigParent' => $tempTwig,]);
+            }else{
+                    return $this->render('projetEquipe/addProjetEquipe.html.twig', array('form' => $form->createView(), 'templateTwigParent' => $tempTwig, ));
+                }
+    
+            return $this->render('projetEquipe/listProjetsEquipe.html.twig', [ 'projets' => $projetsEquipe, 'templateTwigParent' => $tempTwig,]);
+        
+}
+        public function consulterProjetEquipe($id){
+                    
+            $projetEquipe = $this->getDoctrine()
+            ->getRepository(ProjetEquipe::class)
+            ->find($id);
+
+            if (!$projetEquipe) {
+                throw $this->createNotFoundException(
+                'Aucun projet trouvé avec le numéro '.$id
+                );
+            }
+            $tempTwig = 'base.html.twig';
+
+            if($this->getUser()->getRoles() == ["ROLE_ADMIN"] ){
+                $tempTwig = 'baseAdmin.html.twig';
+            }else if($this->getUser()->getRoles() == ["ROLE_ENSEIGNANT"] ){
+                $tempTwig = 'baseEnseignant.html.twig';
+            }else if($this->getUser()->getRoles() == ["ROLE_ETUDIANT"] ){
+                $tempTwig = 'baseEtudiant.html.twig';
+            }
+            
+            //return new Response('Projet : '.$projet->getId());
+            return $this->render('projetEquipe/consulterProjetEquipe.html.twig', [
+                'projetEquipe' => $projetEquipe,
+            'templateTwigParent' => $tempTwig,]);
+        }
+
+        public function listProjetEquipe(): Response
+    {
+        $repository = $this->getDoctrine()->getRepository(ProjetEquipe::class);
+
+        //Initialisation des variables
+        $projets = [];
+        $tempTwig = 'base.html.twig';
+
+        //Conditions de rôle
+        if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
+            $tempTwig = 'baseAdmin.html.twig';
+        }else if (in_array("ROLE_ENSEIGNANT", $this->getUser()->getRoles())){
+            $tempTwig = 'baseEnseignant.html.twig';
+        }else if (in_array("ROLE_ETUDIANT", $this->getUser()->getRoles())){
+
+            $tempTwig = 'baseEtudiant.html.twig';
+        }
+
+        return $this->render('projetEquipe/listProjetEquipe.html.twig', [ 'projets' => $projets, 'templateTwigParent' => $tempTwig,]);
+    }
 }

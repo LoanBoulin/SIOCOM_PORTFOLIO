@@ -24,7 +24,7 @@
                     </div>
                   </div>
                  <!-- Fil d'actualité --> 
-        <div class="col-lg 10">
+                 <div class="col-lg 10">
                   <div class="card mb-0">
                     <div class="card-header position-relative">
                       <div class="card-close">
@@ -59,15 +59,41 @@
                                     {% for i in g.idgroupe %}
                                       <a href="{{ path('consulterGroupe', { 'id': i.id }) }}">{{i.libelle}}</a>
                                     {% endfor %}
+                                    
                                 </div>
                               </div>
                             </div>
-                            <div class="text-right"><small class="text-gray-500">{{g.dateTimePost.format('d-m-Y H:i')}}</small></div>
+                            <div class="text-right">
+                              <button type="button" class="btn btn-red" data-toggle="modal" data-target="#exampleModalCenter">
+                              Supprimer
+                            </button>
+                              <small class="text-gray-500">{{g.dateTimePost.format('d-m-Y H:i')}}</small> 
+                            </div>
                           </div>
                           <div class="mt-3 ms-5 ps-3">
                             <div class="bg-light postBulle p-3 shadow-sm"><p>{{g.description}}</p></div>
                           </div>
                         </div>
+
+                          <!-- Modal Post Groups-->
+                          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLongTitle">Supprimer ce post ?</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                                  <a href="{{ path('supprimerPost', { 'id': g.id }) }}">Supprimer</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
                       {% endfor %}
 
                     </div>

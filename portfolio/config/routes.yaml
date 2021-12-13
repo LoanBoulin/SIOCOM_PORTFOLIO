@@ -226,7 +226,29 @@ supprimerGroupe:
   controller: App\Controller\GroupeController::supprimerGroupe
 
 
-###### Routes Projet ##########
+###### Routes Projet Equipe ##########
+
+#Permet de lister un projet
+listProjetEquipe:
+  path: /projetEquipe/listProjetEquipe
+  controller: App\Controller\ProjetController::listProjetEquipe
+
+#Permet de créer un projet
+addProjetEquipe:
+  path: /projetEquipe/addProjetEquipe
+  controller: App\Controller\ProjetController::addProjetEquipe
+
+#Permet de consulter un projet via son id
+consulterProjetEquipe:
+  path: /projetEquipe/consulterProjetEquipe/{id}
+  controller: App\Controller\ProjetController::consulterProjetEquipe
+
+#Permet de supprimer un projet via son id
+supprimerProjetEquipe:
+  path: /projetEquipe/supprimerProjetEquipe/{id}
+  controller: App\Controller\ProjetController::supprimerProjetEquipe
+
+  ###### Routes Projet ##########
 
 #Permet de lister un projet
 listProjets:
@@ -285,6 +307,13 @@ validerCompte:
 supprimerCompte:
   path: /admin/supprimerCompte/{email}
   controller: App\Controller\AdminController::supprimerCompte
+
+###### Routes Post ############
+
+#Permet de supprimer un post
+supprimerPost:
+  path: /post/supprimerPost/{id}
+  controller: App\Controller\PostController::deletePost
 
 
 
