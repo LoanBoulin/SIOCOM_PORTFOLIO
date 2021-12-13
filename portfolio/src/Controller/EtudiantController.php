@@ -28,7 +28,9 @@ class EtudiantController extends AbstractController
         $posts = [];
         foreach ($lesGroupes as $g) {
             foreach($g->getPosts() as $p){
-                array_push($posts, $p);
+                if (!in_array($p, $posts)){
+                    array_push($posts, $p);
+                }
             }
         }
 
@@ -42,14 +44,14 @@ class EtudiantController extends AbstractController
             $post = $form->getData();
             $post->setDateTimePost(new \DateTime());
             $post->setUser($this->getUser());
+            //$post->setType($this->getUser());
 
-            if($post->getLesGroupes() != [] ){
-                var_dump('yo');
+            if( sizeof($post->getIdGroupe()) != 0){              
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($post);
+                $entityManager->flush();
             }
-    
-            //$entityManager = $this->getDoctrine()->getManager();
-            //$entityManager->persist($post);
-            //$entityManager->flush();
+ 
         }
 
         //Affichage de sortie

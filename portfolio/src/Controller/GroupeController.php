@@ -132,7 +132,6 @@ class GroupeController extends AbstractController
                     'form' => $form->createView(),
                 ]);
             }
-    
             
         }
     
