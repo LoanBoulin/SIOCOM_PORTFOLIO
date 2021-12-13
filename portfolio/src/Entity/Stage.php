@@ -29,8 +29,8 @@ class Stage
     /**
      * @ORM\Column(type="string", length=14)
      *
-     * @Assert\Length(min = 5, minMessage = "Le Siret doit comporter au minimum 14 caractères")
-     * @Assert\Length(max = 5, maxMessage = "Le Siret doit comporter au maximum 14 caractères")
+     * @Assert\Length(min = 14, minMessage = "Le Siret doit comporter au minimum 14 caractères")
+     * @Assert\Length(max = 14, maxMessage = "Le Siret doit comporter au maximum 14 caractères")
      */
      
     private $siret;
