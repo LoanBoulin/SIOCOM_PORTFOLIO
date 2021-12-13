@@ -58,55 +58,101 @@ class SecurityController extends AbstractController
         if ($statut == 'AC')
         {
             $role = $this->getUser()->getRoles()[0];
+
+
+
+
+
+
+
+
+
             if ($role == 'ROLE_ENSEIGNANT'){   
 
-                $lesGroupes = $this->getUser()->getGroupes();
-                $posts = [];
-                foreach ($lesGroupes as $g) {
-                    foreach($g->getPosts() as $p){
-                        array_push($posts, $p);
-                    }
+               $lesGroupes = $this->getUser()->getGroupes();
+        $posts = [];
+        foreach ($lesGroupes as $g) {
+            foreach($g->getPosts() as $p){
+                if (!in_array($p, $posts)){
+                    array_push($posts, $p);
                 }
-
-                return $this->render('enseignant/home.html.twig', [
-                'enseignant' => $this->getUser()->getEnseignant(),
-                'posts' => $posts
-                 ]);
             }
+        }
+
+        //Gestion de l'insertion du post
+        $post = new Post();
+        $form = $this->createForm(PostType::class, $post, ['insertHome' => true, 'groups' => $lesGroupes]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+    
+            $post = $form->getData();
+            $post->setDateTimePost(new \DateTime());
+            $post->setUser($this->getUser());
+            //$post->setType($this->getUser());
+
+            if( sizeof($post->getIdGroupe()) != 0){              
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($post);
+                $entityManager->flush();
+            }
+            array_push($posts, $post);
+ 
+        }
+
+        //Affichage de sortie
+        return $this->render('enseignant/home.html.twig', [
+            'enseignant' => $this->getUser()->getEnseignant(),
+            'posts' => $posts,
+            'form' => $form->createView(),
+        ]);
+            }
+
+
+
             if ($role == 'ROLE_ETUDIANT'){
            
                 $lesGroupes = $this->getUser()->getGroupes();
                 $posts = [];
                 foreach ($lesGroupes as $g) {
                     foreach($g->getPosts() as $p){
-                        array_push($posts, $p);
+                        if (!in_array($p, $posts)){
+                            array_push($posts, $p);
+                        }
                     }
                 }
-
+        
                 //Gestion de l'insertion du post
                 $post = new Post();
-                $form = $this->createForm(PostType::class, $post, ['insertHome' => true, 'userType' => 'etudiant'] );
+                $form = $this->createForm(PostType::class, $post, ['insertHome' => true, 'groups' => $lesGroupes]);
                 $form->handleRequest($request);
-
+        
                 if ($form->isSubmitted() && $form->isValid()) {
             
                     $post = $form->getData();
                     $post->setDateTimePost(new \DateTime());
-                    $post->addIdGroupe($groupe);
                     $post->setUser($this->getUser());
-            
-                    $entityManager = $this->getDoctrine()->getManager();
-                    $entityManager->persist($post);
-                    $entityManager->flush();
+                    //$post->setType($this->getUser());
+        
+                    if( sizeof($post->getIdGroupe()) != 0){              
+                        $entityManager = $this->getDoctrine()->getManager();
+                        $entityManager->persist($post);
+                        $entityManager->flush();
+                    }
+                    array_push($posts, $post);
+         
                 }
-
+        
                 //Affichage de sortie
                 return $this->render('etudiant/home.html.twig', [
                     'etudiant' => $this->getUser()->getEtudiant(),
                     'posts' => $posts,
                     'form' => $form->createView(),
                 ]);
+
             }
+
+
             if ($role == 'ROLE_ADMIN'){
                 $repository = $this->getDoctrine()->getRepository(Post::class);
                 $posts =  $repository->findAll();

@@ -23,7 +23,6 @@ class EtudiantController extends AbstractController
     public function home(Request $request)
     {
 
-
         $lesGroupes = $this->getUser()->getGroupes();
         $posts = [];
         foreach ($lesGroupes as $g) {
@@ -51,6 +50,7 @@ class EtudiantController extends AbstractController
                 $entityManager->persist($post);
                 $entityManager->flush();
             }
+            array_push($posts, $post);
  
         }
 

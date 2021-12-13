@@ -58,12 +58,13 @@ class EnseignantController extends AbstractController
                 $entityManager->persist($post);
                 $entityManager->flush();
             }
+            array_push($posts, $post);
  
         }
 
         //Affichage de sortie
         return $this->render('enseignant/home.html.twig', [
-            'enseignant' => $this->getUser()->getEtudiant(),
+            'enseignant' => $this->getUser()->getEnseignant(),
             'posts' => $posts,
             'form' => $form->createView(),
         ]);
