@@ -286,6 +286,13 @@ supprimerCompte:
   path: /admin/supprimerCompte/{email}
   controller: App\Controller\AdminController::supprimerCompte
 
+###### Routes Post ############
+
+#Permet de supprimer un post
+supprimerPost:
+  path: /post/supprimerPost/{id}
+  controller: App\Controller\PostController::deletePost
+
 
 
 
