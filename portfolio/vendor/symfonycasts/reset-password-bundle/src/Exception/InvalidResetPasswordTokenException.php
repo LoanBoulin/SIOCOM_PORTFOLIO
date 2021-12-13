@@ -16,6 +16,6 @@ final class InvalidResetPasswordTokenException extends \Exception implements Res
 {
     public function getReason(): string
     {
-        return 'The reset password link is invalid. Please try to reset your password again.';
+        return 'Le lien de réinitialisation du mot de passe n\'est pas valide. Veuillez réitérer l\'opération.';
     }
 }
