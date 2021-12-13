@@ -28,7 +28,7 @@
                                 {% if stage.duree > 0 %}          
                                     {% set nbSem = stage.duree %}
                                     {% for i in 1..nbSem %}
-                                        <li class="breadcrumb-item"><a href="{{path('tacheSemaineAddEdit', {'idStage': stage.id, 'numSemaine': i})}}"> Semaine {{ i }} </a></li>                         
+                                        <li class="breadcrumb-item"><a href="{{path('showSemaineStage', {'idStage': stage.id, 'numSemaine': i})}}"> Semaine {{ i }} </a></li>                         
                                     {% endfor %}
                                 {% endif %}
                             </ul>

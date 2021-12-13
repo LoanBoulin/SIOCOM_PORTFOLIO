@@ -145,7 +145,6 @@
                                   </div>
                                 {% set jourID = tache.jour.id %}
                             {% endif %}
-                            <a class="mt-1" href={{ path('showStage', { 'idStage': tache.jour.id }) }}>Ajouter une </a>
 
 
 
@@ -159,7 +158,7 @@
                             <div id="jour{{i}}" role="tabpanel" aria-labelledby="jour{{i}}-tab" class="tab-pane fade px-4 py-5">
                               <div class="item">
                                 <div class="row text-align">
-                                    <span class="badge badge-pill badge-info" style="background-color:#796AEE; font-size: 1.1em; margin-left: 30%; padding: 0.5vh 2.5%;">Il n'y a pas d'activités pour ce jour.</span>
+                                    <span class="badge badge-pill badge-info" style="background-color:#796AEE; font-size: 1.1em; padding: 0.5vh 2.5%;">Il n'y a pas d'activités pour ce jour.</span>
                                 </div>
                               </div>
                             </div>
