@@ -16,6 +16,6 @@ final class ExpiredResetPasswordTokenException extends \Exception implements Res
 {
     public function getReason(): string
     {
-        return 'Le lien de réinitialisation du mot de passe n\'est pas valide. Veuillez réitérer l\'opération.';
+        return 'Le lien de réinitialisation du mot de passe a expiré. Veuillez réitérer l\'opération.';
     }
 }
