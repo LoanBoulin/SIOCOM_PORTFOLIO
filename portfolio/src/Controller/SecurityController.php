@@ -60,13 +60,6 @@ class SecurityController extends AbstractController
             $role = $this->getUser()->getRoles()[0];
 
 
-
-
-
-
-
-
-
             if ($role == 'ROLE_ENSEIGNANT'){   
 
                $lesGroupes = $this->getUser()->getGroupes();
