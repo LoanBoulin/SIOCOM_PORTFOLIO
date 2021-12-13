@@ -1,16 +1,17 @@
-{# templates/groupe/addGroupe.html.twig #}
+{# templates/projet/addProjetEquipe.html.twig #}
 
 {% extends templateTwigParent %}
 
-{% block titreContenu %}	<h5>PAGE D'AJOUT D'UN GROUPE</h5> {% endblock %}
+{% block titreContenu %}	<h5>PAGE D'AJOUT D'UN PROJET D'Equipe</h5> {% endblock %}
 
 {% block contenu %} 
 
     <div class="m-4">
+        
         {{ form_start(form) }}
         {{ form_widget(form) }}
         {{ form_end(form) }}
 
     </div>
 	
-	 {% endblock %}
+{% endblock %}
