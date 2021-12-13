@@ -13,6 +13,11 @@ use App\Entity\Post;
 
 class SecurityController extends AbstractController
 {
+
+    public function index(): Response
+    {
+        return $this->redirectToRoute('app_login');
+    }
     /**
      * Méthode d'authentification
      */
