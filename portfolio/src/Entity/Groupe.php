@@ -40,22 +40,28 @@ class Groupe
      */
     private $groupe_type;
 
-    /**
-     * @ORM\OneToMany(targetEntity=ProjetEquipe::class, mappedBy="groupe")
-     */
-    private $projetEquipes;
+
 
     /**
-     * @ORM\ManyToMany(targetEntity=ProjetDef::class, mappedBy="groupe")
+     * @ORM\ManyToMany(targetEntity=Ressource::class, mappedBy="groupe")
      */
-    private $projetDefs;
+    private $ressources;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Adresser::class, mappedBy="groupe")
+     */
+    private $adressers;
+
+
+
+
 
     public function __construct()
     {
         $this->user_id = new ArrayCollection();
         $this->posts = new ArrayCollection();
-        $this->projetEquipes = new ArrayCollection();
-        $this->projetDefs = new ArrayCollection();
+        $this->ressources = new ArrayCollection();
+        $this->adressers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -138,61 +144,65 @@ class Groupe
         return $this;
     }
 
+
+
     /**
-     * @return Collection|ProjetEquipe[]
+     * @return Collection|Ressource[]
      */
-    public function getProjetEquipes(): Collection
+    public function getRessources(): Collection
     {
-        return $this->projetEquipes;
+        return $this->ressources;
     }
 
-    public function addProjetEquipe(ProjetEquipe $projetEquipe): self
+    public function addRessource(Ressource $ressource): self
     {
-        if (!$this->projetEquipes->contains($projetEquipe)) {
-            $this->projetEquipes[] = $projetEquipe;
-            $projetEquipe->setGroupe($this);
+        if (!$this->ressources->contains($ressource)) {
+            $this->ressources[] = $ressource;
+            $ressource->addGroupe($this);
         }
 
         return $this;
     }
 
-    public function removeProjetEquipe(ProjetEquipe $projetEquipe): self
+    public function removeRessource(Ressource $ressource): self
     {
-        if ($this->projetEquipes->removeElement($projetEquipe)) {
+        if ($this->ressources->removeElement($ressource)) {
+            $ressource->removeGroupe($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Adresser[]
+     */
+    public function getAdressers(): Collection
+    {
+        return $this->adressers;
+    }
+
+    public function addAdresser(Adresser $adresser): self
+    {
+        if (!$this->adressers->contains($adresser)) {
+            $this->adressers[] = $adresser;
+            $adresser->setGroupe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdresser(Adresser $adresser): self
+    {
+        if ($this->adressers->removeElement($adresser)) {
             // set the owning side to null (unless already changed)
-            if ($projetEquipe->getGroupe() === $this) {
-                $projetEquipe->setGroupe(null);
+            if ($adresser->getGroupe() === $this) {
+                $adresser->setGroupe(null);
             }
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection|ProjetDef[]
-     */
-    public function getProjetDefs(): Collection
-    {
-        return $this->projetDefs;
-    }
 
-    public function addProjetDef(ProjetDef $projetDef): self
-    {
-        if (!$this->projetDefs->contains($projetDef)) {
-            $this->projetDefs[] = $projetDef;
-            $projetDef->addGroupe($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProjetDef(ProjetDef $projetDef): self
-    {
-        if ($this->projetDefs->removeElement($projetDef)) {
-            $projetDef->removeGroupe($this);
-        }
-
-        return $this;
-    }
 }
 

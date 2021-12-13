@@ -45,31 +45,15 @@ class ProjetDef
     private $enseignant;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Groupe::class, inversedBy="projetDefs")
+     * @ORM\OneToMany(targetEntity=Adresser::class, mappedBy="projet")
      */
-    private $groupe;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=TypeProjet::class, mappedBy="ProjetDef")
-     */
-    private $typeProjets;
-
-    /**
-     * @ORM\OneToMany(targetEntity=ProjetEquipe::class, mappedBy="projetDef")
-     */
-    private $projetEquipes;
-
-
-
-
+    private $Projets;
 
     public function __construct()
     {
         $this->matiere = new ArrayCollection();
         $this->enseignant = new ArrayCollection();
-        $this->groupe = new ArrayCollection();
-        $this->typeProjets = new ArrayCollection();
-        $this->projetEquipes = new ArrayCollection();
+        $this->Projets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -162,85 +146,35 @@ class ProjetDef
     }
 
     /**
-     * @return Collection|Groupe[]
+     * @return Collection|Adresser[]
      */
-    public function getGroupe(): Collection
+    public function getProjets(): Collection
     {
-        return $this->groupe;
+        return $this->Projets;
     }
 
-    public function addGroupe(Groupe $groupe): self
+    public function addProjet(Adresser $projet): self
     {
-        if (!$this->groupe->contains($groupe)) {
-            $this->groupe[] = $groupe;
+        if (!$this->Projets->contains($projet)) {
+            $this->Projets[] = $projet;
+            $projet->setProjet($this);
         }
 
         return $this;
     }
 
-    public function removeGroupe(Groupe $groupe): self
+    public function removeProjet(Adresser $projet): self
     {
-        $this->groupe->removeElement($groupe);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|TypeProjet[]
-     */
-    public function getTypeProjets(): Collection
-    {
-        return $this->typeProjets;
-    }
-
-    public function addTypeProjet(TypeProjet $typeProjet): self
-    {
-        if (!$this->typeProjets->contains($typeProjet)) {
-            $this->typeProjets[] = $typeProjet;
-            $typeProjet->addProjetDef($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTypeProjet(TypeProjet $typeProjet): self
-    {
-        if ($this->typeProjets->removeElement($typeProjet)) {
-            $typeProjet->removeProjetDef($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|ProjetEquipe[]
-     */
-    public function getProjetEquipes(): Collection
-    {
-        return $this->projetEquipes;
-    }
-
-    public function addProjetEquipe(ProjetEquipe $projetEquipe): self
-    {
-        if (!$this->projetEquipes->contains($projetEquipe)) {
-            $this->projetEquipes[] = $projetEquipe;
-            $projetEquipe->setProjetDef($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProjetEquipe(ProjetEquipe $projetEquipe): self
-    {
-        if ($this->projetEquipes->removeElement($projetEquipe)) {
+        if ($this->Projets->removeElement($projet)) {
             // set the owning side to null (unless already changed)
-            if ($projetEquipe->getProjetDef() === $this) {
-                $projetEquipe->setProjetDef(null);
+            if ($projet->getProjet() === $this) {
+                $projet->setProjet(null);
             }
         }
 
         return $this;
     }
 
-   
+
+
 }
