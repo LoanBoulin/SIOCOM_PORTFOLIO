@@ -68,7 +68,7 @@
                     <div class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="closeCard1"><a class="dropdown-item py-1 px-3 remove" href="#"> <i class="fas fa-times"></i>Close</a><a class="dropdown-item py-1 px-3 edit" href="#"> <i class="fas fa-cog"></i>Edit</a></div>
                   </div>
                 </div>
-                <h2 class="h2 mb-0">Les projets</h2>
+                <h2 class="h2 mb-0">Les projets de l'équipe</h2>
               </div>
               <br>
               {% for projet in groupe.projetEquipes  %}
@@ -80,7 +80,8 @@
                       <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                           <div class="ms-3">
-                            <h3 class="h4 text-gray-700 mb-0">{{projet.libelle}}</h3><a href=""><small class="text-gray-500">{{projet.projetDef.libelle}}</small> Voir</a>
+                            <h3 class="h4 text-gray-700 mb-0">{{projet.libelle}}</h3>
+                            <a href="{{ path('consulterProjetDef', { 'id': projet.projetDef.id }) }}"><small class="text-gray-500">{{projet.projetDef.libelle}}</small> Voir l'énoncé</a>
                           </div>
                         </div><span class="text-sm text-gray-600 d-none d-sm-block">{{projet.projetDef.dateDebut.format('d-m-Y')}}</span>
                       </div>
@@ -90,7 +91,7 @@
                         <div class="progress w-100" style="height: 5px; max-width: 15rem">
                           <div class="progress-bar bg-red" role="progressbar" style="width: 45%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <a href=''>Voir le projet</a>
+                        <a href='{{ path('consulterProjetEquipe', { 'id': projet.id }) }}'>Voir le projet</a>
                       </div>
                     </div>
                   </div>
