@@ -49,6 +49,11 @@ class ProjetDef
      */
     private $Projets;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Groupe::class, inversedBy="projetDefs")
+     */
+    private $groupe;
+
     public function __construct()
     {
         $this->matiere = new ArrayCollection();
@@ -171,6 +176,18 @@ class ProjetDef
                 $projet->setProjet(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getGroupe(): ?Groupe
+    {
+        return $this->groupe;
+    }
+
+    public function setGroupe(?Groupe $groupe): self
+    {
+        $this->groupe = $groupe;
 
         return $this;
     }

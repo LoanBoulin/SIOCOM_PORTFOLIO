@@ -35,14 +35,15 @@ class Ressource
     private $post_id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=ProjetEquipe::class, mappedBy="ressource_id")
+     * @ORM\ManyToMany(targetEntity=Groupe::class, inversedBy="ressources")
      */
-    private $projetEquipes;
+    private $groupe;
+
 
     public function __construct()
     {
         $this->post_id = new ArrayCollection();
-        $this->projetEquipes = new ArrayCollection();
+        $this->groupe = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,29 +100,28 @@ class Ressource
     }
 
     /**
-     * @return Collection|ProjetEquipe[]
+     * @return Collection|Groupe[]
      */
-    public function getProjetEquipes(): Collection
+    public function getGroupe(): Collection
     {
-        return $this->projetEquipes;
+        return $this->groupe;
     }
 
-    public function addProjetEquipe(ProjetEquipe $projetEquipe): self
+    public function addGroupe(Groupe $groupe): self
     {
-        if (!$this->projetEquipes->contains($projetEquipe)) {
-            $this->projetEquipes[] = $projetEquipe;
-            $projetEquipe->addRessourceId($this);
+        if (!$this->groupe->contains($groupe)) {
+            $this->groupe[] = $groupe;
         }
 
         return $this;
     }
 
-    public function removeProjetEquipe(ProjetEquipe $projetEquipe): self
+    public function removeGroupe(Groupe $groupe): self
     {
-        if ($this->projetEquipes->removeElement($projetEquipe)) {
-            $projetEquipe->removeRessourceId($this);
-        }
+        $this->groupe->removeElement($groupe);
 
         return $this;
     }
+
+    
 }

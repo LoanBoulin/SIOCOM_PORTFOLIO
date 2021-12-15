@@ -52,6 +52,11 @@ class Groupe
      */
     private $adressers;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ProjetDef::class, mappedBy="groupe")
+     */
+    private $projetDefs;
+
 
 
 
@@ -62,6 +67,7 @@ class Groupe
         $this->posts = new ArrayCollection();
         $this->ressources = new ArrayCollection();
         $this->adressers = new ArrayCollection();
+        $this->projetDefs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -197,6 +203,36 @@ class Groupe
             // set the owning side to null (unless already changed)
             if ($adresser->getGroupe() === $this) {
                 $adresser->setGroupe(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ProjetDef[]
+     */
+    public function getProjetDefs(): Collection
+    {
+        return $this->projetDefs;
+    }
+
+    public function addProjetDef(ProjetDef $projetDef): self
+    {
+        if (!$this->projetDefs->contains($projetDef)) {
+            $this->projetDefs[] = $projetDef;
+            $projetDef->setGroupe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjetDef(ProjetDef $projetDef): self
+    {
+        if ($this->projetDefs->removeElement($projetDef)) {
+            // set the owning side to null (unless already changed)
+            if ($projetDef->getGroupe() === $this) {
+                $projetDef->setGroupe(null);
             }
         }
 
