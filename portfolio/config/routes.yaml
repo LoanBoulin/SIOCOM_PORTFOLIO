@@ -227,7 +227,7 @@ supprimerGroupe:
 
 
 #Permet d'ajouter un groupe dans un projet
-addProjetEquipe:
+addProjetGroupe:
   path: /projetGroupe/addProjetGroupe
   controller: App\Controller\GroupeController::addProjetGroupe
 
