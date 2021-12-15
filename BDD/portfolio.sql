@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 15 nov. 2021 à 13:12
+-- Généré le : mer. 15 déc. 2021 à 08:08
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -69,27 +69,14 @@ INSERT INTO `activite` (`id`, `bloc_id`, `code`, `libelle`) VALUES
 
 DROP TABLE IF EXISTS `adresser`;
 CREATE TABLE IF NOT EXISTS `adresser` (
-  `PRO_ID` int(11) NOT NULL,
-  `GRO_ID` int(11) NOT NULL,
-  PRIMARY KEY (`PRO_ID`,`GRO_ID`),
-  KEY `I_FK_ADRESSER_PROJETDEF` (`PRO_ID`),
-  KEY `I_FK_ADRESSER_GROUPE` (`GRO_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `appartenir`
---
-
-DROP TABLE IF EXISTS `appartenir`;
-CREATE TABLE IF NOT EXISTS `appartenir` (
-  `GRO_ID` int(11) NOT NULL,
-  `USE_ID` int(11) NOT NULL,
-  PRIMARY KEY (`GRO_ID`,`USE_ID`),
-  KEY `I_FK_APPARTENIR_GROUPE` (`GRO_ID`),
-  KEY `I_FK_APPARTENIR_USER` (`USE_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `projet_id` int(11) NOT NULL,
+  `is_adressed` tinyint(1) NOT NULL,
+  `groupe_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_981E15C4C18272` (`projet_id`),
+  KEY `IDX_981E15C47A45358C` (`groupe_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -152,22 +139,7 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
   PRIMARY KEY (`id`),
   KEY `IDX_67F068BCE455FCC0` (`enseignant_id`),
   KEY `IDX_67F068BCB70FF80C` (`rp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `commentaire`
---
-
-INSERT INTO `commentaire` (`id`, `enseignant_id`, `rp_id`, `commentaire`, `date_commentaire`) VALUES
-(1, 7, 12, 'Corriger les fautes d\'orthographe', '2021-06-15'),
-(2, 8, 12, 'revoir le contexte', '2021-06-15'),
-(3, 7, 12, 'xssxsqxqs', '2021-06-18'),
-(4, 7, 12, 'revoir les activités', '2021-06-18'),
-(7, 7, 16, 'fdfvdsfvcsd', '2021-07-07'),
-(8, 7, 13, 'commenta', '2021-07-01'),
-(9, 7, 13, 'commenta', '2021-07-01'),
-(10, 7, 13, 'commentaire', '2021-07-01'),
-(11, 7, 13, 'ppppppppppp', '2021-07-01');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -278,36 +250,6 @@ INSERT INTO `competence` (`id`, `activite_id`, `code`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `contenir`
---
-
-DROP TABLE IF EXISTS `contenir`;
-CREATE TABLE IF NOT EXISTS `contenir` (
-  `RES_ID` int(11) NOT NULL,
-  `PRO_ID` int(11) NOT NULL,
-  PRIMARY KEY (`RES_ID`,`PRO_ID`),
-  KEY `I_FK_CONTENIR_RESSOURCE` (`RES_ID`),
-  KEY `I_FK_CONTENIR_PROJETEQUIPE` (`PRO_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `definir_pro`
---
-
-DROP TABLE IF EXISTS `definir_pro`;
-CREATE TABLE IF NOT EXISTS `definir_pro` (
-  `PRO_ID` int(11) NOT NULL,
-  `MAT_ID` int(11) NOT NULL,
-  PRIMARY KEY (`PRO_ID`,`MAT_ID`),
-  KEY `I_FK_DEFINIR_PRO_PROJETDEF` (`PRO_ID`),
-  KEY `I_FK_DEFINIR_PRO_MATIERE` (`MAT_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `doctrine_migration_versions`
 --
 
@@ -324,34 +266,9 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
 --
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20210519150430', '2021-05-19 15:04:52', 465),
-('DoctrineMigrations\\Version20210519163823', '2021-05-19 16:38:35', 72),
-('DoctrineMigrations\\Version20210520115935', '2021-05-20 11:59:51', 538),
-('DoctrineMigrations\\Version20210520130535', '2021-05-20 13:05:40', 73),
-('DoctrineMigrations\\Version20210521161236', '2021-05-21 16:12:45', 322),
-('DoctrineMigrations\\Version20210521161736', '2021-05-21 16:17:41', 426),
-('DoctrineMigrations\\Version20210521163108', '2021-05-21 16:31:16', 399),
-('DoctrineMigrations\\Version20210522113230', '2021-05-22 11:32:41', 192),
-('DoctrineMigrations\\Version20210522114911', '2021-05-22 11:49:19', 172),
-('DoctrineMigrations\\Version20210522130121', '2021-05-22 13:01:26', 145),
-('DoctrineMigrations\\Version20210525172058', '2021-05-25 17:21:18', 147),
-('DoctrineMigrations\\Version20210525194327', '2021-05-25 19:43:41', 1537),
-('DoctrineMigrations\\Version20210525200943', '2021-05-25 20:09:50', 225),
-('DoctrineMigrations\\Version20210528133401', '2021-05-28 13:34:43', 296),
-('DoctrineMigrations\\Version20210602204005', '2021-06-02 20:40:13', 319),
-('DoctrineMigrations\\Version20210602210138', '2021-06-02 21:01:50', 256),
-('DoctrineMigrations\\Version20210603112735', '2021-06-03 11:27:40', 225),
-('DoctrineMigrations\\Version20210603121008', '2021-06-03 12:10:15', 142),
-('DoctrineMigrations\\Version20210603122113', '2021-06-03 12:22:50', 202),
-('DoctrineMigrations\\Version20210603122302', '2021-06-03 12:23:12', 138),
-('DoctrineMigrations\\Version20210603134647', '2021-06-03 13:46:56', 144),
-('DoctrineMigrations\\Version20210909114252', '2021-09-09 11:43:19', 331),
-('DoctrineMigrations\\Version20210913121428', '2021-09-13 12:14:38', 204),
-('DoctrineMigrations\\Version20210916133814', '2021-09-16 13:40:21', 247),
-('DoctrineMigrations\\Version20210916141406', '2021-09-16 14:14:13', 351),
-('DoctrineMigrations\\Version20210916144734', '2021-09-16 14:47:45', 148),
-('DoctrineMigrations\\Version20210916162816', '2021-09-16 16:28:27', 191),
-('DoctrineMigrations\\Version20210922090949', '2021-09-22 09:10:03', 167);
+('DoctrineMigrations\\Version20211213153420', '2021-12-13 15:34:24', 47696),
+('DoctrineMigrations\\Version20211213153936', '2021-12-13 15:39:39', 1276),
+('DoctrineMigrations\\Version20211215080222', '2021-12-15 08:02:27', 4291);
 
 -- --------------------------------------------------------
 
@@ -406,31 +323,16 @@ INSERT INTO `domaine_tache` (`id`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `encadrer`
---
-
-DROP TABLE IF EXISTS `encadrer`;
-CREATE TABLE IF NOT EXISTS `encadrer` (
-  `USE_ID` int(11) NOT NULL,
-  `PRO_ID` int(11) NOT NULL,
-  PRIMARY KEY (`USE_ID`,`PRO_ID`),
-  KEY `I_FK_ENCADRER_ENSEIGNANT` (`USE_ID`),
-  KEY `I_FK_ENCADRER_PROJETDEF` (`PRO_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `enseignant`
 --
 
 DROP TABLE IF EXISTS `enseignant`;
 CREATE TABLE IF NOT EXISTS `enseignant` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prenom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `matiere_id` int(11) DEFAULT NULL,
   `niveau_id` int(11) NOT NULL,
+  `nom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prenom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_81A72FA1F46CD258` (`matiere_id`),
   KEY `IDX_81A72FA1B3E9C81` (`niveau_id`)
@@ -440,12 +342,12 @@ CREATE TABLE IF NOT EXISTS `enseignant` (
 -- Déchargement des données de la table `enseignant`
 --
 
-INSERT INTO `enseignant` (`id`, `nom`, `prenom`, `matiere_id`, `niveau_id`) VALUES
-(7, 'ANNOUCHE', 'Zakina', 1, 2),
-(8, 'GUERINET', 'Serge', 1, 3),
-(9, 'CATROS', 'Anne', 2, 3),
-(10, 'DUPONT', 'Thomasss', 2, 3),
-(11, 'BLIMER', 'marie', 4, 1);
+INSERT INTO `enseignant` (`id`, `matiere_id`, `niveau_id`, `nom`, `prenom`) VALUES
+(7, 1, 2, 'ANNOUCHE', 'Zakina'),
+(8, 1, 3, 'GUERINET', 'Serge'),
+(9, 2, 3, 'CATROS', 'Anne'),
+(10, 2, 3, 'DUPONT', 'Thomasss'),
+(11, 4, 1, 'BLIMER', 'marie');
 
 -- --------------------------------------------------------
 
@@ -473,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
   KEY `IDX_717E22E3139DF194` (`promotion_id`),
   KEY `IDX_717E22E3B3E9C81` (`niveau_id`),
   KEY `IDX_717E22E32195E0F0` (`specialite_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `etudiant`
@@ -486,7 +388,11 @@ INSERT INTO `etudiant` (`id`, `promotion_id`, `niveau_id`, `specialite_id`, `nom
 (65, 1, 1, 1, 'SPAMMY', 'Zakina', '2021-06-16', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (68, 1, 1, 1, 'GUERINET', 'Serge', '1968-06-18', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (70, 1, 1, 1, 'DULONG', 'Hijab', '2021-06-23', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(72, 1, 1, 1, 'DEBIL', 'Lutr', '2021-07-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(72, 1, 1, 1, 'DEBIL', 'Lutr', '2021-07-28', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(73, 2, 1, 1, 'Renault', 'Victor', '2002-12-05', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(74, 2, 1, 1, 'Rousseau', 'Florian', '2002-04-12', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(75, 2, 1, 1, 'Depoilly', 'Antonin', '2002-04-09', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(76, 2, 1, 1, 'Boulin', 'Loan', '2002-05-14', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -496,40 +402,76 @@ INSERT INTO `etudiant` (`id`, `promotion_id`, `niveau_id`, `specialite_id`, `nom
 
 DROP TABLE IF EXISTS `groupe`;
 CREATE TABLE IF NOT EXISTS `groupe` (
-  `GRO_ID` int(11) NOT NULL,
-  `TYP_ID` int(11) NOT NULL,
-  `GRO_LIBELLE` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`GRO_ID`),
-  KEY `I_FK_GROUPE_TYPEGROUPE` (`TYP_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `groupe_type_id` int(11) DEFAULT NULL,
+  `libelle` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_4B98C2132B6BDD` (`groupe_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `groupe`
+--
+
+INSERT INTO `groupe` (`id`, `groupe_type_id`, `libelle`) VALUES
+(1, 1, 'SIO 2020-2022'),
+(2, 1, 'SIO 2021-2023'),
+(3, 2, 'TD sur Javascript'),
+(4, 1, 'SLAM 2020-2022'),
+(5, 1, 'SISR 2020-2022'),
+(6, 1, 'SLAM 2021-2023'),
+(7, 1, 'SISR 2021-2023'),
+(8, 2, 'EQUIDA FLORIAN ANTONIN');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `gro_type`
+-- Structure de la table `groupe_type`
 --
 
-DROP TABLE IF EXISTS `gro_type`;
-CREATE TABLE IF NOT EXISTS `gro_type` (
-  `GRO_ID` int(11) NOT NULL,
-  `GRO_LIBELLE` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`GRO_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `groupe_type`;
+CREATE TABLE IF NOT EXISTS `groupe_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(90) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `groupe_type`
+--
+
+INSERT INTO `groupe_type` (`id`, `libelle`) VALUES
+(1, 'Section'),
+(2, 'TD');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `integrer_res`
+-- Structure de la table `groupe_user`
 --
 
-DROP TABLE IF EXISTS `integrer_res`;
-CREATE TABLE IF NOT EXISTS `integrer_res` (
-  `POS_ID` int(11) NOT NULL,
-  `RES_ID` int(11) NOT NULL,
-  PRIMARY KEY (`POS_ID`,`RES_ID`),
-  KEY `I_FK_INTEGRER_RES_POST` (`POS_ID`),
-  KEY `I_FK_INTEGRER_RES_RESSOURCE` (`RES_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `groupe_user`;
+CREATE TABLE IF NOT EXISTS `groupe_user` (
+  `groupe_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`groupe_id`,`user_id`),
+  KEY `IDX_257BA9FE7A45358C` (`groupe_id`),
+  KEY `IDX_257BA9FEA76ED395` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `groupe_user`
+--
+
+INSERT INTO `groupe_user` (`groupe_id`, `user_id`) VALUES
+(1, 73),
+(1, 74),
+(1, 75),
+(1, 76),
+(4, 74),
+(4, 75),
+(5, 73),
+(5, 76);
 
 -- --------------------------------------------------------
 
@@ -659,17 +601,30 @@ INSERT INTO `niveau_rp` (`id`, `libelle`) VALUES
 
 DROP TABLE IF EXISTS `post`;
 CREATE TABLE IF NOT EXISTS `post` (
-  `POS_ID` int(11) NOT NULL,
-  `TYP_ID` int(11) NOT NULL,
-  `USE_ID` int(11) NOT NULL,
-  `POS_ID_REPONDRE` int(11) NOT NULL,
-  `POS_DATETIME` datetime DEFAULT NULL,
-  `POS_DESC` text,
-  PRIMARY KEY (`POS_ID`),
-  KEY `I_FK_POST_TYPEPOST` (`TYP_ID`),
-  KEY `I_FK_POST_USER` (`USE_ID`),
-  KEY `I_FK_POST_POST` (`POS_ID_REPONDRE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_id_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `date_time_post` datetime NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_5A8A6C8D714819A0` (`type_id_id`),
+  KEY `IDX_5A8A6C8DA76ED395` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `post_groupe`
+--
+
+DROP TABLE IF EXISTS `post_groupe`;
+CREATE TABLE IF NOT EXISTS `post_groupe` (
+  `post_id` int(11) NOT NULL,
+  `groupe_id` int(11) NOT NULL,
+  PRIMARY KEY (`post_id`,`groupe_id`),
+  KEY `IDX_349B68444B89032C` (`post_id`),
+  KEY `IDX_349B68447A45358C` (`groupe_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -685,50 +640,93 @@ CREATE TABLE IF NOT EXISTS `production` (
   `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_D3EDB1E0B70FF80C` (`rp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `production`
---
-
-INSERT INTO `production` (`id`, `rp_id`, `designation`, `url`) VALUES
-(1, 12, 'prod real 12', 'url à définir'),
-(2, 12, 'production 2 rp 12', 'url production 2 rp 122'),
-(3, 12, 'production 3 rp 12', 'url production 3 rp 12v'),
-(4, 16, 'le lien vers une prod', 'url vers une prod'),
-(5, 13, 'drrrr', 'url prod');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `projetdef`
+-- Structure de la table `projet_def`
 --
 
-DROP TABLE IF EXISTS `projetdef`;
-CREATE TABLE IF NOT EXISTS `projetdef` (
-  `PRO_ID` int(11) NOT NULL,
-  `PRO_DATEDEB` date DEFAULT NULL,
-  `PRO_LIBELLE` varchar(50) DEFAULT NULL,
-  `PRO_DATEFIN` date DEFAULT NULL,
-  PRIMARY KEY (`PRO_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `projet_def`;
+CREATE TABLE IF NOT EXISTS `projet_def` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date_debut` date NOT NULL,
+  `date_fin` date NOT NULL,
+  `libelle` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `groupe_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_D91B58607A45358C` (`groupe_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `projet_def`
+--
+
+INSERT INTO `projet_def` (`id`, `date_debut`, `date_fin`, `libelle`, `groupe_id`) VALUES
+(1, '2021-11-09', '2021-11-25', 'PROJET EQUIDA', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `projetequipe`
+-- Structure de la table `projet_def_enseignant`
 --
 
-DROP TABLE IF EXISTS `projetequipe`;
-CREATE TABLE IF NOT EXISTS `projetequipe` (
-  `PRO_ID` int(11) NOT NULL,
-  `GRO_ID` int(11) NOT NULL,
-  `PRO_ID_DEFINIR` int(11) NOT NULL,
-  `PRO_LIBELLE` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`PRO_ID`),
-  KEY `I_FK_PROJETEQUIPE_GROUPE` (`GRO_ID`),
-  KEY `I_FK_PROJETEQUIPE_PROJETDEF` (`PRO_ID_DEFINIR`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `projet_def_enseignant`;
+CREATE TABLE IF NOT EXISTS `projet_def_enseignant` (
+  `projet_def_id` int(11) NOT NULL,
+  `enseignant_id` int(11) NOT NULL,
+  PRIMARY KEY (`projet_def_id`,`enseignant_id`),
+  KEY `IDX_2F3C3EC6D6911079` (`projet_def_id`),
+  KEY `IDX_2F3C3EC6E455FCC0` (`enseignant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `projet_def_matiere`
+--
+
+DROP TABLE IF EXISTS `projet_def_matiere`;
+CREATE TABLE IF NOT EXISTS `projet_def_matiere` (
+  `projet_def_id` int(11) NOT NULL,
+  `matiere_id` int(11) NOT NULL,
+  PRIMARY KEY (`projet_def_id`,`matiere_id`),
+  KEY `IDX_C9795E2CD6911079` (`projet_def_id`),
+  KEY `IDX_C9795E2CF46CD258` (`matiere_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `projet_equipe`
+--
+
+DROP TABLE IF EXISTS `projet_equipe`;
+CREATE TABLE IF NOT EXISTS `projet_equipe` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `groupe_id` int(11) DEFAULT NULL,
+  `projet_def_id` int(11) DEFAULT NULL,
+  `libelle` varchar(90) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_6E00A437A45358C` (`groupe_id`),
+  KEY `IDX_6E00A43D6911079` (`projet_def_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `projet_equipe_ressource`
+--
+
+DROP TABLE IF EXISTS `projet_equipe_ressource`;
+CREATE TABLE IF NOT EXISTS `projet_equipe_ressource` (
+  `projet_equipe_id` int(11) NOT NULL,
+  `ressource_id` int(11) NOT NULL,
+  PRIMARY KEY (`projet_equipe_id`,`ressource_id`),
+  KEY `IDX_DEA0C23F4E78FC5D` (`projet_equipe_id`),
+  KEY `IDX_DEA0C23FFC6CD52A` (`ressource_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -755,36 +753,6 @@ INSERT INTO `promotion` (`id`, `annee`, `statut`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `qualifier`
---
-
-DROP TABLE IF EXISTS `qualifier`;
-CREATE TABLE IF NOT EXISTS `qualifier` (
-  `PRO_ID` int(11) NOT NULL,
-  `TYP_ID` int(11) NOT NULL,
-  PRIMARY KEY (`PRO_ID`,`TYP_ID`),
-  KEY `I_FK_QUALIFIER_PROJETDEF` (`PRO_ID`),
-  KEY `I_FK_QUALIFIER_TYPEPROJET` (`TYP_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `regrouper`
---
-
-DROP TABLE IF EXISTS `regrouper`;
-CREATE TABLE IF NOT EXISTS `regrouper` (
-  `POS_ID` int(11) NOT NULL,
-  `GRO_ID` int(11) NOT NULL,
-  PRIMARY KEY (`POS_ID`,`GRO_ID`),
-  KEY `I_FK_REGROUPER_POST` (`POS_ID`),
-  KEY `I_FK_REGROUPER_GROUPE` (`GRO_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `reset_password_request`
 --
 
@@ -798,16 +766,7 @@ CREATE TABLE IF NOT EXISTS `reset_password_request` (
   `expires_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
   PRIMARY KEY (`id`),
   KEY `IDX_7CE748AA76ED395` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `reset_password_request`
---
-
-INSERT INTO `reset_password_request` (`id`, `user_id`, `selector`, `hashed_token`, `requested_at`, `expires_at`) VALUES
-(1, 42, 'reaX7Z7DBsYNc0l6tZdB', 'vEDjEbMVRjCiCy9zFhLY0kXDMwsc3vVGAefLn/VFkJU=', '2021-08-19 14:29:21', '2021-08-19 15:29:21'),
-(2, 61, 'Fyc1TvNG5yNAYm4pk7Cg', 'IQXezCP10LZSvDABlnSYYEY4/r7Shb8QRRV/qMis1YQ=', '2021-08-21 15:39:52', '2021-08-21 16:39:52'),
-(3, 68, 'dBobScV22DAQk0XzILL5', 'nsxNVKd3HOaZ7KxCegAxThb3GL87jNdP/jjbhMC5Ro0=', '2021-08-21 16:50:43', '2021-08-21 17:50:43');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -817,11 +776,50 @@ INSERT INTO `reset_password_request` (`id`, `user_id`, `selector`, `hashed_token
 
 DROP TABLE IF EXISTS `ressource`;
 CREATE TABLE IF NOT EXISTS `ressource` (
-  `RES_ID` int(11) NOT NULL,
-  `RES_NOM` varchar(50) DEFAULT NULL,
-  `RES_LIEN` text,
-  PRIMARY KEY (`RES_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lien` longtext COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `ressource`
+--
+
+INSERT INTO `ressource` (`id`, `nom`, `lien`) VALUES
+(1, 'photo projet', 'https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1457&q=80'),
+(2, 'photo projet 2', 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'),
+(3, 'outils', 'https://images.unsplash.com/photo-1452860606245-08befc0ff44b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ressource_groupe`
+--
+
+DROP TABLE IF EXISTS `ressource_groupe`;
+CREATE TABLE IF NOT EXISTS `ressource_groupe` (
+  `ressource_id` int(11) NOT NULL,
+  `groupe_id` int(11) NOT NULL,
+  PRIMARY KEY (`ressource_id`,`groupe_id`),
+  KEY `IDX_EEF85F9CFC6CD52A` (`ressource_id`),
+  KEY `IDX_EEF85F9C7A45358C` (`groupe_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ressource_post`
+--
+
+DROP TABLE IF EXISTS `ressource_post`;
+CREATE TABLE IF NOT EXISTS `ressource_post` (
+  `ressource_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  PRIMARY KEY (`ressource_id`,`post_id`),
+  KEY `IDX_AA356C04FC6CD52A` (`ressource_id`),
+  KEY `IDX_AA356C044B89032C` (`post_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -835,10 +833,10 @@ CREATE TABLE IF NOT EXISTS `rp` (
   `localisation_id` int(11) DEFAULT NULL,
   `statut_id` int(11) DEFAULT NULL,
   `source_id` int(11) NOT NULL,
-  `etudiant_id` int(11) DEFAULT NULL,
-  `enseignant_id` int(11) DEFAULT NULL,
   `cadre_id` int(11) DEFAULT NULL,
   `niveau_rp_id` int(11) DEFAULT NULL,
+  `etudiant_id` int(11) DEFAULT NULL,
+  `enseignant_id` int(11) DEFAULT NULL,
   `libcourt` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `besoin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_debut` date NOT NULL,
@@ -851,21 +849,11 @@ CREATE TABLE IF NOT EXISTS `rp` (
   KEY `IDX_CD578B7C68BE09C` (`localisation_id`),
   KEY `IDX_CD578B7F6203804` (`statut_id`),
   KEY `IDX_CD578B7953C1C61` (`source_id`),
-  KEY `IDX_CD578B7DDEAB1A3` (`etudiant_id`),
-  KEY `IDX_CD578B7E455FCC0` (`enseignant_id`),
   KEY `IDX_CD578B79308DA90` (`cadre_id`),
-  KEY `IDX_CD578B752680A6A` (`niveau_rp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `rp`
---
-
-INSERT INTO `rp` (`id`, `localisation_id`, `statut_id`, `source_id`, `etudiant_id`, `enseignant_id`, `cadre_id`, `niveau_rp_id`, `libcourt`, `besoin`, `date_debut`, `date_fin`, `environnement`, `moyen`, `date_modif`, `archivage`) VALUES
-(12, 1, 2, 1, 53, 8, 1, 1, 'analyse besoin client', 'aaabbbcx', '2021-04-28', '2021-06-02', 'aaa xcxc', 'aaa', '2021-06-18', 1),
-(13, 1, 3, 1, 53, NULL, 1, 1, 'real zak 2', 'aaa', '2021-04-28', '2021-06-02', 'aaa', 'aaa', '2021-05-31', 0),
-(14, 1, 1, 1, 53, NULL, 1, 1, 'rp 3 zak', 'cdvx', '2021-05-27', '2021-05-28', 'vxv', 'cv', '2021-05-31', 0),
-(16, 1, 1, 1, 54, NULL, 1, 1, 'etude comparative hébergeurs', 'héberger le site client', '2021-06-16', '2021-06-18', 'windows', 'pc', '2021-06-18', 0);
+  KEY `IDX_CD578B752680A6A` (`niveau_rp_id`),
+  KEY `IDX_CD578B7DDEAB1A3` (`etudiant_id`),
+  KEY `IDX_CD578B7E455FCC0` (`enseignant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -882,21 +870,7 @@ CREATE TABLE IF NOT EXISTS `rpactivite` (
   PRIMARY KEY (`id`),
   KEY `IDX_3CC2747A9B0F88B1` (`activite_id`),
   KEY `IDX_3CC2747AB70FF80C` (`rp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `rpactivite`
---
-
-INSERT INTO `rpactivite` (`id`, `activite_id`, `rp_id`, `commentaire`) VALUES
-(30, 4, 14, 'projet scrum'),
-(31, 7, 14, 'mise en place des postes'),
-(32, 3, 13, 'site webc'),
-(33, 3, 12, 'commentaire activite'),
-(35, 4, 16, 'travail avec un binome et post-it'),
-(36, 2, 16, 'production tyu'),
-(38, 3, 12, 'activte b13'),
-(39, 1, 13, 'descrip activi B11');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -920,7 +894,7 @@ CREATE TABLE IF NOT EXISTS `semaine_stage` (
 --
 
 INSERT INTO `semaine_stage` (`id`, `stage_id`, `num_semaine`, `apprentissage`, `bilan`) VALUES
-(1, 1, 1, 'prise en main du fk symfo', 'trop bien');
+(1, 1, 1, NULL, 'trop bien');
 
 -- --------------------------------------------------------
 
@@ -986,6 +960,7 @@ CREATE TABLE IF NOT EXISTS `stage` (
   `code_naf` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   `num_rue` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   `copos` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rue` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ville` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nom_tuteur` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tel_tuteur` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -995,14 +970,13 @@ CREATE TABLE IF NOT EXISTS `stage` (
   `service` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_debut` date NOT NULL,
   `date_fin` date NOT NULL,
-  `duree` int(11) NOT NULL,
+  `duree` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hor_lun` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `hor_mar` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `hor_mer` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `hor_jeu` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `hor_ven` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `hor_sam` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `rue` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_C27C9369DDEAB1A3` (`etudiant_id`),
   KEY `IDX_C27C9369E455FCC0` (`enseignant_id`)
@@ -1012,9 +986,9 @@ CREATE TABLE IF NOT EXISTS `stage` (
 -- Déchargement des données de la table `stage`
 --
 
-INSERT INTO `stage` (`id`, `etudiant_id`, `enseignant_id`, `nom_entreprise`, `siret`, `code_naf`, `num_rue`, `copos`, `ville`, `nom_tuteur`, `tel_tuteur`, `mail_tuteur`, `lieu`, `sujet`, `service`, `date_debut`, `date_fin`, `duree`, `hor_lun`, `hor_mar`, `hor_mer`, `hor_jeu`, `hor_ven`, `hor_sam`, `rue`) VALUES
-(1, 53, 7, 'Agrial', '12222', '1111Z', '12', 'qsdd', 'dsqdqs', 'Durand Benoit', '0101010101', 'bdurand@agrial.fr', 'Caen', 'evolution application de gestion des vaches', NULL, '2021-09-05', '2021-09-29', 5, '12-13', NULL, NULL, NULL, NULL, NULL, 'qsd'),
-(2, 53, 7, 'Cardif', 'dqsd', '1234Z', '45', '14100', 'hjgjhghj', 'Thibaul', '020202020', 'jjj@gmail.com', 'Paris', 'dev', 'Etudes', '2021-09-13', '2021-09-14', 6, '1', '1', '1', '1', '1', '1', '');
+INSERT INTO `stage` (`id`, `etudiant_id`, `enseignant_id`, `nom_entreprise`, `siret`, `code_naf`, `num_rue`, `copos`, `rue`, `ville`, `nom_tuteur`, `tel_tuteur`, `mail_tuteur`, `lieu`, `sujet`, `service`, `date_debut`, `date_fin`, `duree`, `hor_lun`, `hor_mar`, `hor_mer`, `hor_jeu`, `hor_ven`, `hor_sam`) VALUES
+(1, 53, 7, 'Agrial', '12222', '1111Z', '12', 'qsdd', 'qsd', 'dsqdqs', 'Durand Benoit', '0101010101', 'bdurand@agrial.fr', 'Caen', 'evolution application de gestion des vaches', NULL, '2021-09-05', '2021-09-29', '6', '12-13', NULL, NULL, NULL, NULL, NULL),
+(2, 53, 7, 'Cardif', 'dqsd', '1234Z', '45', '14100', '', 'hjgjhghj', 'Thibaul', '020202020', 'jjj@gmail.com', 'Paris', 'dev', 'Etudes', '2021-09-13', '2021-09-14', '6', '1', '1', '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -1027,17 +1001,7 @@ CREATE TABLE IF NOT EXISTS `statut` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `statut`
---
-
-INSERT INTO `statut` (`id`, `libelle`) VALUES
-(1, 'Création'),
-(2, 'En attente'),
-(3, 'Commentée'),
-(4, 'Validée');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1057,7 +1021,7 @@ CREATE TABLE IF NOT EXISTS `tache_semaine` (
   KEY `IDX_B11BB55F6542D8E6` (`domaine_tache_id`),
   KEY `IDX_B11BB55F220C6AD0` (`jour_id`),
   KEY `IDX_B11BB55FE928EFB1` (`semaine_stage_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `tache_semaine`
@@ -1070,33 +1034,69 @@ INSERT INTO `tache_semaine` (`id`, `domaine_tache_id`, `jour_id`, `semaine_stage
 (4, 8, 2, 1, 'tests des controllers et entites', 0.5),
 (5, 2, 3, 1, 'étude du cahier des charges', 0.4),
 (10, 8, 3, 1, 'dev des entités et migration en bdd', 0.3),
-(11, 8, 2, 1, 'premieres vues twig', 0.25);
+(11, 8, 2, 1, 'premieres vues twig', 0.25),
+(13, 1, 1, 1, 'test', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `typepost`
+-- Structure de la table `type_post`
 --
 
-DROP TABLE IF EXISTS `typepost`;
-CREATE TABLE IF NOT EXISTS `typepost` (
-  `TYP_ID` int(11) NOT NULL,
-  `TYP_LIBELLE` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`TYP_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `type_post`;
+CREATE TABLE IF NOT EXISTS `type_post` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `type_post`
+--
+
+INSERT INTO `type_post` (`id`, `libelle`) VALUES
+(1, 'texte'),
+(2, 'sondage');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `typeprojet`
+-- Structure de la table `type_projet`
 --
 
-DROP TABLE IF EXISTS `typeprojet`;
-CREATE TABLE IF NOT EXISTS `typeprojet` (
-  `TYP_ID` int(11) NOT NULL,
-  `TYP_LIBELLE` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`TYP_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `type_projet`;
+CREATE TABLE IF NOT EXISTS `type_projet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `type_projet`
+--
+
+INSERT INTO `type_projet` (`id`, `libelle`) VALUES
+(1, 'Développement'),
+(2, 'Réseau'),
+(3, 'B1'),
+(4, 'B2'),
+(5, 'B3'),
+(6, 'ADP');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `type_projet_projet_def`
+--
+
+DROP TABLE IF EXISTS `type_projet_projet_def`;
+CREATE TABLE IF NOT EXISTS `type_projet_projet_def` (
+  `type_projet_id` int(11) NOT NULL,
+  `projet_def_id` int(11) NOT NULL,
+  PRIMARY KEY (`type_projet_id`,`projet_def_id`),
+  KEY `IDX_E4B7ACD1B407C362` (`type_projet_id`),
+  KEY `IDX_E4B7ACD1D6911079` (`projet_def_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1107,11 +1107,11 @@ CREATE TABLE IF NOT EXISTS `typeprojet` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `etudiant_id` int(11) DEFAULT NULL,
+  `enseignant_id` int(11) DEFAULT NULL,
   `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
   `roles` json NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `etudiant_id` int(11) DEFAULT NULL,
-  `enseignant_id` int(11) DEFAULT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `statut` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1119,28 +1119,32 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`),
   UNIQUE KEY `UNIQ_8D93D649DDEAB1A3` (`etudiant_id`),
   UNIQUE KEY `UNIQ_8D93D649E455FCC0` (`enseignant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `roles`, `password`, `etudiant_id`, `enseignant_id`, `token`, `created_at`, `statut`) VALUES
-(42, 'zakina.annouche@gmail.com', '[\"ROLE_ETUDIANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$TmwvaXIuNU1sQ2xRQW50MA$J5op76KZTt6yGe935emLQfyZMKV4KIAq9pmdA7pZ1Uc', 53, NULL, '-XLGgnWrfDJ8j53To1T9a3URkHgpRS4X9MS05ctcX-0', '2021-09-10 00:00:00', 'AC'),
-(43, 'nayah.cauvin@gmail.com', '[\"ROLE_ETUDIANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$N2lrQzUzemxKMi56U0Ivdw$/f14CBtnNddIXrZt92q6onq56RN78J4tpAdasC6CPnc', 54, NULL, 'DFxjXHDzmOvsKPLxmaM-lViZVhczDboCyxJ4l0nWgHs', '2021-09-12 17:10:36', 'AC'),
-(53, 'zakina.rostand@gmail.com', '[\"ROLE_ETUDIANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$dGJ6and2cTUzSlJUcmZDZg$uJdI4JHTIQbWgBuynhn+VR1jWZOxL1uQSyflFOgKzkk', 64, NULL, 'twhiI7YrLFGZPB-gaVvTTi4XI3Lwzpg73XOtT4LmJZs', NULL, 'AC'),
-(55, 'adminOld@rostand.fr', '[\"ROLE_ADMIN\"]', '$argon2i$v=19$m=65536,t=4,p=1$TllMN1ltcjVyOVh5cFFRVQ$N9rJHnsHuEOIBxAc3H6U2dbC2nK71Qc70qOT7fRE48Y', NULL, NULL, NULL, NULL, 'AC'),
-(57, 'zakina.annouche@ac-normandie.fr', '[\"ROLE_ENSEIGNANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$ODRIc0FzYmRRdm02WFlOLw$9yQFgPIq9ntrUwUNWE4CUujfkEHTg8Sa9EPNCWwYGJs', NULL, 7, NULL, NULL, 'AC'),
-(58, 'serge.guerinet@adresse.com', '[\"ROLE_ENSEIGNANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$UDJjRWlQNXkxYVNjNmtOMw$kb2aydJWRH5rmPokRtbtQ9iQeMe03oN9N6q7HY2/ulg', NULL, 8, NULL, NULL, 'AC'),
-(59, 'anne.catros@adresse.com', '[\"ROLE_ENSEIGNANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$bGFCS0pRWGxXb3doRHFsZQ$C4TABUz9FJQGJznOB94HILzwdhyC1gYpcYewqvTodac', NULL, 9, NULL, NULL, 'AC'),
-(60, 'thomas.dupont@adresse.com', '[\"ROLE_ENSEIGNANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$STd0amlXeUltODVHWTZjSg$QadRZptnB44ibIWZ1DCRf1fRhYMtKjsVRE2QoxFjoi0', NULL, 10, NULL, NULL, 'AC'),
-(61, 'zakina.spammy@gmail.com', '[\"ROLE_ETUDIANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$3j2xyoKHtPxaA4o6YKlBwQ$PcHeDwr4pYN16UFXoucp3b2s8ySKWbPyhMRrc5EBC0A', 65, NULL, '2Q4g5-dT1v23D3XSHDM9PsGVJFk6WXGYQ8BKdwXcaK4', NULL, 'AR'),
-(64, 'serge.guerinet@ac-normandie.fr', '[\"ROLE_ETUDIANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$JhluzhWUMBf089mBKbk8Tw$NAyhSWcOtrWmN1HLslR81WnRavoWIIjtnZXOY2jCTkI', 68, NULL, 'e-kesYzKcObUXdXycxdCBewehhCzWiRbMFs9AXD_DQw', NULL, 'AC'),
-(66, 'hojob31557@bbsaili.com', '[\"ROLE_ETUDIANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$N2xBSnBsUkZsaTVWS2I0QQ$ygtJt5CYs5OL+71hXBSsQHwdx/18HECE8+e1QmUkEeo', 70, NULL, NULL, '2021-06-23 11:23:26', 'AR'),
-(67, 'marie.blimer@rostand.fr', '[\"ROLE_ENSEIGNANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$MmV6OWlXZUhiVFRtQ3ZEZw$g/eId2PsAXXrY78DiCNXJ06tsCnl6JIEzoYe6wcbdtk', NULL, 11, NULL, NULL, 'AC'),
-(68, 'nomportequiu', '[\"ROLE_ETUDIANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$VzBGenc0cjVoS3AuTlQ4MA$V/KwNLdahuV5fBlGyLUhrNRcrlD2wUjMC+7r9dDmIBs', NULL, NULL, 'q8VknP5Ep2QN1u9WvSU2bW_fitDLiBYk0DO6iyymaHk', '2021-08-21 15:46:53', 'AR'),
-(69, 'gihon18926@kibwot.com', '[\"ROLE_ETUDIANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$QlFZd1FoZXdJTHRRY1ZvTQ$ijitt278ygry5IT5x8r+UIvRE76UMKWOEocWJtD88yE', 72, NULL, NULL, '2021-08-21 17:24:10', 'AC'),
-(72, 'admin@rostand.fr', '[\"ROLE_ADMIN\"]', '$argon2id$v=19$m=65536,t=4,p=1$cWpjcXc1NkVCa29sZGtWTw$sWGMdvzujruwR975yMtIMDRRUQ1d/qUoU4jqdRiq9Gc', NULL, NULL, NULL, NULL, 'AC');
+INSERT INTO `user` (`id`, `etudiant_id`, `enseignant_id`, `email`, `roles`, `password`, `token`, `created_at`, `statut`) VALUES
+(42, 53, NULL, 'zakina.annouche@gmail.com', '[\"ROLE_ETUDIANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$TmwvaXIuNU1sQ2xRQW50MA$J5op76KZTt6yGe935emLQfyZMKV4KIAq9pmdA7pZ1Uc', '-XLGgnWrfDJ8j53To1T9a3URkHgpRS4X9MS05ctcX-0', '2021-09-10 00:00:00', 'AC'),
+(43, 54, NULL, 'nayah.cauvin@gmail.com', '[\"ROLE_ETUDIANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$N2lrQzUzemxKMi56U0Ivdw$/f14CBtnNddIXrZt92q6onq56RN78J4tpAdasC6CPnc', 'DFxjXHDzmOvsKPLxmaM-lViZVhczDboCyxJ4l0nWgHs', '2021-09-12 17:10:36', 'AC'),
+(53, 64, NULL, 'zakina.rostand@gmail.com', '[\"ROLE_ETUDIANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$T04yZXV1bHhSRjIuRTVDNA$/cQjoQstMZz3tUb3vL1bdlxXgPsdN5kv4m/iOa/b6Ek', 'twhiI7YrLFGZPB-gaVvTTi4XI3Lwzpg73XOtT4LmJZs', NULL, 'AC'),
+(55, NULL, NULL, 'adminOld@rostand.fr', '[\"ROLE_ADMIN\"]', '$argon2id$v=19$m=65536,t=4,p=1$WmFxUXhMejhLOUdCdExaRg$MXVJKf5Csrt69EJO806fErrkYxp3qQxWDghLSKnweyI', NULL, NULL, 'AC'),
+(57, NULL, 7, 'zakina.annouche@ac-normandie.fr', '[\"ROLE_ENSEIGNANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$ODRIc0FzYmRRdm02WFlOLw$9yQFgPIq9ntrUwUNWE4CUujfkEHTg8Sa9EPNCWwYGJs', NULL, NULL, 'AC'),
+(58, NULL, 8, 'serge.guerinet@adresse.com', '[\"ROLE_ENSEIGNANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$UDJjRWlQNXkxYVNjNmtOMw$kb2aydJWRH5rmPokRtbtQ9iQeMe03oN9N6q7HY2/ulg', NULL, NULL, 'AC'),
+(59, NULL, 9, 'anne.catros@adresse.com', '[\"ROLE_ENSEIGNANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$bGFCS0pRWGxXb3doRHFsZQ$C4TABUz9FJQGJznOB94HILzwdhyC1gYpcYewqvTodac', NULL, NULL, 'AC'),
+(60, NULL, 10, 'thomas.dupont@adresse.com', '[\"ROLE_ENSEIGNANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$STd0amlXeUltODVHWTZjSg$QadRZptnB44ibIWZ1DCRf1fRhYMtKjsVRE2QoxFjoi0', NULL, NULL, 'AC'),
+(61, 65, NULL, 'zakina.spammy@gmail.com', '[\"ROLE_ETUDIANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$3j2xyoKHtPxaA4o6YKlBwQ$PcHeDwr4pYN16UFXoucp3b2s8ySKWbPyhMRrc5EBC0A', '2Q4g5-dT1v23D3XSHDM9PsGVJFk6WXGYQ8BKdwXcaK4', NULL, 'AR'),
+(64, 68, NULL, 'serge.guerinet@ac-normandie.fr', '[\"ROLE_ETUDIANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$JhluzhWUMBf089mBKbk8Tw$NAyhSWcOtrWmN1HLslR81WnRavoWIIjtnZXOY2jCTkI', 'e-kesYzKcObUXdXycxdCBewehhCzWiRbMFs9AXD_DQw', NULL, 'AC'),
+(66, 70, NULL, 'hojob31557@bbsaili.com', '[\"ROLE_ETUDIANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$N2xBSnBsUkZsaTVWS2I0QQ$ygtJt5CYs5OL+71hXBSsQHwdx/18HECE8+e1QmUkEeo', NULL, '2021-06-23 11:23:26', 'AR'),
+(67, NULL, 11, 'marie.blimer@rostand.fr', '[\"ROLE_ENSEIGNANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$MmV6OWlXZUhiVFRtQ3ZEZw$g/eId2PsAXXrY78DiCNXJ06tsCnl6JIEzoYe6wcbdtk', NULL, NULL, 'AC'),
+(68, NULL, NULL, 'nomportequiu', '[\"ROLE_ETUDIANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$VzBGenc0cjVoS3AuTlQ4MA$V/KwNLdahuV5fBlGyLUhrNRcrlD2wUjMC+7r9dDmIBs', 'q8VknP5Ep2QN1u9WvSU2bW_fitDLiBYk0DO6iyymaHk', '2021-08-21 15:46:53', 'AR'),
+(69, 72, NULL, 'gihon18926@kibwot.com', '[\"ROLE_ETUDIANT\"]', '$argon2i$v=19$m=65536,t=4,p=1$QlFZd1FoZXdJTHRRY1ZvTQ$ijitt278ygry5IT5x8r+UIvRE76UMKWOEocWJtD88yE', NULL, '2021-08-21 17:24:10', 'AC'),
+(72, NULL, NULL, 'admin@rostand.fr', '[\"ROLE_ADMIN\"]', '$argon2id$v=19$m=65536,t=4,p=1$cWpjcXc1NkVCa29sZGtWTw$sWGMdvzujruwR975yMtIMDRRUQ1d/qUoU4jqdRiq9Gc', NULL, NULL, 'AC'),
+(73, 73, NULL, 'victorrenault87@gmail.com', '[\"ROLE_ETUDIANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$WTF6dnJmUlQxejVQTjIvSQ$DtO05tExfVktb3XFzSqY9tmNJt0qK0HMRqFSnXfF2HA', NULL, '2021-11-29 12:37:45', 'AC'),
+(74, 74, NULL, 'flo.rousseau14210@gmail.com', '[\"ROLE_ETUDIANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$TDBHeDRuMHhQcHY3NHZvWg$W7ltaO70W7RNEBHfWf5N87XfRTzw6NzrGdIC/BOBNdE', NULL, '2021-11-29 12:38:34', 'AC'),
+(75, 75, NULL, 'antonindpy@gmail.com', '[\"ROLE_ETUDIANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$SmFnUm00LlBJZkRSeGpZQg$OsghZBnxVSenG9QL339dkSG9BuEmCn87CGlypZcuLIQ', NULL, '2021-11-29 12:39:12', 'AC'),
+(76, 76, NULL, 'loanboulin@gmail.com', '[\"ROLE_ETUDIANT\"]', '$argon2id$v=19$m=65536,t=4,p=1$RjU3WkxQajBVQUhaU256Vg$XUk8N2yfbNf9dk/stFDr85EPloopl0U1H7OXDIw/kPg', NULL, '2021-11-29 12:39:38', 'AC');
 
 --
 -- Contraintes pour les tables déchargées
@@ -1156,15 +1160,8 @@ ALTER TABLE `activite`
 -- Contraintes pour la table `adresser`
 --
 ALTER TABLE `adresser`
-  ADD CONSTRAINT `adresser_ibfk_1` FOREIGN KEY (`PRO_ID`) REFERENCES `projetdef` (`PRO_ID`),
-  ADD CONSTRAINT `adresser_ibfk_2` FOREIGN KEY (`GRO_ID`) REFERENCES `groupe` (`GRO_ID`);
-
---
--- Contraintes pour la table `appartenir`
---
-ALTER TABLE `appartenir`
-  ADD CONSTRAINT `appartenir_ibfk_1` FOREIGN KEY (`GRO_ID`) REFERENCES `groupe` (`GRO_ID`),
-  ADD CONSTRAINT `appartenir_ibfk_2` FOREIGN KEY (`USE_ID`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `FK_981E15C47A45358C` FOREIGN KEY (`groupe_id`) REFERENCES `groupe` (`id`),
+  ADD CONSTRAINT `FK_981E15C4C18272` FOREIGN KEY (`projet_id`) REFERENCES `projet_def` (`id`);
 
 --
 -- Contraintes pour la table `commentaire`
@@ -1178,27 +1175,6 @@ ALTER TABLE `commentaire`
 --
 ALTER TABLE `competence`
   ADD CONSTRAINT `FK_94D4687F9B0F88B1` FOREIGN KEY (`activite_id`) REFERENCES `activite` (`id`);
-
---
--- Contraintes pour la table `contenir`
---
-ALTER TABLE `contenir`
-  ADD CONSTRAINT `contenir_ibfk_1` FOREIGN KEY (`RES_ID`) REFERENCES `ressource` (`RES_ID`),
-  ADD CONSTRAINT `contenir_ibfk_2` FOREIGN KEY (`PRO_ID`) REFERENCES `projetequipe` (`PRO_ID`);
-
---
--- Contraintes pour la table `definir_pro`
---
-ALTER TABLE `definir_pro`
-  ADD CONSTRAINT `definir_pro_ibfk_1` FOREIGN KEY (`PRO_ID`) REFERENCES `projetdef` (`PRO_ID`),
-  ADD CONSTRAINT `definir_pro_ibfk_2` FOREIGN KEY (`MAT_ID`) REFERENCES `matiere` (`id`);
-
---
--- Contraintes pour la table `encadrer`
---
-ALTER TABLE `encadrer`
-  ADD CONSTRAINT `encadrer_ibfk_1` FOREIGN KEY (`USE_ID`) REFERENCES `enseignant` (`id`),
-  ADD CONSTRAINT `encadrer_ibfk_2` FOREIGN KEY (`PRO_ID`) REFERENCES `projetdef` (`PRO_ID`);
 
 --
 -- Contraintes pour la table `enseignant`
@@ -1219,22 +1195,28 @@ ALTER TABLE `etudiant`
 -- Contraintes pour la table `groupe`
 --
 ALTER TABLE `groupe`
-  ADD CONSTRAINT `groupe_ibfk_1` FOREIGN KEY (`TYP_ID`) REFERENCES `gro_type` (`GRO_ID`);
+  ADD CONSTRAINT `FK_4B98C2132B6BDD` FOREIGN KEY (`groupe_type_id`) REFERENCES `groupe_type` (`id`);
 
 --
--- Contraintes pour la table `integrer_res`
+-- Contraintes pour la table `groupe_user`
 --
-ALTER TABLE `integrer_res`
-  ADD CONSTRAINT `integrer_res_ibfk_1` FOREIGN KEY (`POS_ID`) REFERENCES `post` (`POS_ID`),
-  ADD CONSTRAINT `integrer_res_ibfk_2` FOREIGN KEY (`RES_ID`) REFERENCES `ressource` (`RES_ID`);
+ALTER TABLE `groupe_user`
+  ADD CONSTRAINT `FK_257BA9FE7A45358C` FOREIGN KEY (`groupe_id`) REFERENCES `groupe` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_257BA9FEA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `post`
 --
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`TYP_ID`) REFERENCES `typepost` (`TYP_ID`),
-  ADD CONSTRAINT `post_ibfk_2` FOREIGN KEY (`USE_ID`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `post_ibfk_3` FOREIGN KEY (`POS_ID_REPONDRE`) REFERENCES `post` (`POS_ID`);
+  ADD CONSTRAINT `FK_5A8A6C8D714819A0` FOREIGN KEY (`type_id_id`) REFERENCES `type_post` (`id`),
+  ADD CONSTRAINT `FK_5A8A6C8DA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `post_groupe`
+--
+ALTER TABLE `post_groupe`
+  ADD CONSTRAINT `FK_349B68444B89032C` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_349B68447A45358C` FOREIGN KEY (`groupe_id`) REFERENCES `groupe` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `production`
@@ -1243,31 +1225,58 @@ ALTER TABLE `production`
   ADD CONSTRAINT `FK_D3EDB1E0B70FF80C` FOREIGN KEY (`rp_id`) REFERENCES `rp` (`id`);
 
 --
--- Contraintes pour la table `projetequipe`
+-- Contraintes pour la table `projet_def`
 --
-ALTER TABLE `projetequipe`
-  ADD CONSTRAINT `projetequipe_ibfk_1` FOREIGN KEY (`GRO_ID`) REFERENCES `groupe` (`GRO_ID`),
-  ADD CONSTRAINT `projetequipe_ibfk_2` FOREIGN KEY (`PRO_ID_DEFINIR`) REFERENCES `projetdef` (`PRO_ID`);
+ALTER TABLE `projet_def`
+  ADD CONSTRAINT `FK_D91B58607A45358C` FOREIGN KEY (`groupe_id`) REFERENCES `groupe` (`id`);
 
 --
--- Contraintes pour la table `qualifier`
+-- Contraintes pour la table `projet_def_enseignant`
 --
-ALTER TABLE `qualifier`
-  ADD CONSTRAINT `qualifier_ibfk_1` FOREIGN KEY (`PRO_ID`) REFERENCES `projetdef` (`PRO_ID`),
-  ADD CONSTRAINT `qualifier_ibfk_2` FOREIGN KEY (`TYP_ID`) REFERENCES `typeprojet` (`TYP_ID`);
+ALTER TABLE `projet_def_enseignant`
+  ADD CONSTRAINT `FK_2F3C3EC6D6911079` FOREIGN KEY (`projet_def_id`) REFERENCES `projet_def` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_2F3C3EC6E455FCC0` FOREIGN KEY (`enseignant_id`) REFERENCES `enseignant` (`id`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `regrouper`
+-- Contraintes pour la table `projet_def_matiere`
 --
-ALTER TABLE `regrouper`
-  ADD CONSTRAINT `regrouper_ibfk_1` FOREIGN KEY (`POS_ID`) REFERENCES `post` (`POS_ID`),
-  ADD CONSTRAINT `regrouper_ibfk_2` FOREIGN KEY (`GRO_ID`) REFERENCES `groupe` (`GRO_ID`);
+ALTER TABLE `projet_def_matiere`
+  ADD CONSTRAINT `FK_C9795E2CD6911079` FOREIGN KEY (`projet_def_id`) REFERENCES `projet_def` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_C9795E2CF46CD258` FOREIGN KEY (`matiere_id`) REFERENCES `matiere` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `projet_equipe`
+--
+ALTER TABLE `projet_equipe`
+  ADD CONSTRAINT `FK_6E00A437A45358C` FOREIGN KEY (`groupe_id`) REFERENCES `groupe` (`id`),
+  ADD CONSTRAINT `FK_6E00A43D6911079` FOREIGN KEY (`projet_def_id`) REFERENCES `projet_def` (`id`);
+
+--
+-- Contraintes pour la table `projet_equipe_ressource`
+--
+ALTER TABLE `projet_equipe_ressource`
+  ADD CONSTRAINT `FK_DEA0C23F4E78FC5D` FOREIGN KEY (`projet_equipe_id`) REFERENCES `projet_equipe` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_DEA0C23FFC6CD52A` FOREIGN KEY (`ressource_id`) REFERENCES `ressource` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `reset_password_request`
 --
 ALTER TABLE `reset_password_request`
   ADD CONSTRAINT `FK_7CE748AA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Contraintes pour la table `ressource_groupe`
+--
+ALTER TABLE `ressource_groupe`
+  ADD CONSTRAINT `FK_EEF85F9C7A45358C` FOREIGN KEY (`groupe_id`) REFERENCES `groupe` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_EEF85F9CFC6CD52A` FOREIGN KEY (`ressource_id`) REFERENCES `ressource` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `ressource_post`
+--
+ALTER TABLE `ressource_post`
+  ADD CONSTRAINT `FK_AA356C044B89032C` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_AA356C04FC6CD52A` FOREIGN KEY (`ressource_id`) REFERENCES `ressource` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `rp`
@@ -1308,6 +1317,13 @@ ALTER TABLE `tache_semaine`
   ADD CONSTRAINT `FK_B11BB55F220C6AD0` FOREIGN KEY (`jour_id`) REFERENCES `jour` (`id`),
   ADD CONSTRAINT `FK_B11BB55F6542D8E6` FOREIGN KEY (`domaine_tache_id`) REFERENCES `domaine_tache` (`id`),
   ADD CONSTRAINT `FK_B11BB55FE928EFB1` FOREIGN KEY (`semaine_stage_id`) REFERENCES `semaine_stage` (`id`);
+
+--
+-- Contraintes pour la table `type_projet_projet_def`
+--
+ALTER TABLE `type_projet_projet_def`
+  ADD CONSTRAINT `FK_E4B7ACD1B407C362` FOREIGN KEY (`type_projet_id`) REFERENCES `type_projet` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_E4B7ACD1D6911079` FOREIGN KEY (`projet_def_id`) REFERENCES `projet_def` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `user`
