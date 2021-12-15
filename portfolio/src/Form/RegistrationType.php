@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class RegistrationType extends AbstractType
 {
@@ -20,7 +21,12 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class,[
-                'disabled' => false
+                'disabled' => false,
+                'constraints' =>[
+                    new Assert\Email([
+                        'message' => 'L\'adresse mail renseignée n\'est pas valide'
+                    ])
+                    ],
             ])    
             ->add('password', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -32,7 +38,7 @@ class RegistrationType extends AbstractType
                         'message' => 'Veuillez saisir un mot de passe valide',
                     ]),
                     new Length([
-                        'min' => 2,
+                        'min' => 8,
                         'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
