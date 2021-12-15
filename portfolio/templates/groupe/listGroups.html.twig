@@ -18,8 +18,8 @@
                           <thead>
                             <tr>
                               <th>Groupe</th>
-                              <th>Type</th>
-                              <th>Libellé</th>
+                              <th onClick="sortATable(0, table_group)">Type</th>
+                              <th onClick="sortATable(1, table_group)">Libellé</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -43,32 +43,5 @@
 
 {% block javascripts %}
     <script>
-
-  function search_group() {
-    // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("search_group");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("table_group");
-    tr = table.getElementsByTagName("tr");
-
-    console.log(input);
-
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[2];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }
-    }
-  }
-    
-    
-    
     </script>
 {% endblock %}
