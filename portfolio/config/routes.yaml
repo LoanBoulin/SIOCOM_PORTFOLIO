@@ -226,6 +226,12 @@ supprimerGroupe:
   controller: App\Controller\GroupeController::supprimerGroupe
 
 
+#Permet d'ajouter un groupe dans un projet
+addProjetEquipe:
+  path: /projetGroupe/addProjetGroupe
+  controller: App\Controller\GroupeController::addProjetGroupe
+
+
 ###### Routes Projet Equipe ##########
 
 #Permet de lister un projet
