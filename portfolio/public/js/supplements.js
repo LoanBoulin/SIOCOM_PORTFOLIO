@@ -28,13 +28,72 @@
   }
 
 
+  function sortATable(numcol, element){
+    //Déclaration des variables
+    var sort = "asc";
+    var table = element
+    console.log(element);
+    var rows = table.rows;
+    var shouldSwitch = false;
+    var switchcount  = 0;
+    switching = true;
+
+    while(switching){
+      for(i=1; i < (rows.length - 1); i++){
+
+        el1 = rows[i].getElementsByTagName("td")[numcol];
+        el2 = rows[i + 1].getElementsByTagName("td")[numcol];
+  
+        console.log(el1, el2);
+  
+        if(sort == "asc"){ // On regarde si le tri doit être ascendant 
+          console.log(el1.innerHTML,el2.innerHTML);
+          if (el1.innerHTML.toLowerCase() > el2.innerHTML.toLowerCase()) {
+            console.log("test");
+            shouldSwitch = true;
+            break;
+          }
+        }else{// Sinon il sera descendant
+          if (el1.innerHTML.toLowerCase() < el2.innerHTML.toLowerCase()) {
+  
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+  
+      if (shouldSwitch) {
+        // Si un switch des elements doit être fait
+        console.log("test");
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+  
+        switchcount ++;
+      } else {
+        /* If no switching has been done AND the direction is "asc",
+        set the direction to "desc" and run the while loop again. */
+        if (switchcount == 0 && sort == "asc") {
+          sort = "desc";
+          switching = true;
+        }
+      }
+    }
+
+
+
+  }
+
+
+
+
   function addActivity() {
     $('#activities_field_list').append('<div class="form-group row">'+
     '<div class="col-sm-12">'+
         '<div class="row">'+
             '<div class="col-md-6">'+
-                '<label class="form-label" for="newActivity">Description</label>'+
-                '<input class="form-control" id="newActivity" type="text">'+
+                '<label class="form-label" for="description">Description</label>'+
+                '<input class="form-control" id="description" type="text">'+
+
 
             '</div> '+
             '<div class="col-md-6">'+
