@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 15 déc. 2021 à 08:08
+-- Généré le : mer. 15 déc. 2021 à 09:22
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -60,23 +60,6 @@ INSERT INTO `activite` (`id`, `bloc_id`, `code`, `libelle`) VALUES
 (16, 4, 'B3.4', 'Garantie de la disponibilité, de l\'intégrité et de la confidentialité des services informatiques et des données de l\'organisation face à des cyberattaques'),
 (17, 4, 'B3.5SISR', 'Cybersécurisation d\'une infrastructure réseau, d\'un système, d\'un service'),
 (18, 4, 'B3.5SLAM', 'Cybersécurisation d\'une solution applicative et de son développement');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `adresser`
---
-
-DROP TABLE IF EXISTS `adresser`;
-CREATE TABLE IF NOT EXISTS `adresser` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `projet_id` int(11) NOT NULL,
-  `is_adressed` tinyint(1) NOT NULL,
-  `groupe_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_981E15C4C18272` (`projet_id`),
-  KEY `IDX_981E15C47A45358C` (`groupe_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -268,7 +251,12 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 ('DoctrineMigrations\\Version20211213153420', '2021-12-13 15:34:24', 47696),
 ('DoctrineMigrations\\Version20211213153936', '2021-12-13 15:39:39', 1276),
-('DoctrineMigrations\\Version20211215080222', '2021-12-15 08:02:27', 4291);
+('DoctrineMigrations\\Version20211215080222', '2021-12-15 08:02:27', 4291),
+('DoctrineMigrations\\Version20211215082043', '2021-12-15 08:20:48', 2691),
+('DoctrineMigrations\\Version20211215082223', '2021-12-15 08:22:27', 188),
+('DoctrineMigrations\\Version20211215082654', '2021-12-15 08:26:59', 1912),
+('DoctrineMigrations\\Version20211215082746', '2021-12-15 08:27:52', 278),
+('DoctrineMigrations\\Version20211215082933', '2021-12-15 08:29:39', 1384);
 
 -- --------------------------------------------------------
 
@@ -405,23 +393,26 @@ CREATE TABLE IF NOT EXISTS `groupe` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `groupe_type_id` int(11) DEFAULT NULL,
   `libelle` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `projet_def_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `IDX_4B98C2132B6BDD` (`groupe_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `IDX_4B98C2132B6BDD` (`groupe_type_id`),
+  KEY `IDX_4B98C21D6911079` (`projet_def_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `groupe`
 --
 
-INSERT INTO `groupe` (`id`, `groupe_type_id`, `libelle`) VALUES
-(1, 1, 'SIO 2020-2022'),
-(2, 1, 'SIO 2021-2023'),
-(3, 2, 'TD sur Javascript'),
-(4, 1, 'SLAM 2020-2022'),
-(5, 1, 'SISR 2020-2022'),
-(6, 1, 'SLAM 2021-2023'),
-(7, 1, 'SISR 2021-2023'),
-(8, 2, 'EQUIDA FLORIAN ANTONIN');
+INSERT INTO `groupe` (`id`, `groupe_type_id`, `libelle`, `projet_def_id`) VALUES
+(1, 1, 'SIO 2020-2022', NULL),
+(2, 1, 'SIO 2021-2023', NULL),
+(3, 2, 'TD sur Javascript', NULL),
+(4, 1, 'SLAM 2020-2022', NULL),
+(5, 1, 'SISR 2020-2022', NULL),
+(6, 1, 'SLAM 2021-2023', NULL),
+(7, 1, 'SISR 2021-2023', NULL),
+(8, 2, 'EQUIDA FLORIAN ANTONIN', NULL),
+(9, 1, 'Professeurs', NULL);
 
 -- --------------------------------------------------------
 
@@ -442,7 +433,7 @@ CREATE TABLE IF NOT EXISTS `groupe_type` (
 
 INSERT INTO `groupe_type` (`id`, `libelle`) VALUES
 (1, 'Section'),
-(2, 'TD');
+(2, 'Travail');
 
 -- --------------------------------------------------------
 
@@ -471,7 +462,13 @@ INSERT INTO `groupe_user` (`groupe_id`, `user_id`) VALUES
 (4, 74),
 (4, 75),
 (5, 73),
-(5, 76);
+(5, 76),
+(9, 57),
+(9, 58),
+(9, 59),
+(9, 60),
+(9, 64),
+(9, 67);
 
 -- --------------------------------------------------------
 
@@ -609,7 +606,15 @@ CREATE TABLE IF NOT EXISTS `post` (
   PRIMARY KEY (`id`),
   KEY `IDX_5A8A6C8D714819A0` (`type_id_id`),
   KEY `IDX_5A8A6C8DA76ED395` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `post`
+--
+
+INSERT INTO `post` (`id`, `type_id_id`, `user_id`, `date_time_post`, `description`) VALUES
+(1, NULL, 74, '2021-12-15 08:49:00', 'Bonjour les SIO, je serai absent demain matin, j\'ai un rendez-vous. Merci'),
+(2, NULL, 57, '2021-12-15 09:08:47', 'Bonjour les professeurs, je ne serai pas disponible demain en dernière heure par conséquent les SLAM finiront une heure plus tôt.');
 
 -- --------------------------------------------------------
 
@@ -625,6 +630,14 @@ CREATE TABLE IF NOT EXISTS `post_groupe` (
   KEY `IDX_349B68444B89032C` (`post_id`),
   KEY `IDX_349B68447A45358C` (`groupe_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `post_groupe`
+--
+
+INSERT INTO `post_groupe` (`post_id`, `groupe_id`) VALUES
+(1, 1),
+(2, 9);
 
 -- --------------------------------------------------------
 
@@ -657,14 +670,16 @@ CREATE TABLE IF NOT EXISTS `projet_def` (
   `groupe_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_D91B58607A45358C` (`groupe_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `projet_def`
 --
 
 INSERT INTO `projet_def` (`id`, `date_debut`, `date_fin`, `libelle`, `groupe_id`) VALUES
-(1, '2021-11-09', '2021-11-25', 'PROJET EQUIDA', NULL);
+(1, '2021-11-09', '2021-11-25', 'PROJET EQUIDA', 4),
+(3, '2021-11-09', '2021-12-15', 'Projet Symfony Novembre/Décembre', 4),
+(4, '2021-01-10', '2021-01-27', 'Projet DevOps', 1);
 
 -- --------------------------------------------------------
 
@@ -681,6 +696,14 @@ CREATE TABLE IF NOT EXISTS `projet_def_enseignant` (
   KEY `IDX_2F3C3EC6E455FCC0` (`enseignant_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `projet_def_enseignant`
+--
+
+INSERT INTO `projet_def_enseignant` (`projet_def_id`, `enseignant_id`) VALUES
+(3, 7),
+(4, 8);
+
 -- --------------------------------------------------------
 
 --
@@ -695,6 +718,14 @@ CREATE TABLE IF NOT EXISTS `projet_def_matiere` (
   KEY `IDX_C9795E2CD6911079` (`projet_def_id`),
   KEY `IDX_C9795E2CF46CD258` (`matiere_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `projet_def_matiere`
+--
+
+INSERT INTO `projet_def_matiere` (`projet_def_id`, `matiere_id`) VALUES
+(3, 1),
+(4, 1);
 
 -- --------------------------------------------------------
 
@@ -1157,13 +1188,6 @@ ALTER TABLE `activite`
   ADD CONSTRAINT `FK_B87555155582E9C0` FOREIGN KEY (`bloc_id`) REFERENCES `bloc` (`id`);
 
 --
--- Contraintes pour la table `adresser`
---
-ALTER TABLE `adresser`
-  ADD CONSTRAINT `FK_981E15C47A45358C` FOREIGN KEY (`groupe_id`) REFERENCES `groupe` (`id`),
-  ADD CONSTRAINT `FK_981E15C4C18272` FOREIGN KEY (`projet_id`) REFERENCES `projet_def` (`id`);
-
---
 -- Contraintes pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
@@ -1195,7 +1219,8 @@ ALTER TABLE `etudiant`
 -- Contraintes pour la table `groupe`
 --
 ALTER TABLE `groupe`
-  ADD CONSTRAINT `FK_4B98C2132B6BDD` FOREIGN KEY (`groupe_type_id`) REFERENCES `groupe_type` (`id`);
+  ADD CONSTRAINT `FK_4B98C2132B6BDD` FOREIGN KEY (`groupe_type_id`) REFERENCES `groupe_type` (`id`),
+  ADD CONSTRAINT `FK_4B98C21D6911079` FOREIGN KEY (`projet_def_id`) REFERENCES `projet_def` (`id`);
 
 --
 -- Contraintes pour la table `groupe_user`

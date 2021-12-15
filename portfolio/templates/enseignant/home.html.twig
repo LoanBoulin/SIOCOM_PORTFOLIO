@@ -113,7 +113,13 @@
 
                         <div class="p-3">
                           <div class="d-flex justify-content-between">
-                           {% set photo = 'avatar/etudiant/'~ g.user.etudiant.id ~'.png' %}
+                          {% if "ROLE_ADMIN" in  app.user.roles %}
+                            {% set photo = 'avatar/admin.png' %}
+                          {% elseif "ROLE_ENSEIGNANT" in  app.user.roles %}
+                            {% set photo = 'avatar/enseignant/'~ app.user.enseignant.id ~'.png' %}
+                          {% elseif "ROLE_ETUDIANT" in  app.user.roles %}
+                            {% set photo = 'avatar/etudiant/'~ app.user.etudiant.id ~'.png' %}
+                          {% endif %}
                             <div class="d-flex">
                               <a class="flex-shrink-0 mr-2" href="#">
                                 <img src="{{ asset(photo | trans )}}" alt="person" width="50" class="img-fluid rounded-circle" onError="this.src='{{ asset('avatar/lambda.png' | trans )}}';">
