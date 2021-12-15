@@ -45,20 +45,24 @@ class ProjetDef
     private $enseignant;
 
     /**
-     * @ORM\OneToMany(targetEntity=Adresser::class, mappedBy="projet")
+     * @ORM\OneToMany(targetEntity=Groupe::class, mappedBy="projetDef")
      */
-    private $Projets;
+    private $groupeTravail;
 
     /**
      * @ORM\ManyToOne(targetEntity=Groupe::class, inversedBy="projetDefs")
      */
     private $groupe;
 
+
+
+
+
     public function __construct()
     {
         $this->matiere = new ArrayCollection();
         $this->enseignant = new ArrayCollection();
-        $this->Projets = new ArrayCollection();
+        $this->groupeTravail = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -151,29 +155,29 @@ class ProjetDef
     }
 
     /**
-     * @return Collection|Adresser[]
+     * @return Collection|Groupe[]
      */
-    public function getProjets(): Collection
+    public function getGroupeTravail(): Collection
     {
-        return $this->Projets;
+        return $this->groupeTravail;
     }
 
-    public function addProjet(Adresser $projet): self
+    public function addGroupeTravail(Groupe $groupeTravail): self
     {
-        if (!$this->Projets->contains($projet)) {
-            $this->Projets[] = $projet;
-            $projet->setProjet($this);
+        if (!$this->groupeTravail->contains($groupeTravail)) {
+            $this->groupeTravail[] = $groupeTravail;
+            $groupeTravail->setProjetDef($this);
         }
 
         return $this;
     }
 
-    public function removeProjet(Adresser $projet): self
+    public function removeGroupeTravail(Groupe $groupeTravail): self
     {
-        if ($this->Projets->removeElement($projet)) {
+        if ($this->groupeTravail->removeElement($groupeTravail)) {
             // set the owning side to null (unless already changed)
-            if ($projet->getProjet() === $this) {
-                $projet->setProjet(null);
+            if ($groupeTravail->getProjetDef() === $this) {
+                $groupeTravail->setProjetDef(null);
             }
         }
 
@@ -191,6 +195,10 @@ class ProjetDef
 
         return $this;
     }
+
+
+
+
 
 
 

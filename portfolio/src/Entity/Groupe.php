@@ -48,9 +48,9 @@ class Groupe
     private $ressources;
 
     /**
-     * @ORM\OneToMany(targetEntity=Adresser::class, mappedBy="groupe")
+     * @ORM\ManyToOne(targetEntity=ProjetDef::class, inversedBy="groupeTravail")
      */
-    private $adressers;
+    private $projetDef;
 
     /**
      * @ORM\OneToMany(targetEntity=ProjetDef::class, mappedBy="groupe")
@@ -61,12 +61,17 @@ class Groupe
 
 
 
+
+
+
+
+
+
     public function __construct()
     {
         $this->user_id = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->ressources = new ArrayCollection();
-        $this->adressers = new ArrayCollection();
         $this->projetDefs = new ArrayCollection();
     }
 
@@ -179,32 +184,14 @@ class Groupe
         return $this;
     }
 
-    /**
-     * @return Collection|Adresser[]
-     */
-    public function getAdressers(): Collection
+    public function getProjetDef(): ?ProjetDef
     {
-        return $this->adressers;
+        return $this->projetDef;
     }
 
-    public function addAdresser(Adresser $adresser): self
+    public function setProjetDef(?ProjetDef $projetDef): self
     {
-        if (!$this->adressers->contains($adresser)) {
-            $this->adressers[] = $adresser;
-            $adresser->setGroupe($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAdresser(Adresser $adresser): self
-    {
-        if ($this->adressers->removeElement($adresser)) {
-            // set the owning side to null (unless already changed)
-            if ($adresser->getGroupe() === $this) {
-                $adresser->setGroupe(null);
-            }
-        }
+        $this->projetDef = $projetDef;
 
         return $this;
     }
@@ -238,6 +225,10 @@ class Groupe
 
         return $this;
     }
+
+
+
+
 
 
 }
