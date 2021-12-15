@@ -88,48 +88,43 @@ class GroupeController extends AbstractController
             }
         }
 
-        function addGroupeByProjet(Request $request){
+        public function addProjetGroupe($id, Request $request){
 
-            $tempTwig = 'base.html.twig';
-            if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
-                $tempTwig = 'baseAdmin.html.twig';
-            }else if (in_array("ROLE_ENSEIGNANT", $this->getUser()->getRoles())){
-                $tempTwig = 'baseEnseignant.html.twig';
-            }else if (in_array("ROLE_ETUDIANT", $this->getUser()->getRoles())){
-                $tempTwig = 'baseEtudiant.html.twig';
-            }
-    
-            
-            $groupe = new groupe();
-            $form = $this->createForm(GroupeTypeForm::class, $groupe, ['champDesactive' => true,]);
-            $form->handleRequest($request);
-            
-            if ($form->isSubmitted() && $form->isValid()) {
-            
-                    $groupe = $form->getData();
-                    $groupe->setGroupeType('setion');
-            
-                    $entityManager = $this->getDoctrine()->getManager();
-                    $entityManager->persist($groupe);
-                    $entityManager->flush();
-
-                    if($groupe->getGroupeType()->getLibelle() == "Travail"){
-                        return $this->render('groupe/consulterGroupeTravail.html.twig', [
-                            'groupe' => $groupe,
-                            'templateTwigParent' => $tempTwig,
-                        ]);
-                    }else{
-                        return $this->render('groupe/consulterProjetDef.html.twig', [
-                            'groupe' => $groupe,
-                            'templateTwigParent' => $tempTwig,
-                        ]);
-                    }
-            }
-                else
-                    {
-                    return $this->render('groupe/addGroupe.html.twig', array('form' => $form->createView(), 'templateTwigParent' => $tempTwig));
+        
+                $tempTwig = 'base.html.twig';
+                if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())){
+                    $tempTwig = 'baseAdmin.html.twig';
+                }else if (in_array("ROLE_ENSEIGNANT", $this->getUser()->getRoles())){
+                    $tempTwig = 'baseEnseignant.html.twig';
+                }else if (in_array("ROLE_ETUDIANT", $this->getUser()->getRoles())){
+                    throw $this->createAccessDeniedException();
                 }
-            }
+        
+                $groupeTravail = new Groupe();
+                $form = $this->createForm(GroupeType::class, $groupeTravail);
+                $form->handleRequest($request);
+                
+                if ($form->isSubmitted() && $form->isValid()) {
+                
+                        $groupeTravail = $form->getData();
+
+                        $projetDef = $this->getDoctrine()
+                        ->getRepository(ProjetDef::class)
+                        ->find($id);
+                        $groupeTravail -> setProjetDef($projetDef);
+        
+                        $entityManager = $this->getDoctrine()->getManager();
+                        $entityManager->persist($groupeTravail);
+                        $entityManager->flush();
+                        
+                        return $this->render('groupe/consulterGroupeTravail.html.twig', ['projet' => $groupeTravail, 'templateTwigParent' => $tempTwig,]);
+                }else{
+                        return $this->render('groupe/addGroupe.html.twig', array('form' => $form->createView(), 'templateTwigParent' => $tempTwig, ));
+                    }
+        
+                return $this->render('consulter/consulterGroupeTravail.html.twig', [ 'projets' => $groupeTravail, 'templateTwigParent' => $tempTwig,]);
+            
+        }
     
     
         public function consulterGroupe($id, Request $request){
