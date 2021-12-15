@@ -141,12 +141,12 @@
                                 <img src="{{ asset(photo | trans )}}" alt="person" width="50" class="img-fluid rounded-circle" onError="this.src='{{ asset('avatar/lambda.png' | trans )}}';">
                               </a>
                               <div class="ms-3">
-                                {% if "ROLE_ADMIN" in  app.user.roles %}                   
-                                    <h5>{{app.user.email}} (Administrateur) </h5>
-                                  {% elseif "ROLE_ENSEIGNANT" in  app.user.roles %}
-                                    <h5>{{app.user.enseignant.prenom}} {{app.user.enseignant.nom}} </h5>
+                                {% if "ROLE_ADMIN" in  g.user.roles %}                   
+                                    <h5>{{g.user.email}} (Administrateur) </h5>
+                                  {% elseif "ROLE_ENSEIGNANT" in  g.user.roles %}
+                                    <h5>{{g.user.enseignant.prenom}} {{g.user.enseignant.nom}} </h5>
                                   {% elseif "ROLE_ETUDIANT" in  app.user.roles %}
-                                    <h5>{{app.user.etudiant.prenom}} {{app.user.etudiant.nom}} </h5>
+                                    <h5>{{g.user.etudiant.prenom}} {{g.user.etudiant.nom}} </h5>
                                   {% endif %}      
                                 <div class="row">
                                     <p class="text-gray-500" >a posté :</p>

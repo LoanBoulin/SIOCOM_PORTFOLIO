@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Groupe;
+use App\Entity\User;
 use App\Entity\GroupeType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,6 +32,7 @@ class GroupeTypeForm extends AbstractType
             $builder
                 ->add('libelle', TextType::class)
                 ->add('groupe_type', EntityType::class, array('class' => 'App\Entity\GroupeType','choice_label' => 'libelle'))    
+                ->add('user_id', EntityType::class, array('class' => 'App\Entity\User','choice_label' => 'email', 'multiple' => true))   
                 ->add('enregistrer', SubmitType::class, array('label' => 'Nouveau groupe'))
                 ;         
         }

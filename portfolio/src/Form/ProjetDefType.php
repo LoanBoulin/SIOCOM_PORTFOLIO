@@ -31,7 +31,6 @@ class ProjetDefType extends AbstractType
             ->add('groupe', EntityType::class, [
                 'class' => Groupe::class,
                 'choice_label' => 'libelle', 
-                'multiple' => true,
                 'query_builder' => function (EntityRepository $er) { 
                     return $er->createQueryBuilder('groupe')
                     ->where('groupe.groupe_type = :grplib')
